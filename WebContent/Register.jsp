@@ -7,7 +7,7 @@
 <title>Register</title>
 </head>
 <body>
-	<form method="post" action="/Home">
+	<form method="post" action="/Register">
 	
 		<label>Username: </label>
 		 <input type="text" name="username"

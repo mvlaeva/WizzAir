@@ -6,6 +6,7 @@ import java.util.List;
 import com.wizzair.exceptions.TicketException;
 
 public class User {
+	private String username;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -15,42 +16,62 @@ public class User {
 	List<Ticket> tickets;
 	// TODO DEPENDENCIES
 
-	public User(String firstName, String lastName, String email, String phone, String password, Gender gender,
-			List<Ticket> tickets) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.phone = phone;
-		this.password = password;
+	public User(String username, String firstName, String lastName, String email, String phone, String password,
+			Gender gender) throws UserException {
+		setUsername(username);
+		setFirstName(firstName);
+		setLastName(lastName);
+		setEmail(email);
+		setPhone(phone);
+		setPassword(password);
 		this.gender = gender;
 		this.tickets = new ArrayList<Ticket>();
+	}
+
+	public void setUsername(String username) throws UserException {
+		if (Utility.isValidString(username))
+			this.username = username;
+		else
+			throw new UserException("Invalid username!");
+	}
+
+	public String getUsername() {
+		return username;
 	}
 
 	public void setFirstName(String firstName) throws UserException {
 		if (Utility.isValidString(firstName))
 			this.firstName = firstName;
-		throw new UserException("Invalid first name.");
+		else
+			throw new UserException("Invalid first name.");
 	}
 
 	public void setLastName(String lastName) throws UserException {
 		if (Utility.isValidString(lastName))
 			this.lastName = lastName;
-		throw new UserException("Invalid last name.");
+		else
+			throw new UserException("Invalid last name.");
 	}
 
-	//TODO EMAIL
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String email) throws UserException {
+		if (Utility.isValidEmailAddress(email))
+			this.email = email;
+		else
+			throw new UserException("Invalid email address!");
 	}
 
-	//TODO PHONE
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setPhone(String phone) throws UserException {
+		if (Utility.isValidPhoneNumber(phone))
+			this.phone = phone;
+		else
+			throw new UserException("Invalid phone number!");
 	}
 
-	//TODO secure pass
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String password) throws UserException {
+		if (Utility.isPasswordSecure(password))
+			this.password = password;
+		else
+			throw new UserException("Invalid password!");
 	}
 
 	public void setGender(Gender gender) {
@@ -63,4 +84,29 @@ public class User {
 		else
 			throw new TicketException("Ticket is null.");
 	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
 }
