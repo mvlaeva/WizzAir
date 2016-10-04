@@ -1,4 +1,4 @@
-package com.wizzair.flights;
+package com.wizzair.model;
 
 import com.wizzair.exceptions.PassangerException;
 

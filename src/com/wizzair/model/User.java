@@ -1,4 +1,4 @@
-package com.wizzair.flights;
+package com.wizzair.model;
 
 import java.util.ArrayList;
 import java.util.List;
