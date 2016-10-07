@@ -12,7 +12,7 @@ import com.wizzair.model.User;
 public class TestUserDAO {
 
 	@Test
-	public void test() throws SQLException, UserException, com.wizzair.model.UserException {
+	public void test() throws SQLException, UserException, com.wizzair.exceptions.UserException {
 		new UserDAO().returnAllUsers();
 
 		new UserDAO().registerUser(new User("pesho", "petur", "petrov", "pesho@abv.bg", "", "1234", Gender.MALE));
