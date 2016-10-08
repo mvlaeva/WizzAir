@@ -5,7 +5,7 @@ public abstract class Utility {
 	private static final int COUNT_DIGITS_PHONE_NUMBER_STARTING_WITH_359 = 13;
 	private static final int COUNT_DIGITS_PHONE_NUMBER = 10;
 
-	static boolean isValidString(String string) {
+	public static boolean isValidString(String string) {
 		if (string != null && string.trim().length() > 0) {
 			return true;
 		}
