@@ -1,9 +1,11 @@
 package com.wizzair.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.wizzair.exceptions.TicketException;
+import com.wizzair.exceptions.UserException;
 
 public class User {
 	private String username;
@@ -107,6 +109,10 @@ public class User {
 
 	public Gender getGender() {
 		return gender;
+	}
+	
+	public List<Ticket> getTickets() {
+		return Collections.unmodifiableList(tickets);
 	}
 
 }
