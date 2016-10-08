@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.wizzair.APIConnection.APIQueryDAO;
-import com.wizzair.model.Flight;
+import com.wizzair.APIConnection.ApiDAO;
 import com.wizzair.model.FlightSearch;
+import com.wizzair.model.JsonFlight;
 
 
 
@@ -29,7 +29,12 @@ public class SearchController extends HttpServlet {
 		
 		FlightSearch search = new FlightSearch(origin, destination, departureDate, returnDate, adults);
 		
-		List<Flight> allFlights = APIQueryDAO.getFlights(search);
+		List<JsonFlight> allFlights = null;
+		try {
+			allFlights = ApiDAO.getFlights(search);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		request.setAttribute("allFlights", allFlights);
 		

@@ -11,8 +11,16 @@
 
 <c:if test="${ not empty allFlights }">
 
-	<c:forEach items="${allFlights.flight}" var="flight">
-				<p><c:out value="${flight}" /></p>
+	<c:forEach items="${allFlights}" var="flight">
+				<p> Id : <c:out value="${flight.id}" /></p>
+				<p> originStation : <c:out value="${flight.originStation}" /></p>
+				<p> destinationStation : <c:out value="${flight.destinationStation}" /></p>
+				<p> departure : <c:out value="${flight.departure}" /></p>
+				<p> arrival : <c:out value="${flight.arrival}" /></p>
+				<p> duration : <c:out value="${flight.duration}" /></p>
+				<p> carrier : <c:out value="${flight.carrier}" /></p>
+				<p> price : <c:out value="${flight.price}" /></p>
+				<br>
 	</c:forEach>
 
 </c:if>
