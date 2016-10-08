@@ -1,7 +1,9 @@
 package com.wizzair.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,13 +17,12 @@ public class Flight {
 	List<Passanger> passangers;
 	Map<String, Boolean> seats;
 
-	public Flight(String origin, String destination, LocalDate dateAndTime, List<Passanger> passangers,
-			Map<String, Boolean> seats) {
+	public Flight(String origin, String destination, LocalDate dateAndTime) {
 		this.origin = origin;
 		this.destination = destination;
 		this.dateAndTime = dateAndTime;
-		this.passangers = passangers;
-		this.seats = seats;
+		this.passangers = new ArrayList<Passanger>();
+		this.seats = new HashMap<String, Boolean>();
 	}
 
 	public String getOrigin() {
