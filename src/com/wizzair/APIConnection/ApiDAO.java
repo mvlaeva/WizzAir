@@ -181,8 +181,6 @@ public class ApiDAO {
 				flights.get(flight).setOriginStation(origin);
 				flights.get(flight).setDestinationStation(destination);
 
-				System.out.println(flights.get(flight));
-				System.out.println();
 			}
 
 		} catch (JsonIOException e) {

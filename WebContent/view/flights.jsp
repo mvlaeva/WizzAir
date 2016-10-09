@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link type="text/css" rel="stylesheet" href="<c:url value="css/style.css" />" />
+<!--<link type="text/css" rel="stylesheet" href="<c:url value="css/style.css" />" />-->
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Flights</title>
 </head>
