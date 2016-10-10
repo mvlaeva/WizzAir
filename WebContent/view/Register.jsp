@@ -7,26 +7,17 @@
 <title>Register</title>
 </head>
 <body>
-	<form method="post" action="/Register">
-	
-		<label>Username: </label>
-		 <input type="text" name="username"
-			placeholder="username">
-			 <br /> 
-			 
-			 <label>Password: </label> 
-			 <input
-			type="password" name="password" placeholder="password">
-			 <br />
-			 
-			 
-		<label>Re-enter password: 
-		</label> <input type="password"
-			placeholder="password"> 
-			<br /> 
-			
-			<label>Email address:
+	<form action="./Register" method="post">
+
+		<label>Username: </label> <input type="text" name="username"
+			placeholder="username"> <br /> <label>Password: </label> <input
+			type="password" name="password" placeholder="password"> <br />
+
+
+		<label>Re-enter password: </label> <input type="password"
+			placeholder="password"> <br /> <label>Email address:
 		</label> <input type="text" name="email" placeholder="email"> <br />
 		<button value="Register" type="submit">Register</button>
+	</form>
 </body>
 </html>
