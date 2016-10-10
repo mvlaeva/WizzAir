@@ -22,7 +22,7 @@ public class UserDAO {
 			if (userExists(user))
 				throw new UserException("User already exists!");
 
-			PreparedStatement ps = connection.prepareStatement("INSERT_NEW_USER_SQL");
+			PreparedStatement ps = connection.prepareStatement(INSERT_NEW_USER_SQL);
 
 			ps.setString(1, user.getUsername());
 			ps.setString(2, user.getPassword());
@@ -46,7 +46,7 @@ public class UserDAO {
 		return false;
 	}
 
-	public void returnAllUsers() throws SQLException {
+	public void returnAllUsers() throws SQLException, UserException {
 		try {
 			Statement stmt = connection.createStatement();
 			ResultSet resultSet = stmt.executeQuery(RETURN_ALL_USERS_SQL);
@@ -68,15 +68,15 @@ public class UserDAO {
 
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new UserException("Something went wrong! Try again later.");
 		}
 	}
 
-	public boolean login(User user) throws Exception {
+	public User login(User user) throws Exception {
 		if (userExists(user) && passwordMatches(user))
-			return true;
+			return user;
 		else
-			return false;
+			throw new UserException("Username/password mismatch!");
 	}
 
 	private boolean passwordMatches(User user) throws Exception {

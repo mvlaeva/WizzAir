@@ -56,18 +56,19 @@
 								<p class="flight"> Id : <c:out value="${flight.id}" /></p>
 									<p class="flight"> Origin Station : <c:out value="${flight.originStation}" /></p>
 									<p class="flight"> Destination Station : <c:out value="${flight.destinationStation}" /></p>
-									<div class="buy_now" >
-									 <form action="./buy">
-									  <button>
-									   <img src="../images/buy.png">
-									  </button>
-									 </form>
-									</div>
 									<p class="flight"> Departure : <c:out value="${flight.departure}" /></p>
 									<p class="flight"> Arrival : <c:out value="${flight.arrival}" /></p>
 									<p class="flight"> Duration : <c:out value="${flight.duration}" /></p>
 									<p class="flight"> Carrier : <c:out value="${flight.carrier}" /></p>
 									<p class="flight"> Price : <c:out value="${flight.price}" /></p>
+									
+									<div class="buy_now" >
+									 <form action="./buy">
+									  <button style="background: #63aeca;">
+									   <img src="images/buy.png">
+									  </button>
+									 </form>
+									</div>
 								<br>
 							</div>
 						</c:forEach>

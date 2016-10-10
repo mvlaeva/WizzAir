@@ -1,41 +1,48 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
 <title>AirLines | Offers</title>
-<meta charset="utf-8">
-<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
-<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
-<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
-<script type="text/javascript" src="js/jquery-1.5.2.js" ></script>
-<script type="text/javascript" src="js/cufon-yui.js"></script>
-<script type="text/javascript" src="js/cufon-replace.js"></script>
-<script type="text/javascript" src="js/Cabin_400.font.js"></script>
-<script type="text/javascript" src="js/tabs.js"></script>
-<script type="text/javascript" src="js/jquery.jqtransform.js" ></script>
-<script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
-<script type="text/javascript" src="js/atooltip.jquery.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
+<link rel="stylesheet" href="../css/reset.css" type="text/css" media="all">
+<link rel="stylesheet" href="../css/layout.css" type="text/css" media="all">
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="all">
+<script type="text/javascript" src="../js/jquery-1.5.2.js" ></script>
+<script type="text/javascript" src="../js/cufon-yui.js"></script>
+<script type="text/javascript" src="../js/cufon-replace.js"></script>
+<script type="text/javascript" src="../js/Cabin_400.font.js"></script>
+<script type="text/javascript" src="../js/tabs.js"></script>
+<script type="text/javascript" src="../js/jquery.jqtransform.js" ></script>
+<script type="text/javascript" src="../js/jquery.nivo.slider.pack.js"></script>
+<script type="text/javascript" src="../js/atooltip.jquery.js"></script>
+<script type="text/javascript" src="../js/script.js"></script>
 <!--[if lt IE 9]>
-<script type="text/javascript" src="js/html5.js"></script>
+<script type="text/javascript" src="/js/html5.js"></script>
 <style type="text/css">.main, .tabs ul.nav a, .content, .button1, .box1, .top { behavior:url("../js/PIE.htc")}</style>
 <![endif]-->
 </head>
 <body id="page2">
 <div class="main">
   <!--header -->
-  <header>
+  <div class="header">
     <div class="wrapper">
       <h1><a href="index.html" id="logo">AirLines</a></h1>
       <span id="slogan">Fast, Frequent &amp; Safe Flights</span>
-      <nav id="top_nav">
+      <div style="display: inline" id="top_nav">
         <ul>
-          <li><a href="./Login" class="nav2">Login</a></li>
+        
+          <li><a href="./Profile" class="nav2">Profile</a></li>
+        
+         
+           <li><a href="./Login" class="nav2">Login</a></li>
+        
           <li><a href="index.html" class="nav1">Home</a></li>
           <li><a href="contacts.html" class="nav3">Contact</a></li>
         </ul>
-      </nav>
+      </div>
     </div>
-    <nav>
+    <div style="display: inline">
       <ul id="menu">
         <li><a href="index.html"><span><span>About</span></span></a></li>
         <li id="menu_active"><a href="offers.html"><span><span>Offers</span></span></a></li>
@@ -44,8 +51,8 @@
         <li><a href="safety.html"><span><span>Safety</span></span></a></li>
         <li class="end"><a href="contacts.html"><span><span>Contacts</span></span></a></li>
       </ul>
-    </nav>
-  </header>
+    </div>
+  </div>
   <!-- / header -->
   <!--content -->
   <section id="content">

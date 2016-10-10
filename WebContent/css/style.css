@@ -45,10 +45,6 @@ body {
 	padding:0
 }
 
-.phone_photo{
-	float: left;
-}
-
 .wrapper_contact_info{
 	float: right;
 }
@@ -67,7 +63,9 @@ body {
 }
 
 .buy_now{
-    float: right
+	height: 50px;
+	width: 50px;	
+    margin: 0px 600px;
 }
 
 .flight{
@@ -200,7 +198,7 @@ header {
 	background:url(../images/img_top1.gif) center 0 no-repeat
 }
 .nav2 {
-	background:url(../images/img_top2.gif) center 0 no-repeat
+	background:url(../images/img_top2.gif) center 0 no-repeat;
 }
 .nav3 {
 	background:url(../images/img_top3.gif) center 0 no-repeat
@@ -480,6 +478,21 @@ header {
 	position:relative;
 	padding:1px
 }
+
+.box11 {
+	background:#fff;
+	border-radius:6px;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	box-shadow:0 0 3px #d0d0d0;
+	-moz-box-shadow:0 0 3px #d0d0d0;
+	-webkit-box-shadow:0 0 3px #d0d0d0;
+	position:relative;
+	padding:1px;
+	height:450px;
+	overflow:scroll
+}
+
 .color1 {
 	color:#7f7f7f
 }
@@ -1065,7 +1078,7 @@ a.jqTransformSelectOpen {
 	min-height:25px
 }
 #ContactForm .textarea_box {
-	min-height:470px;
+	min-height:300px;
 	padding-bottom:6px;
 	width:100%;
 	overflow:hidden
@@ -1096,7 +1109,7 @@ a.jqTransformSelectOpen {
 	color:#7f7f7f;
 	float:left;
 	padding:2px 7px;
-	height:457px;
+	height:295px;
 	margin:0;
 	float:left
 }

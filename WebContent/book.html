@@ -94,11 +94,52 @@
           </div>
         </div>
       </article>
+      
       <article class="col2">
         <div class="tabs2">
-          <ul class="nav">
-              ALA BALA TUK SHTE OBHOJDA VSICHKI POLETI I SHTE IZKARVA VSEKI 
-          </ul>
+           <article class="col1">
+        <div class="tabs">
+          <div class="content" style='left: 100px'>
+            <div class="tab-content" id="Flight">
+              <form id="form_1" action="./SearchController" method="post">
+                <div>
+                  <div class="radio">
+                    <div class="wrapper">
+                      <input type="radio" name="name1" checked>
+                      <span class="left">One-way</span>
+                      <input type="radio" name="name1">
+                      <span class="left">With transfer</span> </div>
+                  </div>
+                  <div class="row"> <span class="left">From</span>
+                    <input type="text" class="input" name="origin">
+                  </div>
+                  <div class="row"> <span class="left">To</span>
+                    <input type="text" class="input" name="destination">
+                  </div>
+                  <div class="wrapper">
+                    <div class="col1">
+                      <div class="row"> <span class="left">Outbound</span>
+                        <input type="text" class="input1" value="2016-10-13" name="departureDate"  onblur="if(this.value=='') this.value='2016-10-13'" onFocus="if(this.value =='2016-10-13' ) this.value=''">
+                      </div>
+                      <div class="row"> <span class="left">Return</span>
+                        <input type="text" class="input1" value="2016-10-18" name="returnDate" onblur="if(this.value=='') this.value='2016-10-18'" onFocus="if(this.value =='2016-10-18' ) this.value=''">
+                      </div>
+                    </div>     
+                  </div>
+                  <div class="row"> <span class="left">Adults</span>
+                    <input type="text" class="input2" value="2" name="adults" onblur="if(this.value=='') this.value='2'" onFocus="if(this.value =='2' ) this.value=''">
+                  </div>
+                  <div class="row"> <span class="left">Children</span>
+                    <input type="text" class="input2" value="0"  onblur="if(this.value=='') this.value='0'" onFocus="if(this.value =='0' ) this.value=''">
+                    <span class="pad_left1">(0-11 years)</span> </div>
+                  <div class="wrapper">  </div>
+                </div>
+                <input type="submit" value="Search" />
+              </form>
+            </div>         
+          </div>
+        </div>
+      </article>
          
         </div>
       </article>
