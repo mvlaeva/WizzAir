@@ -2,8 +2,11 @@ package com.wizzair.APIConnection;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -12,67 +15,28 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import com.wizzair.exceptions.FlightException;
 import com.wizzair.model.FlightSearch;
 import com.wizzair.model.JsonFlight;
 
 public class ApiDAO {
 
+	private static final String API_KEY = "zd245468154105197435988199897794";
+
 	public static List<JsonFlight> getFlights(FlightSearch search) throws Exception {
 
-		String originSearch = search.getOrigin().trim();
-		String destinationSearch = search.getDestination().trim();
-		String departureDateSearch = search.getDepartureDate().trim();
-		String returnDateSearch = search.getReturnDate().trim();
-		String adultsSearch = search.getAdults().trim();
+		String location = getLocation(search);
 
-		String request = "http://partners.api.skyscanner.net/apiservices/pricing/v1.0/";
-		URL url = new URL(request);
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setDoOutput(true);
-		conn.setRequestMethod("POST");
-		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-		conn.setRequestProperty("Accept", "application/json");
-		conn.setRequestProperty("charset", "utf-8");
+		return getFlightsQuery(location);
+	}
 
-		String apiKey = "zd245468154105197435988199897794";
-
-		String urlParameters = "apiKey=zd245468154105197435988199897794&country=BG&currency=BGN&locale=en-GB&originplace="
-				+ originSearch + "&destinationplace=" + destinationSearch + "&outbounddate=" + departureDateSearch
-				+ "&locationschema=Iata&adults=" + adultsSearch;
-
-		byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
-		int postDataLength = postData.length;
-
-		conn.setRequestProperty("Content-Length", Integer.toString(postDataLength));
-
-		conn.setUseCaches(false);
-
-		try {
-			DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
-			wr.write(postData);
-			wr.flush();
-			wr.close();
-
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-
-		Map<String, String> map = new HashMap<String, String>();
-
-		for (String header : conn.getHeaderFields().keySet()) {
-			if (header != null) {
-				for (String value : conn.getHeaderFields().get(header)) {
-					map.put(header, value);
-				}
-			}
-		}
-
-		String sessionKey = map.get("Location");
-		String request2 = sessionKey + "?apiKey=" + apiKey + "&includecarriers=W6";
+	private static List<JsonFlight> getFlightsQuery(String location) throws Exception {
+		String request2 = location + "?apiKey=" + API_KEY + "&includecarriers=W6";
 
 		URL url2 = new URL(request2);
 		HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
@@ -96,7 +60,17 @@ public class ApiDAO {
 		Map<String, String> placesMap = new HashMap<String, String>();
 
 		try {
-			object = (JsonObject) new JsonParser().parse(response.toString());
+			System.out.println(response);
+					
+			JsonElement element = new JsonParser().parse(response.toString());
+			
+			if (element.isJsonNull())
+				return getFlightsQuery(location);
+			
+			object = (JsonObject) element;
+
+			if (object.get("Status").getAsString().equals("UpdatesPending"))
+				return getFlightsQuery(location);
 
 			JsonArray itineraries = object.getAsJsonArray("Itineraries");
 			for (int itin = 0; itin < itineraries.size(); itin++) {
@@ -189,5 +163,59 @@ public class ApiDAO {
 			e.printStackTrace();
 		}
 		return flights;
+	}
+
+	private static String getLocation(FlightSearch search)
+			throws MalformedURLException, IOException, ProtocolException, FlightException {
+		String originSearch = search.getOrigin().trim();
+		String destinationSearch = search.getDestination().trim();
+		String departureDateSearch = search.getDepartureDate().trim();
+		String returnDateSearch = search.getReturnDate().trim();
+		String adultsSearch = search.getAdults().trim();
+
+		String request = "http://partners.api.skyscanner.net/apiservices/pricing/v1.0/";
+		URL url = new URL(request);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setDoOutput(true);
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+		conn.setRequestProperty("Accept", "application/json");
+		conn.setRequestProperty("charset", "utf-8");
+
+
+		String urlParameters = "apiKey="+API_KEY+"&country=BG&currency=BGN&locale=en-GB&originplace="
+				+ originSearch + "&destinationplace=" + destinationSearch + "&outbounddate=" + departureDateSearch
+				+ "&locationschema=Iata&adults=" + adultsSearch;
+
+		byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
+		int postDataLength = postData.length;
+
+		conn.setRequestProperty("Content-Length", Integer.toString(postDataLength));
+
+		conn.setUseCaches(false);
+
+		try {
+			DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
+			wr.write(postData);
+			wr.flush();
+			wr.close();
+
+		} catch (Exception e) {
+			// TODO
+			throw new FlightException();
+		}
+
+		Map<String, String> map = new HashMap<String, String>();
+
+		for (String header : conn.getHeaderFields().keySet()) {
+			if (header != null) {
+				for (String value : conn.getHeaderFields().get(header)) {
+					map.put(header, value);
+				}
+			}
+		}
+
+		return map.get("Location");
+		
 	}
 }

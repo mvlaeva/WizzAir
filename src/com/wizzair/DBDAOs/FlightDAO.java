@@ -76,6 +76,7 @@ public class FlightDAO {
 
 				connection.commit();
 			} catch (SQLException e) {
+//exc
 				connection.rollback();
 			}
 		}
