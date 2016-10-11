@@ -165,11 +165,11 @@
 							seat, can be carried on the same aircraft. There are 36 available
 							seats for disabled passengers on our Airbus A321 aircraft, and we
 							can accept a maximum 12 passengers who require a wheelchair from
-							check-in to the cabin seat.
+							check-in to the cabin seat.<br> For further questions do not hesitate to contact us.
 						</p>
 					</div>
 					<div class="wrapper">
-						<a href="./Contacts" class="button1 right"><strong>Read More</strong></a>
+						<a href="./Contacts" class="button1 right"><strong>Contact us</strong></a>
 					</div>
 					<h3>Pregnant Women</h3>
 					<p>For safety reasons, pregnant women can travel only up to the

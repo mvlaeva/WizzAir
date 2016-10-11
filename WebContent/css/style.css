@@ -720,10 +720,10 @@ a.jqTransformSelectOpen {
 	float:left;
 	padding:2px 7px;
 	height:14px;
-	width:142px !important
+	width:142px 
 }
 #form_1 .input1 {
-	width:65px !important
+	width:80px 
 }
 #form_1 .input2 {
 	width:11px !important
