@@ -23,7 +23,7 @@ public class LoginController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
@@ -32,11 +32,11 @@ public class LoginController extends HttpServlet {
 		try {
 			User user = new UserDAO().login(sample);
 			request.setAttribute("user", user);
+			doGet(request, response);
 		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("user", null);
+			response.sendRedirect("view/Login.jsp");
+			return;
 		}
-		request.getRequestDispatcher("/").forward(request, response);
 	}
 
 }

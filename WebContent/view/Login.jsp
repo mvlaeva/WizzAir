@@ -29,24 +29,24 @@
 		<header>
 		<div class="wrapper">
 			<h1>
-				<a href="index.html" id="logo">AirLines</a>
+				<a href="./index" id="logo">AirLines</a>
 			</h1>
 			<span id="slogan">Fast, Frequent &amp; Safe Flights</span>
 			<nav id="top_nav">
 			<ul>
-				<li><a href="index.html" class="nav1">Home</a></li>
-				<li><a href="contacts.html" class="nav3">Contact</a></li>
+				<li><a href="./index" class="nav1">Home</a></li>
+				<li><a href="./Contacts" class="nav3">Contact</a></li>
 			</ul>
 			</nav>
 		</div>
 		<nav>
 		<ul id="menu">
-			<li><a href="index.html"><span><span>About</span></span></a></li>
-			<li><a href="offers.html"><span><span>Offers</span></span></a></li>
-			<li><a href="book.html"><span><span>Book</span></span></a></li>
-			<li><a href="services.html"><span><span>Services</span></span></a></li>
-			<li><a href="safety.html"><span><span>Safety</span></span></a></li>
-			<li class="end"><a href="contacts.html"><span><span>Contacts</span></span></a></li>
+			<li><a href="./index"><span><span>About</span></span></a></li>
+			<li><a href="./Offers"><span><span>Offers</span></span></a></li>
+			<li><a href="./Book"><span><span>Book</span></span></a></li>
+			<li><a href="./Services"><span><span>Services</span></span></a></li>
+			<li><a href="./Safety"><span><span>Safety</span></span></a></li>
+			<li class="end"><a href="./Contacts"><span><span>Contacts</span></span></a></li>
 		</ul>
 		</nav> </header>
 		<!-- / header -->
@@ -55,7 +55,6 @@
 		<div class="for_banners">
 			<article class="col1">
 			<div class="box1">
-
 				<div class="login-page">
 					<div class="form">
 						<form class="register-form">
@@ -64,12 +63,12 @@
 								placeholder="email address" />
 							<button>create</button>
 							<p class="message">
-								Already registered? <a href="#">Sign In</a>
+								Already registered? <a href="./Register">Sign In</a>
 							</p>
 						</form>
-						<form action="./LoginController" method="post" class="login-form">
-							<input type="text" placeholder="username" /> 
-							<input type="password" placeholder="password" />
+						<form action="./Login" method="post" class="login-form">
+							<input type="text" placeholder="username" /> <input
+								type="password" placeholder="password" />
 							<button>login</button>
 							<p class="message">
 								Not registered? <a href="./Register">Create an account</a>
@@ -79,9 +78,7 @@
 				</div>
 			</div>
 			</article>
-			<article class="col2">
-			
-			</article>
+			<article class="col2"> </article>
 		</div>
 		</section>
 		<!--content end-->

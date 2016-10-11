@@ -16,11 +16,6 @@ public class User {
 	private String password;
 	private Gender gender;
 	List<Ticket> tickets;
-
-	public User(String username, String password) {
-		this.username = username;
-		this.password = password;
-	}
 	
 	public User(String username, String firstName, String lastName, String email, String phone, String password,
 			Gender gender) throws UserException {
@@ -32,6 +27,11 @@ public class User {
 		setPassword(password);
 		this.gender = gender;
 		this.tickets = new ArrayList<Ticket>();
+	}
+	
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
 	}
 
 	public void setUsername(String username) throws UserException {

@@ -4,69 +4,70 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>AirLines | Offers</title>
-<link rel="stylesheet" href="../css/reset.css" type="text/css" media="all">
-<link rel="stylesheet" href="../css/layout.css" type="text/css" media="all">
-<link rel="stylesheet" href="../css/style.css" type="text/css" media="all">
-<script type="text/javascript" src="../js/jquery-1.5.2.js" ></script>
-<script type="text/javascript" src="../js/cufon-yui.js"></script>
-<script type="text/javascript" src="../js/cufon-replace.js"></script>
-<script type="text/javascript" src="../js/Cabin_400.font.js"></script>
-<script type="text/javascript" src="../js/tabs.js"></script>
-<script type="text/javascript" src="../js/jquery.jqtransform.js" ></script>
-<script type="text/javascript" src="../js/jquery.nivo.slider.pack.js"></script>
-<script type="text/javascript" src="../js/atooltip.jquery.js"></script>
-<script type="text/javascript" src="../js/script.js"></script>
+<title>AirLines</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<script type="text/javascript" src="js/jquery-1.5.2.js" ></script>
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-replace.js"></script>
+<script type="text/javascript" src="js/Cabin_400.font.js"></script>
+<script type="text/javascript" src="js/tabs.js"></script>
+<script type="text/javascript" src="js/jquery.jqtransform.js" ></script>
+<script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
+<script type="text/javascript" src="js/atooltip.jquery.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 <!--[if lt IE 9]>
-<script type="text/javascript" src="/js/html5.js"></script>
+<script type="text/javascript" src="js/html5.js"></script>
 <style type="text/css">.main, .tabs ul.nav a, .content, .button1, .box1, .top { behavior:url("../js/PIE.htc")}</style>
 <![endif]-->
 </head>
-<body id="page2">
+<body id="page1">
 <div class="main">
   <!--header -->
-  <div class="header">
-    <div class="wrapper">
-      <h1><a href="index.html" id="logo">AirLines</a></h1>
-      <span id="slogan">Fast, Frequent &amp; Safe Flights</span>
-      <div style="display: inline" id="top_nav">
-        <ul>
-        
-          <li><a href="./Profile" class="nav2">Profile</a></li>
-        
-         
-           <li><a href="./Login" class="nav2">Login</a></li>
-        
-          <li><a href="index.html" class="nav1">Home</a></li>
-          <li><a href="contacts.html" class="nav3">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-    <div style="display: inline">
-      <ul id="menu">
-        <li><a href="index.html"><span><span>About</span></span></a></li>
-        <li id="menu_active"><a href="offers.html"><span><span>Offers</span></span></a></li>
-        <li><a href="book.html"><span><span>Book</span></span></a></li>
-        <li><a href="services.html"><span><span>Services</span></span></a></li>
-        <li><a href="safety.html"><span><span>Safety</span></span></a></li>
-        <li class="end"><a href="contacts.html"><span><span>Contacts</span></span></a></li>
-      </ul>
-    </div>
-  </div>
+  <header>
+			<div class="wrapper">
+				<h1>
+					<a href="./index" id="logo">AirLines</a>
+				</h1>
+				<span id="slogan">Fast, Frequent &amp; Safe Flights</span>
+				<nav id="top_nav">
+					<ul>
+						<li><a href="./Login" class="nav2">Login</a></li>
+						<li><a href="./index" class="nav1">Home</a></li>
+						<li><a href="./Contacts" class="nav3">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+			<nav>
+				<ul id="menu">
+					<li id="menu_active" ><a href="./index"><span><span>About</span></span></a></li>
+					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
+					<li><a href="./Book"><span><span>Book</span></span></a></li>
+					<li><a href="./Services"><span><span>Services</span></span></a></li>
+					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
+					<li><a href="./Contacts"><span><span>Contacts</span></span></a></li>
+				</ul>
+			</nav>
+		</header>
   <!-- / header -->
   <!--content -->
   <section id="content">
-    <div class="wrapper pad1">
+    <div class="for_banners">
       <article class="col1">
-        <div class="pad_bot3">
-          <div class="box1">
-            <h2 class="top">Search and Book Flights</h2>
-            <form id="form_1" action="./SearchController" method="post">
+        <div class="tabs">
+          <ul class="nav">
+            <li class="selected"><a href="#Flight">Flight</a></li>
+          </ul>
+          <div class="content">
+            <div class="tab-content" id="Flight">
+              <form id="form_1" action="./SearchController" method="post">
                 <div>
                   <div class="radio">
                     <div class="wrapper">
                       <input type="radio" name="name1" checked>
-                      <span class="left">One-way</span><br>
+                      <span class="left">One-way</span>
                       <input type="radio" name="name1">
                       <span class="left">With transfer</span> </div>
                   </div>
@@ -96,93 +97,55 @@
                 </div>
                 <input type="submit" value="Search" />
               </form>
+            </div>         
           </div>
         </div>
+      </article>
+      <div id="slider"> <img src="images/banner1.jpg" alt=""> <img src="images/banner2.jpg" alt=""> <img src="images/banner3.jpg" alt=""> </div>
+    </div>
+    <div class="wrapper pad1">
+      <article class="col1">
         <div class="box1">
-          <h2 class="top">Hot Offers of the Week</h2>
-          <div class="pad"> <strong>Birmingham</strong><br>
+          <h2 class="top">Offers of the Week from UK</h2>
+          <div class="pad"> <strong>From Birmingham</strong><br>
             <ul class="pad_bot1 list1">
               <li> <span class="right color1">from GBP 143.-</span> <a href="book2.html">Zurich</a> </li>
             </ul>
-            <strong>London (LCY)</strong><br>
+            <strong>From London City</strong><br>
             <ul class="pad_bot1 list1">
-              <li> <span class="right color1">from GBP 176.-</span> <a href="book2.html">Geneva</a> </li>
-              <li> <span class="right color1">from GBP 109.-</span> <a href="book2.html">Zurich</a> </li>
+              <li> <span class="right color1">from GBP 176.-</span> <a href="book2.html">Basel</a> </li>
+              <li> <span class="right color1">from GBP 109.-</span> <a href="book2.html">Geneva</a> </li>
             </ul>
-            <strong>London (LHR)</strong><br>
+            <strong>From London Heathrow</strong><br>
             <ul class="pad_bot2 list1">
               <li> <span class="right color1">from GBP 100.-</span> <a href="book2.html">Geneva</a> </li>
               <li> <span class="right color1">from GBP 112.-</span> <a href="book2.html">Zurich</a> </li>
               <li> <span class="right color1">from GBP 88.-</span> <a href="book2.html">Basel</a> </li>
             </ul>
-            <strong>Manchester</strong><br>
+          </div>
+          <h2>From Ireland To Switzerland</h2>
+          <div class="pad"> <strong>From Dublin</strong><br>
             <ul class="pad_bot2 list1">
-              <li> <span class="right color1">from GBP 97.-</span> <a href="book2.html">Basel</a> </li>
-              <li> <span class="right color1">from GBP 103.-</span> <a href="book2.html">Zurich</a> </li>
-            </ul>
-            <strong>Edinburgh</strong><br>
-            <ul class="pad_bot2 list1">
-              <li> <span class="right color1">from GBP 165.-</span> <a href="book2.html">Zurich</a> </li>
+              <li class="pad_bot1"> <span class="right color1">from EUR 122.-</span> <a href="book2.html">Zurich</a> </li>
             </ul>
           </div>
         </div>
       </article>
       <article class="col2">
-        <h3 class="pad_top1">UK Europe Specials</h3>
-        <div class="wrapper pad_bot3">
-          <figure class="left marg_right1"><img src="images/page2_img1.jpg" alt=""></figure>
-          <div class="cols">
-            <h4>From UK</h4>
-            <ul class="list1">
-              <li> <span class="color1 right">from GBP 130.-</span> <a href="book2.html">Malaga</a> </li>
-              <li> <span class="color1 right">GBP 144.-</span> <a href="book2.html">Rome</a> </li>
-              <li> <span class="color1 right">from GBP 146.-</span> <a href="book2.html">Budapest</a> </li>
-              <li> <span class="color1 right">from GBP 146.-</span> <a href="book2.html">Bucharest</a> </li>
-              <li> <span class="color1 right">from GBP 159.-</span> <a href="book2.html">Athens</a> </li>
-              <li> <a href="#">More destinations</a> </li>
-            </ul>
-          </div>
-        </div>
-        <h3>Switzerland Special from UK</h3>
-        <div class="wrapper pad_bot3">
-          <figure class="left marg_right1"><img src="images/page2_img2.jpg" alt=""></figure>
-          <div class="cols">
-            <h4>From Birmingham</h4>
-            <ul class="list1 pad_bot1">
-              <li> <span class="color1 right">from GBP 143.-</span> <a href="book2.html">Zurich</a> </li>
-            </ul>
-            <h4>From London Heatrow</h4>
-            <ul class="list1 pad_bot1">
-              <li> <span class="color1 right">from GBP 146.-</span> <a href="book2.html">Zurich</a> </li>
-              <li> <span class="color1 right">from GBP 146.-</span> <a href="book2.html">Geneva</a> </li>
-              <li> <span class="color1 right">from GBP 159.-</span> <a href="book2.html">Basel</a> </li>
-            </ul>
-            <h4>From Manchester</h4>
-            <ul class="list1">
-              <li> <span class="color1 right">from GBP 146.-</span> <a href="book2.html">Zurich</a> </li>
-              <li> <span class="color1 right">from GBP 146.-</span> <a href="book2.html">Geneva</a> </li>
-              <li> <span class="color1 right">from GBP 159.-</span> <a href="book2.html">Basel</a> </li>
-            </ul>
-          </div>
-        </div>
-        <h3>UK Intercontinental Economy Special</h3>
+        <h3>About Our Airlines<span>Template created by TemplateMonster.com team</span></h3>
         <div class="wrapper">
-          <figure class="left marg_right1"><img src="images/page2_img3.jpg" alt=""></figure>
-          <div class="cols">
-            <h4>From UK</h4>
-            <ul class="list1 pad_bot1">
-              <li> <span class="color1 right">from GBP 464.-</span> <a href="book2.html">Hong Kong</a> </li>
-              <li> <span class="color1 right">from GBP 509.-</span> <a href="book2.html">Johannesburg</a> </li>
-              <li> <span class="color1 right">from GBP 601.-</span> <a href="book2.html">Bangkok</a> </li>
-              <li> <span class="color1 right">from GBP 727.-</span> <a href="book2.html">Paulo</a> </li>
-              <li> <span class="color1 right">from GBP 464.-</span> <a href="book2.html">Zurich</a> </li>
-              <li> <span class="color1 right">from GBP 509.-</span> <a href="book2.html">Geneva</a> </li>
-              <li> <span class="color1 right">from GBP 601.-</span> <a href="book2.html">Basel</a> </li>
-              <li> <a href="#">More offers</a> </li>
-            </ul>
-            Book by 15 May 2011 and travel between 16 April and 30 September 2011. </div>
+          <article class="cols">
+            <figure><img src="images/page1_img1.jpg" alt="" class="pad_bot2"></figure>
+            <p class="pad_bot1"><strong>Airlines is one of free website templates created by TemplateMonster.com team.</strong></p>
+            <p>This website template is optimized for 1024X768 screen resolution. It is also XHTML &amp; CSS valid. This website template has several pages: <a href="index.html">About</a>, <a href="offers.html">Offers</a>, <a href="book.html">Book</a>, <a href="services.html">Services</a>, <a href="safety.html">Safety</a>, <a href="contacts.html">Contacts</a>.</p>
+          </article>
+          <article class="cols pad_left1">
+            <figure><img src="images/page1_img2.jpg" alt="" class="pad_bot2"></figure>
+            <p class="pad_bot1"><strong>This Airlines Template goes with two packages.</strong></p>
+            <p>With PSD source files and without them. PSD source files are available for free for the registered members of Templates.com. The basic package (without PSD source files) is available for anyone without registration).</p>
+          </article>
         </div>
-      </article>
+        <a href="#" class="button1"><strong>Read More</strong></a> </article>
     </div>
   </section>
   <!--content end-->
@@ -190,21 +153,48 @@
   <footer>
     <div class="wrapper">
       <ul id="icons">
-      <li><a href="https://www.facebook.com/wizzaircom" class="normaltip"><img src="images/icon1.jpg" height="30" width="30" alt=""></a></li>
+        <li><a href="https://www.facebook.com/wizzaircom" class="normaltip"><img src="images/icon1.jpg" height="30" width="30" alt=""></a></li>
         <li><a href="https://twitter.com/wizzair" class="normaltip"><img src="images/icon2.jpg" height="30" width="30" alt=""></a></li>
         <li><a href="https://www.youtube.com/user/WizzAirCorporate" class="normaltip"><img src="images/icon3.jpg" height="30" width="30" alt=""></a></li>
       </ul>
-    </div>
+      </div>
   </footer>
   <!--footer end-->
 </div>
 <script type="text/javascript">Cufon.now();</script>
 <script type="text/javascript">
+$(document).ready(function () {
+    tabs.init();
+});
 jQuery(document).ready(function ($) {
-    $('#form_4').jqTransform({
+    $('#form_1, #form_2, #form_3').jqTransform({
         imgPath: 'jqtransformplugin/img/'
+    });
+});
+$(window).load(function () {
+    $('#slider').nivoSlider({
+        effect: 'fade', //Specify sets like: 'fold,fade,sliceDown, sliceDownLeft, sliceUp, sliceUpLeft, sliceUpDown, sliceUpDownLeft' 
+        slices: 15,
+        animSpeed: 500,
+        pauseTime: 6000,
+        startSlide: 0, //Set starting Slide (0 index)
+        directionNav: false, //Next & Prev
+        directionNavHide: false, //Only show on hover
+        controlNav: false, //1,2,3...
+        controlNavThumbs: false, //Use thumbnails for Control Nav
+        controlNavThumbsFromRel: false, //Use image rel for thumbs
+        controlNavThumbsSearch: '.jpg', //Replace this with...
+        controlNavThumbsReplace: '_thumb.jpg', //...this in thumb Image src
+        keyboardNav: true, //Use left & right arrows
+        pauseOnHover: true, //Stop animation while hovering
+        manualAdvance: false, //Force manual transitions
+        captionOpacity: 1, //Universal caption opacity
+        beforeChange: function () {},
+        afterChange: function () {},
+        slideshowEnd: function () {} //Triggers after all slides have been shown
     });
 });
 </script>
 </body>
 </html>
+        

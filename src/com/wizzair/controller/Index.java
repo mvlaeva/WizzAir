@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.wizzair.model.User;
 
-@WebServlet("/")
+@WebServlet("/index")
 public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
