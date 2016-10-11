@@ -93,6 +93,14 @@
                   <div class="row"> <span class="left">Children</span>
                     <input type="text" class="input2" value="0"  onblur="if(this.value=='') this.value='0'" onFocus="if(this.value =='0' ) this.value=''">
                     <span class="pad_left1">(0-11 years)</span> </div>
+                    <div class="row"> <span class="left">Stops</span>
+                    <select name="stops">
+					  <option value="0">0</option>
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					</select>           
+                  </div>
                   <div class="wrapper">  </div>
                 </div>
                 <input type="submit" value="Search" />

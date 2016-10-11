@@ -1,19 +1,21 @@
 package com.wizzair.model;
 
 public class FlightSearch {
-	
+
 	private String origin;
 	private String destination;
 	private String departureDate;
 	private String returnDate;
 	private String adults;
+	private int stops;
 	
-	public FlightSearch(String origin, String destination, String departureDate, String returnDate, String adults) {
+	public FlightSearch(String origin, String destination, String departureDate, String returnDate, String adults, int stops) {
 		this.origin = origin;
 		this.destination = destination;
 		this.departureDate = departureDate;
 		this.returnDate = returnDate;
 		this.adults = adults;
+		this.stops = stops;
 	}
 
 	public String getOrigin() {
@@ -55,8 +57,12 @@ public class FlightSearch {
 	public void setAdults(String adults) {
 		this.adults = adults;
 	}
-	
-	
-	
 
+	public int getStops() {
+		return stops;
+	}
+
+	public void setStops(int stops) {
+		this.stops = stops;
+	}
 }

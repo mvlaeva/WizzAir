@@ -26,8 +26,9 @@ public class SearchController extends HttpServlet {
 		String departureDate = request.getParameter("departureDate");
 		String returnDate = request.getParameter("returnDate");
 		String adults = request.getParameter("adults");
+		int stops = Integer.parseInt(request.getParameter("stops"));
 		
-		FlightSearch search = new FlightSearch(origin, destination, departureDate, returnDate, adults);
+		FlightSearch search = new FlightSearch(origin, destination, departureDate, returnDate, adults, stops);
 		
 		List<JsonFlight> allFlights = null;
 		try {
