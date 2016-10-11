@@ -34,7 +34,6 @@
 			<span id="slogan">Fast, Frequent &amp; Safe Flights</span>
 			<nav id="top_nav">
 			<ul>
-				<li><a href="./index" class="nav1">Home</a></li>
 				<li><a href="./Contacts" class="nav3">Contact</a></li>
 			</ul>
 			</nav>
@@ -69,9 +68,9 @@
 						<form action="./Login" method="post" class="login-form">
 							<input type="text" placeholder="username" /> <input
 								type="password" placeholder="password" />
-							<button>login</button>
+							<button style="background: #9fbedd" >login</button>
 							<p class="message">
-								Not registered? <a href="./Register">Create an account</a>
+								Not registered? <a href="./Register" style="color: #4d49f1">Create an account</a>
 							</p>
 						</form>
 					</div>
