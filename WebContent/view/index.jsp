@@ -24,6 +24,22 @@
 <![endif]-->
 </head>
 <body id="page1">
+ <script type="text/javascript">
+  $( function() {
+    $( "#datepicker" ).datepicker({
+	dateFormat: 'yy-mm-dd',
+	minDate: 0,
+	max: [2020,1,14]
+	});
+  } );
+  $( function() {
+    $( "#datepicker2" ).datepicker({
+	dateFormat: 'yy-mm-dd',
+	minDate: 1,
+	max: [2020,1,14]
+	});
+  } );
+</script>
 <div class="main">
   <!--header -->
   <header>
@@ -80,10 +96,10 @@
                   <div class="wrapper">
                     <div class="col1">
                       <div class="row"> <span class="left">Outbound</span>
-                        <input type="text" class="input1" value="2016-10-13" name="departureDate"  onblur="if(this.value=='') this.value='2016-10-13'" onFocus="if(this.value =='2016-10-13' ) this.value=''">
+                      <input id="datepicker" type="text" class="input1"  name="departureDate" readonly>                     
                       </div>
                       <div class="row"> <span class="left">Return</span>
-                        <input type="text" class="input1" value="2016-10-18" name="returnDate" onblur="if(this.value=='') this.value='2016-10-18'" onFocus="if(this.value =='2016-10-18' ) this.value=''">
+                        <input id="datepicker2" type="text" class="input1"  name="returnDate" readonly>
                       </div>
                     </div>     
                   </div>
