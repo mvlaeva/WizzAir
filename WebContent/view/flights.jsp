@@ -59,7 +59,7 @@
 									<p class="flight"> Departure : <c:out value="${flight.departure}" /></p>
 									<p class="flight"> Arrival : <c:out value="${flight.arrival}" /></p>
 									<p class="flight"> Duration : <c:out value="${flight.duration}" /></p>
-									<p class="flight"> Carrier : <c:out value="${flight.carrier}" /></p>
+									<p class="flight"> Carrier : <c:out value="${flight.carriers}" /></p>
 									<p class="flight"> Price : <c:out value="${flight.price}" /></p>
 									
 									<div class="buy_now" >
