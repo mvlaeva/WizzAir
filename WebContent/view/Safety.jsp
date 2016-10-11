@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +34,6 @@
 				<nav id="top_nav">
 					<ul>
 						<li><a href="./Login" class="nav2">Login</a></li>
-						<li><a href="./index" class="nav1">Home</a></li>
 						<li><a href="./Contacts" class="nav3">Contact</a></li>
 					</ul>
 				</nav>
@@ -122,12 +121,20 @@
 							<img src="images/page5_img1.jpg" alt="">
 						</figure>
 						<p>
-							<strong>At vero eos et accusamus et iusto</strong> odio
-							dignissimos ducimus qui blanditiis praesentium voluptatum
-							deleniti atque corrupti quos dolores et quas molestias excepturi
-							sint occaecati cupiditate non provident, similique sunt in culpa
-							qui officia deserunt mollitia animi, id est laborum et dolorum
-							fuga. Et harum quidem rerum facilis estet.
+							<strong>Disabled passangers and passangers with needs</strong><br>In
+							line with Regulation (EC) No 1107/2006, our partners provide a
+							wide range of facilities for disabled and reduced mobility
+							passengers at airports. Passengers are considered disabled when
+							their physical, medical or mental condition requires individual
+							attention (on embarking and disembarking, during flight, in an
+							emergency evacuation, during ground handling) that is not
+							normally extended to other passengers. Disabled passengers are
+							passengers who use wheelchairs live with visual or hearing
+							impairments travel with guide dogs Passengers with special needs
+							are considered those who are pregnant travelling with a broken
+							leg travelling with mobility equipment are affected by a
+							contagious disease using medicine or medical equipment in need of
+							extra oxygen for medical reasons
 						</p>
 					</div>
 					<div class="wrapper pad_bot2">
@@ -135,42 +142,47 @@
 							<img src="images/page5_img2.jpg" alt="">
 						</figure>
 						<p>
-							<strong>Nam libero tempore, cum soluta nobis</strong> est
-							eligendi optio cumque nihil impedit quo minus id quod maxime
-							placeat facere possimus, omnis voluptas assumenda est, omnis
-							dolor repellendus. Temporibus autem quibusdam et aut officiis
-							debitis aut rerum necessitatibus saepe eveniet ut et voluptates
-							repudiandae sint et molestiae non recusandae.
+							<strong>Wheelchairs</strong><br> Two mobility equipments
+							items can be checked-in or taken on board free of charge. <br>
+							<strong>Batteries</strong> Only manual wheelchairs and dry cell,
+							non-spillable battery-powered wheelchairs are accepted, provided
+							that the terminals are insulated to prevent accidental short
+							circuits. The battery must be securely attached to the
+							wheelchair. <br> <strong>Dimensions</strong> If your
+							wheelchair is not collapsible, please provide the dimensions when
+							you are informing the Special Assistance Call Centre. <br> <strong>Assistance</strong>
+							To make sure that you are comfortable, our handling agent will
+							provide assistance during the check-in procedure and baggage
+							drop-off. You will be assisted to the gate, through security and
+							on board. Most often you will be seated in a window seat. Please
+							note that our cabin crew cannot provide assistance with drinks,
+							meals or medication, but they will help you in moving from your
+							seat to the toilet facilities, if required. <br> <strong>Facilities</strong>
+							Unfortunately onboard wheelchairs are not available on our
+							flights. <br> <strong>Limit</strong> We can accept up to 28
+							disabled passengers per flight, provided that a maximum of 10
+							passengers who require a wheelchair from check-in to the cabin
+							seat, can be carried on the same aircraft. There are 36 available
+							seats for disabled passengers on our Airbus A321 aircraft, and we
+							can accept a maximum 12 passengers who require a wheelchair from
+							check-in to the cabin seat.
 						</p>
 					</div>
 					<div class="wrapper">
-						<a href="#" class="button1 right"><strong>Read More</strong></a>
+						<a href="./Contacts" class="button1 right"><strong>Read More</strong></a>
 					</div>
-					<h3>About Safety</h3>
-					<p>Et harum quidem rerum facilis estet expedita distinctio. Nam
-						libero tempore, cum soluta nobis est eligendi optio cumque nihil
-						impedit quo minus id quod maxime placeat facere possimus, omnis
-						voluptas assumenda est, omnis dolor repellendus.</p>
-					<div class="wrapper">
-						<div class="cols">
-							<ul class="list1">
-								<li><a href="#">Temporibus autem quibusdam</a></li>
-								<li><a href="#">Debitis aut rerum necessitatibus saepe</a></li>
-								<li><a href="#">Eveniet ut et voluptates repudiandae</a></li>
-								<li><a href="#">Sint et molestiae non recusandae</a></li>
-							</ul>
-						</div>
-						<div class="cols pad_left1">
-							<ul class="list1">
-								<li><a href="#">Dtaque earum rerum hic tenetur</a></li>
-								<li><a href="#">Sapiente delectus ut aut reiciendis
-										volupta</a></li>
-								<li><a href="#">Tibus maiores alias consequatur aut</a></li>
-								<li><a href="#">Perferendis doloribus asperiores
-										repellat</a></li>
-							</ul>
-						</div>
-					</div>
+					<h3>Pregnant Women</h3>
+					<p>For safety reasons, pregnant women can travel only up to the
+						34th week of pregnancy. In case of twin pregnancies, the time
+						limit is the 32nd week. If you are over your 28th week of
+						pregnancy, please provide a medical certificate confirming that
+						you are fit to travel by air. Please note that the medical
+						certificate must be issued within 6 days of your flight’s date.
+
+						Wizz Air will only be liable in accordance with the General
+						Conditions of Carriage for any health problems to pregnant women
+						and/or their unborn child that may occur during or as a result of
+						carriage by air.</p>
 				</article>
 			</div>
 		</section>

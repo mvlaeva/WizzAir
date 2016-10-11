@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -11,9 +9,11 @@
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/regform.css" type="text/css"
+	media="all">
 <title>Flights</title>
 </head>
-<body id="page3">
+<body id="page3" style="backgroung: white">
 	<div class="main">
 		<!--header -->
 		<header>
@@ -25,7 +25,6 @@
 				<nav id="top_nav">
 					<ul>
 						<li><a href="./Login" class="nav2">Login</a></li>
-						<li><a href="./index" class="nav1">Home</a></li>
 						<li><a href="./Contacts" class="nav3">Contact</a></li>
 					</ul>
 				</nav>
@@ -45,26 +44,34 @@
 		<!--content -->
 		<section id="content">
 			<div class="wrapper pad1">
-				<article class="col1" style="padding-left: 30px">
+				<article class="col1" style="padding-left: 30px; width: 350px;">
 					<div class="box1">
 						<!--content -->
 						<section id="content">
 							<div class="wrapper pad1">
-								<div class="login-page">
-									<div class="form">
-										<form action="./Register" method="post" class="register-form">
-											<br> <label>Username: </label> <input type="text"
-												name="username" placeholder="username"> <br /> <label>Password:
-											</label> <input type="password" name="password"
-												placeholder="password"> <br /> <label>Re-enter
-												password: </label> <input type="password" placeholder="password">
-											<br /> <label>Email address: </label> <input type="text"
-												name="email" placeholder="email"> <br />
-											<br>
-											<button value="Register" type="submit">Register</button>
-										</form>
-									</div>
+								<div id="wrapper">
+									<form action="./Register" method="post">
+										<fieldset>
+											<legend>Register Form</legend>
+											<div>
+												<input type="text" name="first_name"
+													placeholder="First Name" />
+											</div>
+											<div>
+												<input type="text" name="last_name" placeholder="Last Name" />
+											</div>
+											<div>
+												<input type="password" name="first_name"
+													placeholder="Password" />
+											</div>
+											<div>
+												<input type="text" name="email" placeholder="Email" />
+											</div>
+											<input type="submit" name="submit" value="Send" />
+										</fieldset>
+									</form>
 								</div>
+
 							</div>
 						</section>
 					</div>

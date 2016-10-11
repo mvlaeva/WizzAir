@@ -34,7 +34,6 @@
 				<nav id="top_nav">
 					<ul>
 						<li><a href="./Login" class="nav2">Login</a></li>
-						<li><a href="./index" class="nav1">Home</a></li>
 						<li><a href="./Contacts" class="nav3">Contact</a></li>
 					</ul>
 				</nav>
@@ -174,7 +173,7 @@
 								<span>Message:</span>
 								<textarea name="textarea" cols="1" rows="1"></textarea>
 							</div>
-							<a href="#" class="button1"><strong>Send</strong></a> <a href="#"
+							<a href="./index" class="button1"><strong>Send</strong></a> <a href="./index"
 								class="button1"><strong>Clear</strong></a>
 						</div>
 					</form>
