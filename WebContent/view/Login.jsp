@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -56,22 +57,20 @@
 			<div class="box1">
 				<div class="login-page">
 					<div class="form">
-						<form class="register-form">
-							<input type="text" placeholder="name" /> <input type="password"
-								placeholder="password" /> <input type="text"
-								placeholder="email address" />
-							<button>create</button>
-							<p class="message">
-								Already registered? <a href="./Register">Sign In</a>
-							</p>
-						</form>
 						<form action="./Login" method="post" class="login-form">
-							<input type="text" placeholder="username" /> <input
+							<input name="username" type="text" placeholder="username" /> 
+							<input name="password" 
 								type="password" placeholder="password" />
-							<button style="background: #9fbedd" >login</button>
+							<button style="background: #9fbedd">login</button>
 							<p class="message">
-								Not registered? <a href="./Register" style="color: #4d49f1">Create an account</a>
+								Not registered? <a href="./Register" style="color: #4d49f1">Create
+									an account</a>
 							</p>
+							<c:if test="${empty user}">
+								<p>
+									<c:out value="${message}" />
+								</p>
+							</c:if>
 						</form>
 					</div>
 				</div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +34,12 @@
 				<span id="slogan">Fast, Frequent &amp; Safe Flights</span>
 				<nav id="top_nav">
 					<ul>
-						<li><a href="./Login" class="nav2">Login</a></li>
+						<c:if test="${ empty user  }">
+							<li><a href="./Login" class="nav2">Login</a></li>
+						</c:if>
+						<c:if test="${ not empty user }">
+							<li><a href="./Logout" class="nav2">Logout</a></li>
+						</c:if>
 						<li><a href="./Contacts" class="nav3">Contact</a></li>
 					</ul>
 				</nav>
@@ -125,10 +131,9 @@
 											<div>
 												<div class="radio">
 													<div class="wrapper">
-														<input type="radio" name="name1" checked> <span
-															>One-way</span> <input type="radio"
-															name="name1"> <span class="left">With
-															transfer</span>
+														<input type="radio" name="name1" checked> <span>One-way</span>
+														<input type="radio" name="name1"> <span
+															class="left">With transfer</span>
 													</div>
 												</div>
 												<div class="row">
@@ -143,13 +148,15 @@
 													<div class="col1">
 														<div class="row">
 															<span class="left">Outbound</span> <input type="text"
-																class="input1"  style="width: 65px" value="2016-10-13" name="departureDate"
+																class="input1" style="width: 65px" value="2016-10-13"
+																name="departureDate"
 																onblur="if(this.value=='') this.value='2016-10-13'"
 																onFocus="if(this.value =='2016-10-13' ) this.value=''">
 														</div>
 														<div class="row">
 															<span class="left">Return</span> <input type="text"
-																class="input1"  style="width: 65px" value="2016-10-18" name="returnDate"
+																class="input1" style="width: 65px" value="2016-10-18"
+																name="returnDate"
 																onblur="if(this.value=='') this.value='2016-10-18'"
 																onFocus="if(this.value =='2016-10-18' ) this.value=''">
 														</div>

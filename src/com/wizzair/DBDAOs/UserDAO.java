@@ -9,6 +9,7 @@ import java.sql.Statement;
 import com.wizzair.exceptions.FlightDAOException;
 import com.wizzair.exceptions.UserException;
 import com.wizzair.model.User;
+import com.wizzair.model.Utility;
 
 public class UserDAO {
 	private static final String SELECT_ALL_USERS_SQL = "SELECT username FROM users";
@@ -38,9 +39,10 @@ public class UserDAO {
 
 	private boolean userExists(User user) throws SQLException, UserException {
 		Statement stmt = connection.createStatement();
-		ResultSet resultSet = stmt.executeQuery(SELECT_ALL_USERS_SQL);
+		ResultSet resultSet = stmt.executeQuery("select username, password from users");
 		while (resultSet.next()) {
-			if (resultSet.getString("username").equals(user.getUsername()))
+			String username = resultSet.getString("username");
+			if (username.equals(user.getUsername()))
 				return true;
 		}
 		return false;
@@ -73,21 +75,31 @@ public class UserDAO {
 	}
 
 	public User login(User user) throws Exception {
-		if (userExists(user) && passwordMatches(user))
+		if (userExists(user) && Utility.passwordMatches(user)) {
+			setUserFields(user);
 			return user;
-		else
+		} else
 			throw new UserException("Username/password mismatch!");
 	}
 
-	private boolean passwordMatches(User user) throws Exception {
-		Statement stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT username, password FROM users;");
+	private User setUserFields(User user) throws UserException, SQLException {
+		if (user != null) {
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT first_name,last_name, email FROM users;");
 
-		while (rs.next()) {
-			if (rs.getString("username").equals(user.getUsername())
-					&& rs.getString("password").equals(user.getPassword()))
-				return true;
-		}
-		return false;
+			while (rs.next()) {
+				String firstName = rs.getString("first_name");
+				String lastName = rs.getString("last_name");
+				String email = rs.getString("email");
+
+				user.setEmail(email);
+				user.setFirstName(firstName);
+				user.setLastName(lastName);
+			}
+
+			return user;
+
+		} else
+			throw new UserException("User doesn't exist!");
 	}
 }
