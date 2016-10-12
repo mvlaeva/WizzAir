@@ -41,6 +41,7 @@
 		<!-- / header -->
 		<!--content -->
 		<section id="content">
+		<form action="./Luggage" method="post">
 			<div class="wrapper pad1">
 				<div class="flight_info">
 					<c:if test="${ not empty allFlights }">
@@ -58,19 +59,18 @@
 									<p class="flight"> Duration : <c:out value="${flight.duration}" /></p>
 									<p class="flight"> Carrier : <c:out value="${flight.carriers}" /></p>
 									<p class="flight"> Price : <c:out value="${flight.price}" /></p>
-									<div class="buy_now" >
-									 <form action="./buy">
-									  <button style="background: #63aeca;">
-									   <img src="images/buy.png">
-									  </button>
-									 </form>
+									<div class="buy_now" > 
+									<input type="checkbox" name="${flight.id}" id="input-filter-height[1]">
+        							<label for="input-filter-height[1]">Tralala</label>
 									</div>
 								<br>
 							</div>
-						</c:forEach>]
+						</c:forEach>
 					</c:if>
 				</div>
 			</div>
+			<input type="submit" value="Continue" />
+			</form>
 		</section>
 	</div>
 	<!--content end-->

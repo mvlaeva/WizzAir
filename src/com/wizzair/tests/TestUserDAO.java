@@ -16,6 +16,6 @@ public class TestUserDAO {
 	public void test() throws SQLException, UserException, com.wizzair.exceptions.UserException, FlightDAOException {
 		new UserDAO().returnAllUsers();
 
-		new UserDAO().registerUser(new User("pesho", "petur", "petrov", "pesho@abv.bg", "", "1234", Gender.MALE));
+		new UserDAO().registerUser(new User("pesho", "petur", "petrov", "pesho@abv.bg", "0898763171", "12345Az", Gender.MALE));
 	}
 }

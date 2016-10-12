@@ -54,14 +54,21 @@
 										<fieldset>
 											<legend>Register Form</legend>
 											<div>
-												<input type="text" name="first_name"
+												<input type="text" name="firstName"
 													placeholder="First Name" />
 											</div>
 											<div>
-												<input type="text" name="last_name" placeholder="Last Name" />
+												<input type="text" name="lastName" placeholder="Last Name" />
 											</div>
 											<div>
-												<input type="password" name="first_name"
+												<input type="text" name="phone" placeholder="Phone number" />
+											</div>
+											<div>
+												<input type="text" name="username"
+													placeholder="username" />
+											</div>
+											<div>
+												<input type="password" name="password"
 													placeholder="Password" />
 											</div>
 											<div>

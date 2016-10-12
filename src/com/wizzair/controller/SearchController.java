@@ -37,7 +37,8 @@ public class SearchController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("allFlights", allFlights);
+		request.getSession().setAttribute("search", search);
+		request.getSession().setAttribute("allFlights", allFlights);
 		
 		request.getRequestDispatcher("view/flights.jsp").forward(request, response);
 	}
