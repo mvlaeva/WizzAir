@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.wizzair.exceptions.FlightDAOException;
+import com.wizzair.exceptions.UserDAOException;
 import com.wizzair.exceptions.UserException;
 import com.wizzair.model.User;
 import com.wizzair.model.Utility;
@@ -18,7 +19,7 @@ public class UserDAO {
 
 	Connection connection = DBConnection.getInstance().getConnection();
 
-	public void registerUser(User user) throws SQLException, UserException, FlightDAOException {
+	public User registerUser(User user) throws SQLException, UserException, UserDAOException {
 		if (user != null) {
 			if (userExists(user))
 				throw new UserException("User already exists!");
@@ -32,9 +33,11 @@ public class UserDAO {
 			ps.executeUpdate();
 
 			System.out.println("Successful registration!");
+			
+			return user;
 
 		} else
-			throw new FlightDAOException("Something went wrong. Please try again later!");
+			throw new UserDAOException("Something went wrong. Please try again later!");
 	}
 
 	private boolean userExists(User user) throws SQLException, UserException {

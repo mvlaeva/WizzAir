@@ -13,7 +13,7 @@ import com.wizzair.DBDAOs.UserDAO;
 import com.wizzair.model.User;
 
 @WebServlet("/Login")
-public class LoginController extends HttpServlet {
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,10 +36,10 @@ public class LoginController extends HttpServlet {
 			request.getRequestDispatcher("view/index.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-//			String message = "Invalid username/password.";
-//			request.getSession().setAttribute("message", message);
-//			response.sendRedirect("view/Login.jsp");
-//			return;
+			String message = "Invalid username/password.";
+			request.getSession().setAttribute("message", message);
+			response.sendRedirect("view/Login.jsp");
+			return;
 		}
 	}
 

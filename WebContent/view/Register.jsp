@@ -59,6 +59,16 @@
 										<fieldset>
 											<legend>Register Form</legend>
 											<div>
+												<input type="text" name="username" placeholder="Username" />
+											</div>
+											<div>
+												<input type="password" name="password"
+													placeholder="Password" />
+											</div>
+											<div>
+												<input type="text" name="email" placeholder="Email" />
+											</div>
+											<div>
 												<input type="text" name="first_name"
 													placeholder="First Name" />
 											</div>
@@ -66,13 +76,17 @@
 												<input type="text" name="last_name" placeholder="Last Name" />
 											</div>
 											<div>
-												<input type="password" name="first_name"
-													placeholder="Password" />
+												<input type="text" name="phone" placeholder="Phone" />
 											</div>
-											<div>
-												<input type="text" name="email" placeholder="Email" />
-											</div>
-											<input type="submit" name="submit" value="Send" />
+											<input type="radio" name="gender_male" checked> <span>Male</span>
+											<input type="radio" name="gender_female"> <span>Female</span>
+											<br>
+											<button type="submit">Register</button>
+											<c:if test="$ { not empty message }">
+												<p>
+													<c:out value="${message}" />
+												</p>
+											</c:if>
 										</fieldset>
 									</form>
 								</div>
