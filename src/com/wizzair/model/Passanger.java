@@ -24,13 +24,6 @@ public class Passanger {
 		this.seat = seat;
 	}
 
-	static boolean isValidString(String string) {
-		if (string != null && string.trim().length() > 0) {
-			return true;
-		}
-		return false;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -47,7 +40,7 @@ public class Passanger {
 	}
 
 	public void setLastName(String lastName) throws PassangerException {
-		if (isValidString(lastName))
+		if (Utility.isValidString(lastName))
 			this.lastName = lastName;
 		else
 			throw new PassangerException("Invaid last name.");
@@ -98,7 +91,7 @@ public class Passanger {
 	}
 
 	public void setSeat(String seat) throws PassangerException {
-		if (isValidString(seat))
+		if (Utility.isValidString(seat))
 			this.seat = seat;
 		else
 			throw new PassangerException("Invalid seat.");

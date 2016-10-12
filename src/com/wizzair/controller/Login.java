@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.wizzair.DBDAOs.UserDAO;
+import com.wizzair.model.IUser;
 import com.wizzair.model.User;
 
 @WebServlet("/Login")
@@ -30,7 +31,7 @@ public class Login extends HttpServlet {
 		User sample = new User(username, password);
 
 		try {
-			User user = new UserDAO().login(sample);
+			IUser user = new UserDAO().login(sample);
 			request.getSession().setAttribute("user", user);
 			request.getRequestDispatcher("view/index.jsp").forward(request, response);
 		} catch (Exception e) {

@@ -106,17 +106,21 @@
 											</div>
 										</div>
 										<div class="row">
-											<span class="left">Adults</span> <input type="text"
-												class="input2" value="2" name="adults"
-												onblur="if(this.value=='') this.value='2'"
-												onFocus="if(this.value =='2' ) this.value=''">
+											<span class="left">Adults</span> <select name="adults">
+												<option value="0">0</option>
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+											</select>
 										</div>
 										<div class="row">
-											<span class="left">Children</span> <input type="text"
-												class="input2" value="0"
-												onblur="if(this.value=='') this.value='0'"
-												onFocus="if(this.value =='0' ) this.value=''"> <span
-												class="pad_left1">(0-11 years)</span>
+											<span class="left"> Children (0-11 years)</span> <select
+												name="children">
+												<option value="0">0</option>
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+											</select>
 										</div>
 										<div class="row">
 											<span class="left">Stops</span> <select name="stops">

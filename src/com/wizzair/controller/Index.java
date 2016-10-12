@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.wizzair.model.User;
+import com.wizzair.model.IUser;
 
 @WebServlet("/index")
 public class Index extends HttpServlet {
@@ -21,7 +21,7 @@ public class Index extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User user = (User) request.getSession().getAttribute("user");
+		IUser user = (IUser) request.getSession().getAttribute("user");
 		request.setAttribute("user", user);
 		doGet(request, response);
 	}

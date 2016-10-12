@@ -10,6 +10,7 @@ import com.wizzair.exceptions.FlightDAOException;
 import com.wizzair.exceptions.UserDAOException;
 import com.wizzair.exceptions.UserException;
 import com.wizzair.model.Gender;
+import com.wizzair.model.IUser;
 import com.wizzair.model.User;
 import com.wizzair.model.Utility;
 
@@ -80,7 +81,7 @@ public class UserDAO {
 		}
 	}
 
-	public User login(User user) throws Exception {
+	public IUser login(User user) throws Exception {
 		if (userExists(user) && Utility.passwordMatches(user)) {
 			setUserFields(user);
 			return user;
@@ -88,7 +89,7 @@ public class UserDAO {
 			throw new UserException("Username/password mismatch!");
 	}
 
-	private User setUserFields(User user) throws UserException, SQLException {
+	private IUser setUserFields(User user) throws UserException, SQLException {
 		if (user != null) {
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_NAME_AND_SURNAME_SQL);

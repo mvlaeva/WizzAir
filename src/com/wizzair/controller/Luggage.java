@@ -10,11 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class LuggageController
- */
 @WebServlet("/Luggage")
-public class LuggageController extends HttpServlet {
+public class Luggage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,7 +25,6 @@ public class LuggageController extends HttpServlet {
 				}
 			}
 		}
-		
 		
 		request.getSession().setAttribute("mapFlights", mapFlights);
 		request.getRequestDispatcher("view/baggage.jsp").forward(request, response);

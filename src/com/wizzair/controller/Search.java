@@ -13,33 +13,33 @@ import com.wizzair.APIConnection.ApiDAO;
 import com.wizzair.model.FlightSearch;
 import com.wizzair.model.JsonFlight;
 
-
-
 @WebServlet("/SearchController")
-public class SearchController extends HttpServlet {
+public class Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String origin = request.getParameter("origin");
 		String destination = request.getParameter("destination");
 		String departureDate = request.getParameter("departureDate");
 		String returnDate = request.getParameter("returnDate");
 		String adults = request.getParameter("adults");
-		int stops = Integer.parseInt(request.getParameter("stops"));
-		
-		FlightSearch search = new FlightSearch(origin, destination, departureDate, returnDate, adults, stops);
-		
+		String stops = request.getParameter("stops");
+
+		FlightSearch search = new FlightSearch(origin, destination, departureDate, returnDate, adults,
+				Integer.parseInt(stops));
+
 		List<JsonFlight> allFlights = null;
 		try {
 			allFlights = ApiDAO.getFlights(search);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		request.getSession().setAttribute("search", search);
 		request.getSession().setAttribute("allFlights", allFlights);
-		
+
 		request.getRequestDispatcher("view/flights.jsp").forward(request, response);
 	}
 
