@@ -21,13 +21,19 @@ public class Register extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		String message = (String) request.getSession().getAttribute("message");
+
+		request.getSession().setAttribute("message", message);
+		
 		request.getRequestDispatcher("view/Register.jsp").forward(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		String message = "";
+
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String firstName = request.getParameter("first_name");
@@ -37,21 +43,27 @@ public class Register extends HttpServlet {
 		Gender gender = (request.getParameter("gender").equals(Gender.MALE)) ? Gender.MALE : Gender.FEMALE;
 
 		try {
-			User sample = new User(username, firstName, lastName, email, phone, password, gender);
-
-			User user = new UserDAO().registerUser(sample);
+			User user = new User(username, firstName, lastName, email, phone, password, gender);
+			new UserDAO().registerUser(user);
 			request.getSession().setAttribute("user", user);
 			request.getRequestDispatcher("view/index.jsp").forward(request, response);
+			
+		} catch (UserDAOException e) {
+			message = "This username is already taken!";
+			
 		} catch (UserException e) {
-			String message = "User already exists!";
-			request.setAttribute("message", message);
-			response.sendRedirect("view/Register.jsp");
-			return;
-		} catch (SQLException | UserDAOException å) {
-			String message = "Something went wrong. Please try again later!";
-			request.setAttribute("message", message);
-			response.sendRedirect("view/Register.jsp");
-			return;
+			message = "You entered invalid password! Please make sure your password contains 1 uppercase, 1 lowercase, 1 digit"
+					+ " and contains more than 6 symbols!";
+			
+		} catch (SQLException å) {
+			message = "Something went wrong. Please try again later!";
+			
+		} catch (NullPointerException e) {
+			message = "Please fill all forms!";
 		}
+
+		request.setAttribute("message", message);
+		request.getRequestDispatcher("view/Register.jsp").forward(request, response);
+		return;
 	}
 }

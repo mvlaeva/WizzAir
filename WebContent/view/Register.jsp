@@ -78,11 +78,11 @@
 											<div>
 												<input type="text" name="phone" placeholder="Phone" />
 											</div>
-											<input type="radio" name="gender" value="male"> Male
-											<input type="radio" name="gender" value="female"> Female
-											<br>
+											<input type="radio" name="gender" value="male" checked>
+											Male <input type="radio" name="gender" value="female">
+											Female <br>
 											<button type="submit">Register</button>
-											<c:if test="$ { not empty message }">
+											<c:if test="${not empty message}">
 												<p>
 													<c:out value="${message}" />
 												</p>

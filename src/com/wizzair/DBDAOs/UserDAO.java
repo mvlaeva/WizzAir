@@ -21,10 +21,10 @@ public class UserDAO {
 
 	Connection connection = DBConnection.getInstance().getConnection();
 
-	public User registerUser(User user) throws SQLException, UserException, UserDAOException {
+	public void registerUser(User user) throws SQLException, UserException, UserDAOException {
 		if (user != null) {
 			if (userExists(user)) {
-				throw new UserException("User already exists!");
+				throw new UserDAOException("User already exists!");
 			}
 
 			PreparedStatement ps = connection.prepareStatement(INSERT_NEW_USER_SQL);
@@ -38,8 +38,6 @@ public class UserDAO {
 			ps.setString(7, user.getGender().toString());
 
 			ps.executeUpdate();
-
-			return user;
 
 		} else
 			throw new UserDAOException("Something went wrong. Please try again later!");

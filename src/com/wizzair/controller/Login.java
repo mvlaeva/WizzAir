@@ -1,7 +1,6 @@
 package com.wizzair.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,10 +34,9 @@ public class Login extends HttpServlet {
 			request.getSession().setAttribute("user", user);
 			request.getRequestDispatcher("view/index.jsp").forward(request, response);
 		} catch (Exception e) {
-			e.printStackTrace();
 			String message = "Invalid username/password.";
 			request.getSession().setAttribute("message", message);
-			response.sendRedirect("view/Login.jsp");
+			response.sendRedirect("./Login");
 			return;
 		}
 	}
