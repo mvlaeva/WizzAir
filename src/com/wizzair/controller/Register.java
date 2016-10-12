@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.wizzair.DBDAOs.UserDAO;
-import com.wizzair.exceptions.FlightDAOException;
 import com.wizzair.exceptions.UserDAOException;
 import com.wizzair.exceptions.UserException;
 import com.wizzair.model.Gender;
@@ -28,14 +27,14 @@ public class Register extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// dao reg
+		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String firstName = request.getParameter("first_name");
 		String lastName = request.getParameter("last_name");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
-		Gender gender = request.getParameter("gender_male") != null ? Gender.MALE : Gender.FEMALE;
+		Gender gender = (request.getParameter("gender").equals(Gender.MALE)) ? Gender.MALE : Gender.FEMALE;
 
 		try {
 			User sample = new User(username, firstName, lastName, email, phone, password, gender);

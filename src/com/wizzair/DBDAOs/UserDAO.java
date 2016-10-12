@@ -9,31 +9,36 @@ import java.sql.Statement;
 import com.wizzair.exceptions.FlightDAOException;
 import com.wizzair.exceptions.UserDAOException;
 import com.wizzair.exceptions.UserException;
+import com.wizzair.model.Gender;
 import com.wizzair.model.User;
 import com.wizzair.model.Utility;
 
 public class UserDAO {
-	private static final String SELECT_ALL_USERS_SQL = "SELECT username FROM users";
+	private static final String SELECT_NAME_AND_SURNAME_SQL = "SELECT first_name,last_name, email FROM users;";
+	private static final String SELECT_USERNAME_PASSWORD_SQL = "select username, password from users;";
 	private static final String RETURN_ALL_USERS_SQL = "SELECT id, username, first_name, last_name, email, password FROM users;";
-	private static final String INSERT_NEW_USER_SQL = "INSERT INTO users VALUES (null, null, null,  ?, md5(?), null, ?);";
+	private static final String INSERT_NEW_USER_SQL = "INSERT INTO users VALUES (null, ?, ?, ?, md5(?), ?, ?, ?);";
 
 	Connection connection = DBConnection.getInstance().getConnection();
 
 	public User registerUser(User user) throws SQLException, UserException, UserDAOException {
 		if (user != null) {
-			if (userExists(user))
+			if (userExists(user)) {
 				throw new UserException("User already exists!");
+			}
 
 			PreparedStatement ps = connection.prepareStatement(INSERT_NEW_USER_SQL);
 
-			ps.setString(1, user.getUsername());
-			ps.setString(2, user.getPassword());
-			ps.setString(3, user.getEmail());
+			ps.setString(1, user.getFirstName());
+			ps.setString(2, user.getLastName());
+			ps.setString(3, user.getUsername());
+			ps.setString(4, user.getPassword());
+			ps.setString(5, user.getPhone());
+			ps.setString(6, user.getEmail());
+			ps.setString(7, user.getGender().toString());
 
 			ps.executeUpdate();
 
-			System.out.println("Successful registration!");
-			
 			return user;
 
 		} else
@@ -42,7 +47,7 @@ public class UserDAO {
 
 	private boolean userExists(User user) throws SQLException, UserException {
 		Statement stmt = connection.createStatement();
-		ResultSet resultSet = stmt.executeQuery("select username, password from users");
+		ResultSet resultSet = stmt.executeQuery(SELECT_USERNAME_PASSWORD_SQL);
 		while (resultSet.next()) {
 			String username = resultSet.getString("username");
 			if (username.equals(user.getUsername()))
@@ -88,13 +93,17 @@ public class UserDAO {
 	private User setUserFields(User user) throws UserException, SQLException {
 		if (user != null) {
 			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT first_name,last_name, email FROM users;");
+			ResultSet rs = stmt.executeQuery(SELECT_NAME_AND_SURNAME_SQL);
 
 			while (rs.next()) {
+				String phone = rs.getString("phone");
+				Gender gender = rs.getString("gender").equals(Gender.MALE) ? Gender.MALE : Gender.FEMALE;
 				String firstName = rs.getString("first_name");
 				String lastName = rs.getString("last_name");
 				String email = rs.getString("email");
 
+				user.setGender(gender);
+				user.setPhone(phone);
 				user.setEmail(email);
 				user.setFirstName(firstName);
 				user.setLastName(lastName);
