@@ -7,40 +7,48 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.wizzair.exceptions.FlightDAOException;
+import com.wizzair.exceptions.UserDAOException;
 import com.wizzair.exceptions.UserException;
+import com.wizzair.model.Gender;
 import com.wizzair.model.User;
+import com.wizzair.model.Utility;
 
 public class UserDAO {
-	private static final String SELECT_ALL_USERS_SQL = "SELECT username FROM users";
+	private static final String SELECT_NAME_AND_SURNAME_SQL = "SELECT first_name,last_name, email FROM users;";
+	private static final String SELECT_USERNAME_PASSWORD_SQL = "select username, password from users;";
 	private static final String RETURN_ALL_USERS_SQL = "SELECT id, username, first_name, last_name, email, password FROM users;";
-	private static final String INSERT_NEW_USER_SQL = "INSERT INTO users VALUES (null, null, null,  ?, md5(?), null, ?);";
+	private static final String INSERT_NEW_USER_SQL = "INSERT INTO users VALUES (null, ?, ?, ?, md5(?), ?, ?, ?);";
 
 	Connection connection = DBConnection.getInstance().getConnection();
 
-	public void registerUser(User user) throws SQLException, UserException, FlightDAOException {
+	public void registerUser(User user) throws SQLException, UserException, UserDAOException {
 		if (user != null) {
-			if (userExists(user))
-				throw new UserException("User already exists!");
+			if (userExists(user)) {
+				throw new UserDAOException("User already exists!");
+			}
 
 			PreparedStatement ps = connection.prepareStatement(INSERT_NEW_USER_SQL);
 
-			ps.setString(1, user.getUsername());
-			ps.setString(2, user.getPassword());
-			ps.setString(3, user.getEmail());
+			ps.setString(1, user.getFirstName());
+			ps.setString(2, user.getLastName());
+			ps.setString(3, user.getUsername());
+			ps.setString(4, user.getPassword());
+			ps.setString(5, user.getPhone());
+			ps.setString(6, user.getEmail());
+			ps.setString(7, user.getGender().toString());
 
 			ps.executeUpdate();
 
-			System.out.println("Successful registration!");
-
 		} else
-			throw new FlightDAOException("Something went wrong. Please try again later!");
+			throw new UserDAOException("Something went wrong. Please try again later!");
 	}
 
 	private boolean userExists(User user) throws SQLException, UserException {
 		Statement stmt = connection.createStatement();
-		ResultSet resultSet = stmt.executeQuery(SELECT_ALL_USERS_SQL);
+		ResultSet resultSet = stmt.executeQuery(SELECT_USERNAME_PASSWORD_SQL);
 		while (resultSet.next()) {
-			if (resultSet.getString("username").equals(user.getUsername()))
+			String username = resultSet.getString("username");
+			if (username.equals(user.getUsername()))
 				return true;
 		}
 		return false;
@@ -73,21 +81,35 @@ public class UserDAO {
 	}
 
 	public User login(User user) throws Exception {
-		if (userExists(user) && passwordMatches(user))
+		if (userExists(user) && Utility.passwordMatches(user)) {
+			setUserFields(user);
 			return user;
-		else
+		} else
 			throw new UserException("Username/password mismatch!");
 	}
 
-	private boolean passwordMatches(User user) throws Exception {
-		Statement stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT username, password FROM users;");
+	private User setUserFields(User user) throws UserException, SQLException {
+		if (user != null) {
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(SELECT_NAME_AND_SURNAME_SQL);
 
-		while (rs.next()) {
-			if (rs.getString("username").equals(user.getUsername())
-					&& rs.getString("password").equals(user.getPassword()))
-				return true;
-		}
-		return false;
+			while (rs.next()) {
+				String phone = rs.getString("phone");
+				Gender gender = rs.getString("gender").equals(Gender.MALE) ? Gender.MALE : Gender.FEMALE;
+				String firstName = rs.getString("first_name");
+				String lastName = rs.getString("last_name");
+				String email = rs.getString("email");
+
+				user.setGender(gender);
+				user.setPhone(phone);
+				user.setEmail(email);
+				user.setFirstName(firstName);
+				user.setLastName(lastName);
+			}
+
+			return user;
+
+		} else
+			throw new UserException("User doesn't exist!");
 	}
 }

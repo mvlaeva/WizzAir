@@ -1,5 +1,11 @@
 package com.wizzair.model;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import com.mysql.jdbc.Connection;
+import com.wizzair.DBDAOs.DBConnection;;
+
 public abstract class Utility {
 
 	private static final int COUNT_DIGITS_PHONE_NUMBER_STARTING_WITH_359 = 13;
@@ -56,6 +62,20 @@ public abstract class Utility {
 		if (hasLowerCase && hasUpperCase && hasDigit) {
 			return true;
 		}
+		return false;
+	}
+
+	public static boolean passwordMatches(User user) throws Exception {
+		Connection connection = (Connection) new DBConnection().getInstance().getConnection();
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT username, password FROM users;");
+
+		while (rs.next()) {
+			if (rs.getString("username").equals(user.getUsername())
+					&& rs.getString("password").equals(user.getPassword()))
+				return true;
+		}
+
 		return false;
 	}
 

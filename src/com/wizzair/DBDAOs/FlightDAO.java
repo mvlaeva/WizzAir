@@ -2,6 +2,7 @@ package com.wizzair.DBDAOs;
 
 import java.time.LocalDate;
 
+import com.wizzair.exceptions.FlightDAOException;
 import com.wizzair.exceptions.FlightException;
 import com.wizzair.model.Flight;
 import com.wizzair.model.User;
@@ -44,7 +45,7 @@ public class FlightDAO {
 		}
 	}
 
-	public void addFlightInfo(User user, Flight flight) throws SQLException, FlightException {
+	public void buyFlight(User user, Flight flight) throws SQLException, FlightException, FlightDAOException {
 		if (user != null && flight != null) {
 
 			try {
@@ -76,8 +77,8 @@ public class FlightDAO {
 
 				connection.commit();
 			} catch (SQLException e) {
-//exc
 				connection.rollback();
+				throw new FlightDAOException("You cannot make a purchase at this time! Please try again later!");
 			}
 		}
 	}
@@ -118,9 +119,10 @@ public class FlightDAO {
 						+ "' AND destination='" + flight.getDestination() + " AND date_and_time='"
 						+ flight.getDateAndTime().toString() + "'';");
 
-				// Returns:true if the new current row is valid; false if there
-				// are
-				// no more rows
+				/*
+				 * Returns:true if the new current row is valid; false if there
+				 * are no more rows
+				 */
 				return rs.next();
 			} else
 				throw new FlightException("Wrong flight info was submited!");
