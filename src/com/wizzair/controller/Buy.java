@@ -25,6 +25,7 @@ import com.wizzair.model.Passanger;
 public class Buy extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -79,10 +80,10 @@ public class Buy extends HttpServlet {
 		request.getRequestDispatcher("view/checkOut.jsp").forward(request, response);
 	}
 
-	private String constructSeat() {
+	public static String constructSeat() {
 		String letters = "ABCDEF";
-		String seat = "" + (new Random().nextInt(31) + (letters.charAt(new Random().nextInt(letters.length()))));
-		System.out.println(seat);
+		String seat = "" + (new Random().nextInt(31) + "" + (letters.charAt(new Random().nextInt(letters.length()))));
 		return seat;
 	}
+
 }

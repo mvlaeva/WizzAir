@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/regform.css" type="text/css"
 	media="all">
-<title>Flights</title>
+<title>Airlines | Register</title>
 </head>
 <body id="page3" style="backgroung: white">
 	<div class="main">

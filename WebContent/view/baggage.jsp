@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="com.wizzair.model.*"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +10,14 @@
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/regform.css" type="text/css"
+	media="all">
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/html5.js"></script>
 <style type="text/css">.main, .tabs ul.nav a, .content, .button1, .box1, .top { behavior:url("../js/PIE.htc")}</style>
 <![endif]-->
 </head>
-<body id="page3">
+<body id="page5">
 	<div class="main">
 		<!--header -->
 		<header>
@@ -40,11 +42,11 @@
 				<ul id="menu">
 					<li><a href="./index"><span><span>About</span></span></a></li>
 					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
-					<li id="menu_active"><a href="./Book"><span><span>Book</span></span></a></li>
+					<li><a href="./Book"><span><span>Book</span></span></a></li>
 					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
 					<li class="end"><a href="./Contacts"><span><span>Contacts</span></span></a></li>
 					<c:if test="${not empty user }">
-						<li><a href="./Profile"><span><span>Profile</span></span></a></li>
+						<li id="menu_active"><a href="./Profile"><span><span>Profile</span></span></a></li>
 					</c:if>
 				</ul>
 			</nav>
@@ -59,62 +61,61 @@
 						<div class="pad">
 							<strong>Birmingham</strong><br>
 							<ul class="pad_bot1 list1">
-								<li><span class="right color1">from GBP 143.-</span><a
+								<li><span class="right color1">from GBP 143.-</span> <a
 									href="book2.html">Zurich</a></li>
 							</ul>
 							<strong>London (LCY)</strong><br>
 							<ul class="pad_bot1 list1">
-								<li><span class="right color1">from GBP 176.-</span><a
+								<li><span class="right color1">from GBP 176.-</span> <a
 									href="book2.html">Geneva</a></li>
-								<li><span class="right color1">from GBP 109.-</span><a
+								<li><span class="right color1">from GBP 109.-</span> <a
 									href="book2.html">Zurich</a></li>
 							</ul>
 							<strong>London (LHR)</strong><br>
 							<ul class="pad_bot2 list1">
-								<li><span class="right color1">from GBP 100.-</span><a
+								<li><span class="right color1">from GBP 100.-</span> <a
 									href="book2.html">Geneva</a></li>
-								<li><span class="right color1">from GBP 112.-</span><a
+								<li><span class="right color1">from GBP 112.-</span> <a
 									href="book2.html">Zurich</a></li>
-								<li><span class="right color1">from GBP 88.-</span><a
+								<li><span class="right color1">from GBP 88.-</span> <a
 									href="book2.html">Basel</a></li>
 							</ul>
 							<strong>Manchester</strong><br>
 							<ul class="pad_bot2 list1">
-								<li><span class="right color1">from GBP 97.-</span><a
+								<li><span class="right color1">from GBP 97.-</span> <a
 									href="book2.html">Basel</a></li>
-								<li><span class="right color1">from GBP 103.-</span><a
+								<li><span class="right color1">from GBP 103.-</span> <a
 									href="book2.html">Zurich</a></li>
 							</ul>
 							<strong>Edinburgh</strong><br>
 							<ul class="pad_bot2 list1">
-								<li><span class="right color1">from GBP 165.-</span><a
+								<li><span class="right color1">from GBP 165.-</span> <a
 									href="book2.html">Zurich</a></li>
 							</ul>
 							<strong>Birmingham</strong><br>
 							<ul class="pad_bot1 list1">
-								<li><span class="right color1">from GBP 143.-</span><a
+								<li><span class="right color1">from GBP 143.-</span> <a
 									href="book2.html">Zurich</a></li>
 							</ul>
 							<strong>London (LCY)</strong><br>
 							<ul class="pad_bot1 list1">
-								<li><span class="right color1">from GBP 176.-</span><a
+								<li><span class="right color1">from GBP 176.-</span> <a
 									href="book2.html">Geneva</a></li>
-								<li><span class="right color1">from GBP 109.-</span><a
+								<li><span class="right color1">from GBP 109.-</span> <a
 									href="book2.html">Zurich</a></li>
 							</ul>
 							<strong>London (LHR)</strong><br>
 							<ul class="pad_bot2 list1">
-								<li><span class="right color1">from GBP 100.-</span><a
+								<li><span class="right color1">from GBP 100.-</span> <a
 									href="book2.html">Geneva</a></li>
-								<li><span class="right color1">from GBP 112.-</span><a
+								<li><span class="right color1">from GBP 112.-</span> <a
 									href="book2.html">Zurich</a></li>
-								<li><span class="right color1">from GBP 88.-</span><a
+								<li><span class="right color1">from GBP 88.-</span> <a
 									href="book2.html">Basel</a></li>
 							</ul>
 						</div>
 					</div>
 				</article>
-
 				<article class="col2">
 					<div class="tabs2">
 						<article>
@@ -124,12 +125,13 @@
 										<c:if test="${not empty mapFlights}">
 											<form action="./Buy" method="post">
 												<c:forEach begin="1" end="${search.adults}" varStatus="loop">
-													<div>
-														<p>
-															Passenger
-															<c:out value="${loop.index}" />
-															(Adult)
+													<div style="padding-left: 30px;">
+														<p style="font-size: 16px;">
+															<strong>Passanger <c:out value="${loop.index}" />
+																(Adult)
+															</strong>
 														</p>
+														<br>
 														<p>
 															<label>First Name</label> <input type="text"
 																name="firstName<c:out value="${loop.index}" />"
@@ -183,7 +185,7 @@
 										</c:if>
 										<c:if test="${ adults <= 0 }">
 											<p>
-												<c:out value="You choose no number of adults!" />
+												<c:out value="You chose no number of adults!" />
 											</p>
 										</c:if>
 									</div>
@@ -214,16 +216,6 @@
 	</div>
 	<script type="text/javascript">
 		Cufon.now();
-	</script>
-	<script type="text/javascript">
-		jQuery(document).ready(function($) {
-			$('.form_5').jqTransform({
-				imgPath : 'jqtransformplugin/img/'
-			});
-		});
-		$(document).ready(function() {
-			tabs2.init();
-		});
 	</script>
 </body>
 </html>
