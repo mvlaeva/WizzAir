@@ -67,6 +67,11 @@
 		</header>
 		<!-- / header -->
 		<!--content -->
+		<c:if test="${ not empty viewHistoryMessage }">
+			<div>
+				<c:out value="${viewHistoryMessage }"></c:out>
+			</div>
+		</c:if>
 		<section id="content">
 			<div class="for_banners">
 				<article class="col1">

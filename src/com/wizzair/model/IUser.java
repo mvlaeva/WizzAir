@@ -19,6 +19,6 @@ public interface IUser {
 
 	void changePhone(String newPhone) throws UserException;
 
-	ArrayList<Ticket> showBoughtTickets();
+	void showBoughtTickets();
 
 }

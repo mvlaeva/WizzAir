@@ -13,21 +13,30 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Luggage")
 public class Luggage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		Map<String, String> mapFlights = new HashMap<String, String>();
 
 		for (String header : request.getParameterMap().keySet()) {
+
+			if (request.getParameterMap().keySet().equals("firstName")
+					|| request.getParameterMap().keySet().equals("lastName")) {
+				if (request.getParameterMap().isEmpty())
+					System.out.println("request.getParameterMap().isEmpty(): " + request.getParameterMap().isEmpty());
+				request.getRequestDispatcher("./Luggage").forward(request, response);
+			}
+
 			if (header != null) {
 				for (String value : request.getParameterMap().get(header)) {
 					mapFlights.put(header, value);
 				}
 			}
 		}
-		
+
 		request.getSession().setAttribute("mapFlights", mapFlights);
 		request.getRequestDispatcher("view/baggage.jsp").forward(request, response);
-		
+
 	}
 }

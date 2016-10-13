@@ -57,7 +57,8 @@
 				<article class="col1">
 					<div class="box1">
 						<div style="padding-bottom: 30px">
-							<div style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+							<div
+								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 								<legend>
 									<a href="./viewHistory">View History</a>
 								</legend>
@@ -128,37 +129,30 @@
 					style="margin-left: 400px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 					<div class="profile_info">
 						<div>
-							<p style="padding-left: 0px;">
-								<strong><legend>Profile info</legend></strong>
-							</p>
-							<div style="margin-right: 70px">
-								<p
-									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> Username: </strong>
-									<c:out value="${ username}"></c:out>
+							<c:if test="${not empty boughtTickets }">
+								<p style="padding-left: 0px;">
+									<strong><legend>Bought tickets</legend></strong>
 								</p>
-								<p
-									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> Email: </strong>
-									<c:out value="${ email}"></c:out>
+								<div style="margin-right: 70px">
+									<c:forEach items="${boughtTickets}" var="ticket">
+										<p
+											style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+											<strong> <c:out value="${ ticket.origin}"></c:out>-<c:out
+													value="${ticket.destination }"></c:out>
+											</strong>
+										</p>
+										<p>
+											<c:out value="${ticket.dateAndTime }" />
+										</p>
+										<br>
+									</c:forEach>
+								</div>
+							</c:if>
+							<c:if test="${empty boughtTickets }">
+								<p>
+									<c:out value="You have no bought tickets!"></c:out>
 								</p>
-								<p
-									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> First name: </strong>
-									<c:out value="${ firstName}"></c:out>
-								</p>
-								<p
-									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> Last name: </strong>
-									<c:out value="${ lastName}"></c:out>
-								</p>
-								<p
-									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> Phone number: </strong>
-									<c:out value="${ phone}"></c:out>
-								</p>
-								<br>
-							</div>
+							</c:if>
 						</div>
 					</div>
 				</article>

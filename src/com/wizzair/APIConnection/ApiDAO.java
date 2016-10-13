@@ -368,8 +368,7 @@ public class ApiDAO {
 			wr.close();
 
 		} catch (Exception e) {
-			// TODO
-			throw new FlightException();
+			throw new FlightException("Something went wrong!");
 		}
 
 		Map<String, String> map = new HashMap<String, String>();

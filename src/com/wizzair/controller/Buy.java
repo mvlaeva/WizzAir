@@ -24,36 +24,48 @@ import com.wizzair.model.Passanger;
 @WebServlet("/Buy")
 public class Buy extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		List<Passanger> adultPassengers = new ArrayList<Passanger>();
 		FlightSearch madeSerach = (FlightSearch) request.getSession().getAttribute("search");
-		String letters = "ABCDEF";
-		
+
 		for (int person = 1; person <= madeSerach.getAdults(); person++) {
-			
+
+			if (request.getParameter("firstName" + person) == null
+					|| request.getParameter("firstName" + person) == null) {
+				request.getRequestDispatcher("./Luggage").forward(request, response);
+			}
+			System.out.println(request.getParameter("firstName" + person));
+
+			System.out.println(request.getParameter("firstName" + person));
+
 			String firstName = request.getParameter(("firstName" + person));
 			String lastName = request.getParameter(("lastName" + person));
 			Gender gender = Gender.valueOf((request.getParameter(("gender" + person))).toUpperCase());
-			CabinBaggage cabinBaggage = CabinBaggage.valueOf((request.getParameter(("cabinBaggage" + person))).toUpperCase());
-			ChechedInBaggage chechedInBaggage = ChechedInBaggage.valueOf((request.getParameter(("chechedInBaggage" + person))).toUpperCase());
+			CabinBaggage cabinBaggage = CabinBaggage
+					.valueOf((request.getParameter(("cabinBaggage" + person))).toUpperCase());
+			ChechedInBaggage chechedInBaggage = ChechedInBaggage
+					.valueOf((request.getParameter(("chechedInBaggage" + person))).toUpperCase());
 			String sportsEquipment = request.getParameter(("sportsEquipment" + person));
 			String isOnlineCheckIn = request.getParameter(("checkIn" + person));
-			String seat = "" +((new Random().nextInt(31)) + (letters.charAt((new Random().nextInt(letters.length())))));
-		
+
+			String seat = constructSeat();
+
 			System.out.println("isOnlineCheckIn :" + isOnlineCheckIn);
-			adultPassengers.add(new Passanger(firstName, lastName, gender, cabinBaggage, chechedInBaggage, sportsEquipment == null ? false : true, isOnlineCheckIn.equals("online")? true : false , seat));
+			adultPassengers.add(new Passanger(firstName, lastName, gender, cabinBaggage, chechedInBaggage,
+					sportsEquipment == null ? false : true, isOnlineCheckIn.equals("online") ? true : false, seat));
 		}
-	
+
 		for (Passanger passanger : adultPassengers) {
 			System.out.println(passanger);
 		}
-		
+
 		List<JsonFlight> pickedFlights = new ArrayList<JsonFlight>();
 		List<JsonFlight> allFlights = (ArrayList<JsonFlight>) request.getSession().getAttribute("allFlights");
 		Map<String, String> mapFlightsIds = (HashMap<String, String>) request.getSession().getAttribute("mapFlights");
-		
+
 		for (int index = 0; index < allFlights.size(); index++) {
 			for (Entry<String, String> flight : mapFlightsIds.entrySet()) {
 				if (allFlights.get(index).getId().equals(flight.getKey())) {
@@ -61,9 +73,16 @@ public class Buy extends HttpServlet {
 				}
 			}
 		}
-		
+
 		request.getSession().setAttribute("pickedFlights", pickedFlights);
 		request.getSession().setAttribute("adultPassengers", adultPassengers);
 		request.getRequestDispatcher("view/checkOut.jsp").forward(request, response);
+	}
+
+	private String constructSeat() {
+		String letters = "ABCDEF";
+		String seat = "" + (new Random().nextInt(31) + (letters.charAt(new Random().nextInt(letters.length()))));
+		System.out.println(seat);
+		return seat;
 	}
 }
