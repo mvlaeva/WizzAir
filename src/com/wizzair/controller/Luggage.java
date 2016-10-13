@@ -21,13 +21,6 @@ public class Luggage extends HttpServlet {
 
 		for (String header : request.getParameterMap().keySet()) {
 
-			if (request.getParameterMap().keySet().equals("firstName")
-					|| request.getParameterMap().keySet().equals("lastName")) {
-				if (request.getParameterMap().isEmpty())
-					System.out.println("request.getParameterMap().isEmpty(): " + request.getParameterMap().isEmpty());
-				request.getRequestDispatcher("./Luggage").forward(request, response);
-			}
-
 			if (header != null) {
 				for (String value : request.getParameterMap().get(header)) {
 					mapFlights.put(header, value);

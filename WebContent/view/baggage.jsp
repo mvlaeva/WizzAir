@@ -12,6 +12,13 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/regform.css" type="text/css"
 	media="all">
+<!-- Include the jQuery file -->
+
+<script src="jquery.min.js" type="text/javascript"></script>
+
+<!-- Include the jquery.placeholder.js file -->
+
+<script src="jquery.placeholder.js" type="text/javascript"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/html5.js"></script>
 <style type="text/css">.main, .tabs ul.nav a, .content, .button1, .box1, .top { behavior:url("../js/PIE.htc")}</style>
@@ -122,65 +129,88 @@
 							<div>
 								<div class="content">
 									<div class="tab-content" id="Flight">
-										<c:if test="${not empty mapFlights}">
-											<form action="./Buy" method="post">
-												<c:forEach begin="1" end="${search.adults}" varStatus="loop">
-													<div style="padding-left: 30px;">
-														<p style="font-size: 16px;">
-															<strong>Passanger <c:out value="${loop.index}" />
-																(Adult)
-															</strong>
-														</p>
-														<br>
-														<p>
-															<label>First Name</label> <input type="text"
-																name="firstName<c:out value="${loop.index}" />"
-																placeholder="First Name" />
-														</p>
-														<p>
-															<label>Last Name</label> <input type="text"
-																name="lastName<c:out value="${loop.index}" />"
-																placeholder="Last Name" />
-														</p>
-														<p>
-															Gender <input type="radio"
-																name="gender<c:out value="${loop.index}" />"
-																value="male" checked> MALE <input type="radio"
-																name="gender<c:out value="${loop.index}" />"
-																value="female"> FEMALE <br>
-														</p>
-														<p>
-															Cabin baggage <input type="radio"
-																name="cabinBaggage<c:out value="${loop.index}" />"
-																value="small" checked> SMALL <input type="radio"
-																name="cabinBaggage<c:out value="${loop.index}" />"
-																value="large"> LARGE <br>
-														</p>
-														<p>
-															CheckIn baggage <input type="radio"
-																name="chechedInBaggage<c:out value="${loop.index}" />"
-																value="LIGHT" checked> LIGHT <input type="radio"
-																name="chechedInBaggage<c:out value="${loop.index}" />"
-																value="HEAVY"> HEAVY <br>
-														</p>
-														<p>
-															Sports equipment <input type="checkbox"
-																name="sportsEquipment<c:out value="${loop.index}" />"
-																id="sportsEquipment"> <label
-																for="sportsEquipment"></label>
-														</p>
-														<p>
-															Check-in method<input type="radio"
-																name="checkIn<c:out value="${loop.index}" />"
-																value="online" checked> Online <input
-																type="radio"
-																name="checkIn<c:out value="${loop.index}" />"
-																value="airport"> Airport <br>
-														</p>
-													</div>
-													<hr></hr>
-												</c:forEach>
-												<input type="submit" value="Continue" />
+										<c:if test="${not empty user }">
+											<c:if test="${not empty mapFlights}">
+												<form action="./Buy" method="post">
+													<c:forEach begin="1" end="${search.adults}"
+														varStatus="loop">
+														<div style="padding-left: 30px;">
+															<p style="font-size: 16px;">
+																<strong>Passanger <c:out value="${loop.index}" />
+																	(Adult)
+																</strong>
+															</p>
+															<br>
+															<c:if test="${not empty buyMessage }">
+																<p style="color: red">
+																	<c:out value="${ buyMessage}"></c:out>
+																</p>
+															</c:if>
+															<p>
+																<label>First Name</label> <input type="text"
+																	name="firstName<c:out value="${loop.index}" />"
+																	placeholder="<c:out value="${firstName}" />" />
+															</p>
+															<p>
+																<label>Last Name</label> <input type="text"
+																	name="lastName<c:out value="${loop.index}" />"
+																	placeholder="<c:out value="${lastName}" />" />
+															</p>
+															<p>
+																Gender <input type="radio"
+																	name="gender<c:out value="${loop.index}" />"
+																	value="male" checked> MALE <input type="radio"
+																	name="gender<c:out value="${loop.index}" />"
+																	value="female"> FEMALE <br>
+															</p>
+															<p>
+																Cabin baggage <input type="radio"
+																	name="cabinBaggage<c:out value="${loop.index}" />"
+																	value="small" checked> SMALL <input
+																	type="radio"
+																	name="cabinBaggage<c:out value="${loop.index}" />"
+																	value="large"> LARGE <br>
+															</p>
+															<p>
+																CheckIn baggage <input type="radio"
+																	name="chechedInBaggage<c:out value="${loop.index}" />"
+																	value="LIGHT" checked> LIGHT <input
+																	type="radio"
+																	name="chechedInBaggage<c:out value="${loop.index}" />"
+																	value="HEAVY"> HEAVY <br>
+															</p>
+															<p>
+																Sports equipment <input type="checkbox"
+																	name="sportsEquipment<c:out value="${loop.index}" />"
+																	id="sportsEquipment"> <label
+																	for="sportsEquipment"></label>
+															</p>
+															<p>
+																Check-in method<input type="radio"
+																	name="checkIn<c:out value="${loop.index}" />"
+																	value="online" checked> Online <input
+																	type="radio"
+																	name="checkIn<c:out value="${loop.index}" />"
+																	value="airport"> Airport <br>
+															</p>
+														</div>
+														<hr></hr>
+													</c:forEach>
+													<input type="submit" value="Continue" />
+												</form>
+											</c:if>
+											<c:if test="${ empty mapFlights}">
+												<div>
+													<c:out value="You chose no flights!"></c:out>
+												</div>
+											</c:if>
+										</c:if>
+										<c:if test="${empty user }">
+											<div>
+												<c:out value="Please first login to reserve a ticket!"></c:out>
+											</div>
+											<form action="./Login" method="post">
+												<input type="submit" value="Login">
 											</form>
 										</c:if>
 										<c:if test="${ adults <= 0 }">
@@ -216,6 +246,9 @@
 	</div>
 	<script type="text/javascript">
 		Cufon.now();
+	</script>
+	<script type="text/javascript">
+		$('input[type=text], textarea').placeholder();
 	</script>
 </body>
 </html>

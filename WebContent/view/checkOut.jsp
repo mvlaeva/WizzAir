@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,39 +133,48 @@
 										<div class="padding_flight" style="width: 500px">
 											<br>
 										</div>
-										<div class="flight">
+										<div
+											style="padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
 											<br>
-											<p class="flight">
+											<p
+												style="padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
 												Id :
 												<c:out value="${flight.id}" />
 											</p>
-											<p class="flight">
+											<p
+												style="padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
 												Origin Station :
 												<c:out value="${flight.originStation}" />
 											</p>
-											<p class="flight">
+											<p
+												style="padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
 												Destination Station :
 												<c:out value="${flight.destinationStation}" />
 											</p>
-											<p class="flight">
+											<p
+												style="padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
 												Departure :
 												<c:out value="${flight.departure}" />
 											</p>
-											<p class="flight">
+											<p
+												style="padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
 												Arrival :
 												<c:out value="${flight.arrival}" />
 											</p>
-											<p class="flight">
+											<p
+												style="padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
 												Duration :
 												<c:out value="${flight.duration} minutes" />
 											</p>
-											<p class="flight">
+											<p
+												style="padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
 												Carrier :
 												<c:out value="WizzAir" />
 											</p>
-											<p class="flight">
+											<p
+												style="padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
 												Price :
-												<c:out value="${flight.price}" />
+												<fmt:formatNumber type="number" maxFractionDigits="2" value="${flight.price}"/> 
 											</p>
 											<br>
 										</div>

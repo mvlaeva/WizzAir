@@ -13,7 +13,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.wizzair.model.CabinBaggage;
 import com.wizzair.model.ChechedInBaggage;
 import com.wizzair.model.FlightSearch;
@@ -34,9 +33,12 @@ public class Buy extends HttpServlet {
 
 		for (int person = 1; person <= madeSerach.getAdults(); person++) {
 
-			if (request.getParameter("firstName" + person) == null
-					|| request.getParameter("firstName" + person) == null) {
-				request.getRequestDispatcher("./Luggage").forward(request, response);
+			if (request.getParameter("firstName" + person) == null || request.getParameter("firstName" + person) == ""
+					|| request.getParameter("lastName" + person) == null
+					|| request.getParameter("lastName" + person) == "") {
+				String buyMessage = "Please fill all forms!";
+				request.setAttribute("buyMessage", buyMessage);
+				request.getRequestDispatcher("view/baggage.jsp").forward(request, response);
 			}
 			System.out.println(request.getParameter("firstName" + person));
 
