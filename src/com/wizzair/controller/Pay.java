@@ -16,6 +16,8 @@ public class Pay extends HttpServlet {
 		// TODO Auto-generated method stub
 		// DB transaction with flight, passengers and user insertions
 		// Be creative, Mirela and do some magic here
+		
+		request.getRequestDispatcher("view/greeting.jsp").forward(request, response);
 	}
 
 }
