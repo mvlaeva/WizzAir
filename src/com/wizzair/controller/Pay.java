@@ -15,7 +15,8 @@ public class Pay extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// DB transaction with flight, passengers and user insertions
-		// Be creative, Mirela and do some magic here
+		// Be creative, Mirela (DB Seniorita) and do some magic here
+		// pickedFlights, adultPassengers and user from session to DB
 		
 		request.getRequestDispatcher("view/greeting.jsp").forward(request, response);
 	}

@@ -2,7 +2,10 @@ package com.wizzair.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -15,6 +18,7 @@ import com.wizzair.model.CabinBaggage;
 import com.wizzair.model.ChechedInBaggage;
 import com.wizzair.model.FlightSearch;
 import com.wizzair.model.Gender;
+import com.wizzair.model.JsonFlight;
 import com.wizzair.model.Passanger;
 
 @WebServlet("/Buy")
@@ -46,6 +50,19 @@ public class Buy extends HttpServlet {
 			System.out.println(passanger);
 		}
 		
+		List<JsonFlight> pickedFlights = new ArrayList<JsonFlight>();
+		List<JsonFlight> allFlights = (ArrayList<JsonFlight>) request.getSession().getAttribute("allFlights");
+		Map<String, String> mapFlightsIds = (HashMap<String, String>) request.getSession().getAttribute("mapFlights");
+		
+		for (int index = 0; index < allFlights.size(); index++) {
+			for (Entry<String, String> flight : mapFlightsIds.entrySet()) {
+				if (allFlights.get(index).getId().equals(flight.getKey())) {
+					pickedFlights.add(allFlights.get(index));
+				}
+			}
+		}
+		
+		request.getSession().setAttribute("pickedFlights", pickedFlights);
 		request.getSession().setAttribute("adultPassengers", adultPassengers);
 		request.getRequestDispatcher("view/checkOut.jsp").forward(request, response);
 	}
