@@ -76,7 +76,21 @@ public class ApiDAO {
 		Map<String, String> placesMap = new HashMap<String, String>();
 
 		try {
-			// Continue polling if the previous polling response is 304
+
+			// if too many request
+			if (conn2.getResponseCode() == 429) {
+				Map<String, String> map2 = new HashMap<String, String>();
+
+				for (String header : conn2.getHeaderFields().keySet()) {
+					if (header != null) {
+						for (String value : conn2.getHeaderFields().get(header)) {
+							System.out.println(header + ":" + value);
+							map2.put(header, value);
+						}
+					}
+				}
+			}
+			//Continue polling if the previous polling response is 304
 			if (conn2.getResponseCode() == 304) {
 				// wait 1 sec and poll again
 				Thread.sleep(1000);
