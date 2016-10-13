@@ -40,9 +40,11 @@
 					<li><a href="./index"><span><span>About</span></span></a></li>
 					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
 					<li><a href="./Book"><span><span>Book</span></span></a></li>
-					<li><a href="./Services"><span><span>Services</span></span></a></li>
 					<li id="menu_active"><a href="./Safety"><span><span>Safety</span></span></a></li>
 					<li class="end"><a href="./Contacts"><span><span>Contacts</span></span></a></li>
+					<c:if test="${not empty user }">
+						<li><a href="./Profile"><span><span>Profile</span></span></a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</header>
@@ -162,11 +164,13 @@
 							seat, can be carried on the same aircraft. There are 36 available
 							seats for disabled passengers on our Airbus A321 aircraft, and we
 							can accept a maximum 12 passengers who require a wheelchair from
-							check-in to the cabin seat.<br> For further questions do not hesitate to contact us.
+							check-in to the cabin seat.<br> For further questions do not
+							hesitate to contact us.
 						</p>
 					</div>
 					<div class="wrapper">
-						<a href="./Contacts" class="button1 right"><strong>Contact us</strong></a>
+						<a href="./Contacts" class="button1 right"><strong>Contact
+								us</strong></a>
 					</div>
 					<h3>Pregnant Women</h3>
 					<p>For safety reasons, pregnant women can travel only up to the

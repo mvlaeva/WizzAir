@@ -40,9 +40,11 @@
 					<li><a href="./index"><span><span>About</span></span></a></li>
 					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
 					<li><a href="./Book"><span><span>Book</span></span></a></li>
-					<li><a href="./Services"><span><span>Services</span></span></a></li>
 					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
 					<li id="menu_active" class="end"><a href="./Contacts"><span><span>Contacts</span></span></a></li>
+					<c:if test="${not empty user }">
+						<li><a href="./Profile"><span><span>Profile</span></span></a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</header>
@@ -170,8 +172,8 @@
 								<span>Message:</span>
 								<textarea name="textarea" cols="1" rows="1"></textarea>
 							</div>
-							<a href="./index" class="button1"><strong>Send</strong></a> <a href="./index"
-								class="button1"><strong>Clear</strong></a>
+							<a href="./index" class="button1"><strong>Send</strong></a> <a
+								href="./index" class="button1"><strong>Clear</strong></a>
 						</div>
 					</form>
 				</article>

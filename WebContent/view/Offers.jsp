@@ -40,16 +40,18 @@
 					<li><a href="./index"><span><span>About</span></span></a></li>
 					<li id="menu_active"><a href="./Offers"><span><span>Offers</span></span></a></li>
 					<li><a href="./Book"><span><span>Book</span></span></a></li>
-					<li><a href="./Services"><span><span>Services</span></span></a></li>
 					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
 					<li class="end"><a href="./Contacts"><span><span>Contacts</span></span></a></li>
+					<c:if test="${not empty user }">
+						<li><a href="./Profile"><span><span>Profile</span></span></a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</header>
 		<!-- / header -->
 		<!--content -->
 		<section id="content">
-			<div class="wrapper pad1" >
+			<div class="wrapper pad1">
 				<article class="col1" style="width: 300px">
 					<div class="pad_bot3">
 						<div class="box1">
@@ -58,9 +60,8 @@
 								<div>
 									<div class="radio">
 										<div class="wrapper">
-											<input type="radio" name="name1" checked> <span
-												>One-way</span><input type="radio"
-												name="name1"> <span class="left">With
+											<input type="radio" name="name1" checked> <span>One-way</span><input
+												type="radio" name="name1"> <span class="left">With
 												transfer</span>
 										</div>
 									</div>
@@ -76,13 +77,15 @@
 										<div class="col1">
 											<div class="row">
 												<span class="left">Outbound</span> <input type="text"
-													class="input1" style="width: 65px" value="2016-10-13" name="departureDate"
+													class="input1" style="width: 65px" value="2016-10-13"
+													name="departureDate"
 													onblur="if(this.value=='') this.value='2016-10-13'"
 													onFocus="if(this.value =='2016-10-13' ) this.value=''">
 											</div>
 											<div class="row">
 												<span class="left">Return</span> <input type="text"
-													class="input1" style="width: 65px" value="2016-10-18" name="returnDate"
+													class="input1" style="width: 65px" value="2016-10-18"
+													name="returnDate"
 													onblur="if(this.value=='') this.value='2016-10-18'"
 													onFocus="if(this.value =='2016-10-18' ) this.value=''">
 											</div>

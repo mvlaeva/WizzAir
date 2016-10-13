@@ -29,6 +29,7 @@ import com.wizzair.model.JsonFlight;
 
 public class ApiDAO {
 
+	private static final String API_KEY_BACKUP = "im947515887741739542302853275112";
 	private static final String API_KEY = "zd245468154105197435988199897794";
 	private static final String COMPANY_CODE = "1914";
 	private static final String COMPANY_NAME = "Wizz Air";
@@ -41,12 +42,12 @@ public class ApiDAO {
 	}
 
 	private static List<JsonFlight> getFlightsQuery(FlightSearch search, String location) throws Exception {
-		
+
 		int stopsSearch = search.getStops();
 		String carriersKey = "&includecarriers=W6";
-		
-		String request2 = location + "?apiKey=" + API_KEY + "&stops=" + stopsSearch;
-		
+
+		String request2 = location + "?apiKey=" + API_KEY_BACKUP + "&stops=" + stopsSearch;
+
 		// the flight is direct
 		if (stopsSearch == 0) {
 			request2 = request2 + carriersKey;
@@ -75,17 +76,18 @@ public class ApiDAO {
 		Map<String, String> placesMap = new HashMap<String, String>();
 
 		try {
-			//Continue polling if the previous polling response is 304
+			// Continue polling if the previous polling response is 304
 			if (conn2.getResponseCode() == 304) {
 				// wait 1 sec and poll again
 				Thread.sleep(1000);
 				return getFlightsQuery(search, location);
 			}
-			//Continue polling if the previous polling response is 200 and status is UpdatesPending
+			// Continue polling if the previous polling response is 200 and
+			// status is UpdatesPending
 			if (conn2.getResponseCode() == 200) {
-				JsonElement element =  new JsonParser().parse(response.toString());
-				if (element.isJsonNull()){
-					return getFlightsQuery(search,location);
+				JsonElement element = new JsonParser().parse(response.toString());
+				if (element.isJsonNull()) {
+					return getFlightsQuery(search, location);
 				}
 				object = (JsonObject) element;
 				if (object.get("Status").getAsString().equals("UpdatesPending")) {
@@ -93,7 +95,7 @@ public class ApiDAO {
 					return getFlightsQuery(search, location);
 				}
 			}
-	
+
 			// all carriers with flights
 			JsonArray carriers = object.getAsJsonArray("Carriers");
 
@@ -142,12 +144,12 @@ public class ApiDAO {
 					carriersSet.add(carriersLeg.get(j).getAsString());
 					carrier[j] = carriersLeg.get(j).getAsString();
 				}
-				
-				//add only flights where Wizz Air takes part
-				/*if (!(carriersSet.contains(COMPANY_CODE))) { 
-					 continue; 
-				}*/
-				
+
+				// add only flights where Wizz Air takes part
+				/*
+				 * if (!(carriersSet.contains(COMPANY_CODE))) { continue; }
+				 */
+
 				JsonArray stopsArr = flight.get("Stops").getAsJsonArray();
 				String[] stops = new String[stopsArr.size()];
 				for (int stop = 0; stop < stopsArr.size(); stop++) {
@@ -195,7 +197,8 @@ public class ApiDAO {
 				agentsMap.put(name, id);
 			}
 
-			// contains places(origin, destination) where to an id correspond a name
+			// contains places(origin, destination) where to an id correspond a
+			// name
 			JsonArray places = object.getAsJsonArray("Places");
 
 			for (int index = 0; index < places.size(); index++) {
@@ -213,17 +216,18 @@ public class ApiDAO {
 				String ticketSeller = "";
 				String flightId = flights.get(flight).getId();
 				HashMap<String, Double> agentAndPrice = flightIds.get(flightId);
-				//get the id for COMPANY_NAME
+				// get the id for COMPANY_NAME
 				String agentNumber = agentsMap.get(COMPANY_NAME);
 				for (Entry<String, Double> agent : agentAndPrice.entrySet()) {
-					
-					//check if the COMPANY_NAME had set a price, else choose the lowest one
+
+					// check if the COMPANY_NAME had set a price, else choose
+					// the lowest one
 					if (agentAndPrice.containsKey(agentNumber)) {
 						ticketSeller = COMPANY_NAME;
 						lowestPrice = agentAndPrice.get(agentNumber);
 						break;
 					} else {
-	
+
 						double price = agent.getValue();
 						if (price < lowestPrice) {
 							lowestPrice = price;
@@ -267,23 +271,23 @@ public class ApiDAO {
 
 			// set nested flights (if any)
 			for (int flight = 0; flight < flights.size(); flight++) {
-				
-				//if this is a direct flight - lenght = 1
+
+				// if this is a direct flight - lenght = 1
 				if (flights.get(flight).getSegmentIds().length > 1) {
 					for (int innerFlight = 0; innerFlight < flights.get(flight).getSegmentIds().length; innerFlight++) {
-						
+
 						if (flightsWithStops.containsKey(flights.get(flight).getSegmentIds()[innerFlight])) {
 							flights.get(flight)
 									.addFlights(flightsWithStops.get(flights.get(flight).getSegmentIds()[innerFlight]));
 						}
-						
+
 					}
 				}
 			}
 
 			// set nested flight numbers to names
 			for (int flight = 0; flight < flightsWithStops.size(); flight++) {
-				
+
 				for (int i = 0; i < flightsWithStops.get(flight).getCarriers().length; i++) {
 					String name = flightsWithStops.get(flight).getCarriers()[i];
 					flightsWithStops.get(flight).setCarrierName(i, carriersMap.get(name));
@@ -294,7 +298,7 @@ public class ApiDAO {
 				String destination = placesMap.get(flightsWithStops.get(flight).getDestinationStation());
 
 				flightsWithStops.get(flight).setOriginStation(origin);
-				flightsWithStops.get(flight).setDestinationStation(destination);		
+				flightsWithStops.get(flight).setDestinationStation(destination);
 			}
 
 			// print main flight with stops
@@ -305,7 +309,7 @@ public class ApiDAO {
 					System.out.println(flights.get(flight).getFlights().get(innerFlight));
 				}
 				System.out.println();
-			}		
+			}
 
 		} catch (JsonIOException e) {
 			e.printStackTrace();
@@ -332,8 +336,7 @@ public class ApiDAO {
 		conn.setRequestProperty("Accept", "application/json");
 		conn.setRequestProperty("charset", "utf-8");
 
-
-		String urlParameters = "apiKey="+API_KEY+"&country=BG&currency=BGN&locale=en-GB&originplace="
+		String urlParameters = "apiKey=" + API_KEY_BACKUP + "&country=BG&currency=BGN&locale=en-GB&originplace="
 				+ originSearch + "&destinationplace=" + destinationSearch + "&outbounddate=" + departureDateSearch
 				+ "&locationschema=Iata&adults=" + adultsSearch;
 
@@ -365,6 +368,6 @@ public class ApiDAO {
 			}
 		}
 
-		return map.get("Location");	
+		return map.get("Location");
 	}
 }

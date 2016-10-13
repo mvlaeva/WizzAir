@@ -14,6 +14,6 @@ public class TestUserDAO {
 
 		//new UserDAO().registerUser(new User("pesho", "petur", "petrovV1", "pesho@abv.bg", "0883343440", "petrovV1", Gender.MALE));
 
-		new UserDAO().login(new User("pesho", "petrovV1"));
+		new UserDAO().login(new User("m.mihalcheva", "mirelaA1"));
 	}
 }

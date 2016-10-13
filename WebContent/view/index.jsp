@@ -57,9 +57,11 @@
 					<li id="menu_active"><a href="./index"><span><span>About</span></span></a></li>
 					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
 					<li><a href="./Book"><span><span>Book</span></span></a></li>
-					<li><a href="./Services"><span><span>Services</span></span></a></li>
 					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
 					<li><a href="./Contacts"><span><span>Contacts</span></span></a></li>
+					<c:if test="${not empty user }">
+						<li><a href="./Profile"><span><span>Profile</span></span></a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</header>
@@ -94,9 +96,8 @@
 										<div class="wrapper">
 											<div class="col1">
 												<div class="row">
-													<span class="left">Outbound</span> 
-													<input type="text" id="datepicker"
-														class="input1" name="departureDate">
+													<span class="left">Outbound</span> <input type="text"
+														id="datepicker" class="input1" name="departureDate">
 												</div>
 												<div class="row">
 													<span class="left">Return</span> <input type="text"
@@ -108,7 +109,6 @@
 										</div>
 										<div class="row">
 											<span class="left">Adults</span> <select name="adults">
-												<option value="0">0</option>
 												<option value="1">1</option>
 												<option value="2">2</option>
 												<option value="3">3</option>

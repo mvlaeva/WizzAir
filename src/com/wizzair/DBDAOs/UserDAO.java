@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.wizzair.exceptions.FlightDAOException;
 import com.wizzair.exceptions.UserDAOException;
 import com.wizzair.exceptions.UserException;
 import com.wizzair.model.Gender;
@@ -15,7 +14,7 @@ import com.wizzair.model.User;
 import com.wizzair.model.Utility;
 
 public class UserDAO {
-	private static final String SELECT_NAME_AND_SURNAME_SQL = "SELECT first_name,last_name, email FROM users;";
+	private static final String SELECT_PROFILE_DATA_SQL = "SELECT gender, phone, email, first_name, last_name FROM users;";
 	private static final String SELECT_USERNAME_PASSWORD_SQL = "select username, password from users;";
 	private static final String RETURN_ALL_USERS_SQL = "SELECT id, username, first_name, last_name, email, password FROM users;";
 	private static final String INSERT_NEW_USER_SQL = "INSERT INTO users VALUES (null, ?, ?, ?, md5(?), ?, ?, ?);";
@@ -82,17 +81,29 @@ public class UserDAO {
 	}
 
 	public IUser login(User user) throws Exception {
-		if (userExists(user) && Utility.passwordMatches(user)) {
+		if (userExistsWithThisPass(user)) {
 			setUserFields(user);
 			return user;
 		} else
 			throw new UserException("Username/password mismatch!");
 	}
 
+	private boolean userExistsWithThisPass(User user) throws SQLException {
+		Statement stmt = connection.createStatement();
+		ResultSet resultSet = stmt.executeQuery("SELECT username, password from users where username='"
+				+ user.getUsername() + "' AND password=md5('" + user.getPassword() + "');");
+		while (resultSet.next()) {
+			String username = resultSet.getString("username");
+			if (username.equals(user.getUsername()))
+				return true;
+		}
+		return false;
+	}
+
 	private IUser setUserFields(User user) throws UserException, SQLException {
 		if (user != null) {
 			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery(SELECT_NAME_AND_SURNAME_SQL);
+			ResultSet rs = stmt.executeQuery(SELECT_PROFILE_DATA_SQL);
 
 			while (rs.next()) {
 				String phone = rs.getString("phone");

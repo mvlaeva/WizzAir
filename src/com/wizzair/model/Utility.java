@@ -1,10 +1,12 @@
 package com.wizzair.model;
 
+import java.security.MessageDigest;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 import com.mysql.jdbc.Connection;
-import com.wizzair.DBDAOs.DBConnection;;
+import com.wizzair.DBDAOs.DBConnection;
+import com.wizzair.DBDAOs.UserDAO;;
 
 public abstract class Utility {
 
@@ -69,10 +71,11 @@ public abstract class Utility {
 		Connection connection = (Connection) new DBConnection().getInstance().getConnection();
 		Statement stmt = connection.createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT username, password FROM users;");
+		MessageDigest md = MessageDigest.getInstance("MD5");
 
 		while (rs.next()) {
 			if (rs.getString("username").equals(user.getUsername())
-					&& rs.getString("password").equals(user.getPassword()))
+					&& rs.getString("password").equals(md.digest((user.getPassword().getBytes()))))
 				return true;
 		}
 

@@ -40,9 +40,11 @@
 					<li><a href="./index"><span><span>About</span></span></a></li>
 					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
 					<li id="menu_active"><a href="./Book"><span><span>Book</span></span></a></li>
-					<li><a href="./Services"><span><span>Services</span></span></a></li>
 					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
 					<li class="end"><a href="./Contacts"><span><span>Contacts</span></span></a></li>
+					<c:if test="${not empty user }">
+						<li><a href="./Profile"><span><span>Profile</span></span></a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</header>

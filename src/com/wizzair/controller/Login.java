@@ -31,8 +31,13 @@ public class Login extends HttpServlet {
 		User sample = new User(username, password);
 
 		try {
-			IUser user = new UserDAO().login(sample);
+			User user = (User) new UserDAO().login(sample);
 			request.getSession().setAttribute("user", user);
+			request.getSession().setAttribute("username", username);
+			request.getSession().setAttribute("firstName", user.getFirstName());
+			request.getSession().setAttribute("lastName", user.getLastName());
+			request.getSession().setAttribute("phone", user.getPhone());
+			request.getSession().setAttribute("email", user.getEmail());
 			request.getRequestDispatcher("view/index.jsp").forward(request, response);
 		} catch (Exception e) {
 			String message = "Invalid username/password.";

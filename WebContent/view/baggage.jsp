@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="com.wizzair.model.*" %>
+<%@ page import="com.wizzair.model.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,9 +41,11 @@
 					<li><a href="./index"><span><span>About</span></span></a></li>
 					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
 					<li id="menu_active"><a href="./Book"><span><span>Book</span></span></a></li>
-					<li><a href="./Services"><span><span>Services</span></span></a></li>
 					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
 					<li class="end"><a href="./Contacts"><span><span>Contacts</span></span></a></li>
+					<c:if test="${not empty user }">
+						<li><a href="./Profile"><span><span>Profile</span></span></a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</header>
@@ -115,9 +117,9 @@
 
 				<article class="col2">
 					<div class="tabs2">
-						<article >
-							<div >
-								<div class="content" >
+						<article>
+							<div>
+								<div class="content">
 									<div class="tab-content" id="Flight">
 										<c:if test="${not empty mapFlights}">
 											<form action="./Buy" method="post">
@@ -125,40 +127,53 @@
 													<div>
 														<p>
 															Passenger
-															<c:out value="${loop.index}" /> (Adult)
+															<c:out value="${loop.index}" />
+															(Adult)
 														</p>
 														<p>
 															<label>First Name</label> <input type="text"
-																name="firstName<c:out value="${loop.index}" />" placeholder="First Name" />
+																name="firstName<c:out value="${loop.index}" />"
+																placeholder="First Name" />
 														</p>
 														<p>
 															<label>Last Name</label> <input type="text"
-																name="lastName<c:out value="${loop.index}" />" placeholder="Last Name" />
+																name="lastName<c:out value="${loop.index}" />"
+																placeholder="Last Name" />
 														</p>
 														<p>
-															Gender 
-															<input type="radio" name="gender<c:out value="${loop.index}" />" value="male"checked> MALE 
-															<input type="radio" name="gender<c:out value="${loop.index}" />" value="female"> FEMALE <br>
+															Gender <input type="radio"
+																name="gender<c:out value="${loop.index}" />"
+																value="male" checked> MALE <input type="radio"
+																name="gender<c:out value="${loop.index}" />"
+																value="female"> FEMALE <br>
 														</p>
 														<p>
-															Cabin baggage <input type="radio" name="cabinBaggage<c:out value="${loop.index}" />"
+															Cabin baggage <input type="radio"
+																name="cabinBaggage<c:out value="${loop.index}" />"
 																value="small" checked> SMALL <input type="radio"
-																name="cabinBaggage<c:out value="${loop.index}" />" value="large"> LARGE <br>
+																name="cabinBaggage<c:out value="${loop.index}" />"
+																value="large"> LARGE <br>
 														</p>
 														<p>
-															CheckIn baggage <input type="radio" name="chechedInBaggage<c:out value="${loop.index}" />"
+															CheckIn baggage <input type="radio"
+																name="chechedInBaggage<c:out value="${loop.index}" />"
 																value="LIGHT" checked> LIGHT <input type="radio"
-																name="chechedInBaggage<c:out value="${loop.index}" />" value="HEAVY"> HEAVY <br>
+																name="chechedInBaggage<c:out value="${loop.index}" />"
+																value="HEAVY"> HEAVY <br>
 														</p>
 														<p>
 															Sports equipment <input type="checkbox"
-																name="sportsEquipment<c:out value="${loop.index}" />" id="sportsEquipment"> <label
+																name="sportsEquipment<c:out value="${loop.index}" />"
+																id="sportsEquipment"> <label
 																for="sportsEquipment"></label>
 														</p>
 														<p>
-															Check-in method<input type="radio" name="checkIn<c:out value="${loop.index}" />"
-																value="online" checked> Online <input type="radio"
-																name="checkIn<c:out value="${loop.index}" />" value="airport"> Airport <br>
+															Check-in method<input type="radio"
+																name="checkIn<c:out value="${loop.index}" />"
+																value="online" checked> Online <input
+																type="radio"
+																name="checkIn<c:out value="${loop.index}" />"
+																value="airport"> Airport <br>
 														</p>
 													</div>
 													<hr></hr>

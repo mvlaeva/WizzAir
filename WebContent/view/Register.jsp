@@ -39,9 +39,11 @@
 					<li><a href="./index"><span><span>About</span></span></a></li>
 					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
 					<li><a href="./Book"><span><span>Book</span></span></a></li>
-					<li><a href="./Services"><span><span>Services</span></span></a></li>
 					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
 					<li class="end"><a href="./Contacts"><span><span>Contacts</span></span></a></li>
+					<c:if test="${not empty user }">
+						<li><a href="./Profile"><span><span>Profile</span></span></a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</header>
@@ -49,7 +51,7 @@
 		<!--content -->
 		<section id="content">
 			<div class="wrapper pad1">
-				<article class="col1" style="padding-left: 30px; width: 350px;">
+				<article class="col1" style="padding-left: 30px; width: 450px;">
 					<div class="box1">
 						<!--content -->
 						<section id="content">
@@ -82,9 +84,9 @@
 											Male <input type="radio" name="gender" value="female">
 											Female <br>
 											<button type="submit">Register</button>
-											<c:if test="${not empty message}">
+											<c:if test="${not empty regMessage}">
 												<p>
-													<c:out value="${message}" />
+													<c:out value="${regMessage}" />
 												</p>
 											</c:if>
 										</fieldset>
