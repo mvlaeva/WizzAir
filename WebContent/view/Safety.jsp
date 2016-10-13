@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,15 +9,6 @@
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
-<script type="text/javascript" src="js/jquery-1.5.2.js"></script>
-<script type="text/javascript" src="js/cufon-yui.js"></script>
-<script type="text/javascript" src="js/cufon-replace.js"></script>
-<script type="text/javascript" src="js/Cabin_400.font.js"></script>
-<script type="text/javascript" src="js/tabs.js"></script>
-<script type="text/javascript" src="js/jquery.jqtransform.js"></script>
-<script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
-<script type="text/javascript" src="js/atooltip.jquery.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/html5.js"></script>
 <style type="text/css">.main, .tabs ul.nav a, .content, .button1, .box1, .top { behavior:url("../js/PIE.htc")}</style>
@@ -33,7 +25,12 @@
 				<span id="slogan">Fast, Frequent &amp; Safe Flights</span>
 				<nav id="top_nav">
 					<ul>
-						<li><a href="./Login" class="nav2">Login</a></li>
+						<c:if test="${ empty user  }">
+							<li><a href="./Login" class="nav2">Login</a></li>
+						</c:if>
+						<c:if test="${ not empty user }">
+							<li><a href="./Logout" class="nav2">Logout</a></li>
+						</c:if>
 						<li><a href="./Contacts" class="nav3">Contact</a></li>
 					</ul>
 				</nav>
@@ -165,11 +162,11 @@
 							seat, can be carried on the same aircraft. There are 36 available
 							seats for disabled passengers on our Airbus A321 aircraft, and we
 							can accept a maximum 12 passengers who require a wheelchair from
-							check-in to the cabin seat.
+							check-in to the cabin seat.<br> For further questions do not hesitate to contact us.
 						</p>
 					</div>
 					<div class="wrapper">
-						<a href="./Contacts" class="button1 right"><strong>Read More</strong></a>
+						<a href="./Contacts" class="button1 right"><strong>Contact us</strong></a>
 					</div>
 					<h3>Pregnant Women</h3>
 					<p>For safety reasons, pregnant women can travel only up to the

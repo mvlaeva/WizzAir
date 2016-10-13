@@ -65,7 +65,7 @@ body {
 .buy_now{
 	height: 50px;
 	width: 50px;	
-    margin: 0px 600px;
+    margin: 0px 350px;
 }
 
 .flight{
@@ -719,14 +719,14 @@ a.jqTransformSelectOpen {
 	color:#7f7f7f;
 	float:left;
 	padding:2px 7px;
-	height:14px;
-	width:142px !important
+	height:20px;
+	width:142px 
 }
 #form_1 .input1 {
-	width:65px !important
+	width:80px 
 }
 #form_1 .input2 {
-	width:11px !important
+	width:11px 
 }
 #form_1 .col1 {
 	width:177px;

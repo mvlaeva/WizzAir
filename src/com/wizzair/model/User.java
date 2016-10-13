@@ -7,7 +7,7 @@ import java.util.List;
 import com.wizzair.exceptions.TicketException;
 import com.wizzair.exceptions.UserException;
 
-public class User {
+public class User implements IUser {
 	private String username;
 	private String firstName;
 	private String lastName;
@@ -16,7 +16,8 @@ public class User {
 	private String password;
 	private Gender gender;
 	List<Ticket> tickets;
-	
+	List<Ticket> boughtTickets;
+
 	public User(String username, String firstName, String lastName, String email, String phone, String password,
 			Gender gender) throws UserException {
 		setUsername(username);
@@ -27,11 +28,59 @@ public class User {
 		setPassword(password);
 		this.gender = gender;
 		this.tickets = new ArrayList<Ticket>();
+		this.boughtTickets = new ArrayList<Ticket>();
 	}
-	
+
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
+	}
+
+	@Override
+	public void addTickets(ArrayList<Ticket> tickets) throws TicketException {
+		if (tickets != null)
+			for (Ticket ticket : tickets) {
+				if (ticket != null)
+					this.tickets.add(ticket);
+			}
+		else
+			throw new TicketException("Tickets null.");
+	}
+
+	@Override
+	public void removeAllTickets() {
+		if (tickets != null)
+			for (Ticket ticket : tickets) {
+				ticket = null;
+			}
+	}
+
+	@Override
+	public void removeTicket(int currentNumber) throws TicketException {
+		if (tickets.get(currentNumber) != null) {
+			tickets.remove(currentNumber);
+		} else
+			throw new TicketException("Bad ticket number.");
+	}
+
+	@Override
+	public void changePassword(String newPassword) throws UserException {
+		setPassword(newPassword);
+	}
+
+	@Override
+	public ArrayList<Ticket> showBoughtTickets() {
+		return null;
+	}
+
+	@Override
+	public void changeEmail(String newEmail) throws UserException {
+		setEmail(newEmail);
+	}
+
+	@Override
+	public void changePhone(String newPhone) throws UserException {
+		setPhone(newPhone);
 	}
 
 	public void setUsername(String username) throws UserException {
@@ -84,13 +133,6 @@ public class User {
 		this.gender = gender;
 	}
 
-	public void addTicket(Ticket ticket) throws TicketException {
-		if (ticket != null)
-			this.tickets.add(ticket);
-		else
-			throw new TicketException("Ticket is null.");
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -114,9 +156,12 @@ public class User {
 	public Gender getGender() {
 		return gender;
 	}
-	
+
 	public List<Ticket> getTickets() {
 		return Collections.unmodifiableList(tickets);
 	}
 
+	public List<Ticket> getBoughtTickets() {
+		return Collections.unmodifiableList(boughtTickets);
+	}
 }

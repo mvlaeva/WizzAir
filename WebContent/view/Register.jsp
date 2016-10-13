@@ -24,7 +24,12 @@
 				<span id="slogan">Fast, Frequent &amp; Safe Flights</span>
 				<nav id="top_nav">
 					<ul>
-						<li><a href="./Login" class="nav2">Login</a></li>
+						<c:if test="${ empty user  }">
+							<li><a href="./Login" class="nav2">Login</a></li>
+						</c:if>
+						<c:if test="${ not empty user }">
+							<li><a href="./Logout" class="nav2">Logout</a></li>
+						</c:if>
 						<li><a href="./Contacts" class="nav3">Contact</a></li>
 					</ul>
 				</nav>
@@ -54,6 +59,16 @@
 										<fieldset>
 											<legend>Register Form</legend>
 											<div>
+												<input type="text" name="username" placeholder="Username" />
+											</div>
+											<div>
+												<input type="password" name="password"
+													placeholder="Password" />
+											</div>
+											<div>
+												<input type="text" name="email" placeholder="Email" />
+											</div>
+											<div>
 												<input type="text" name="first_name"
 													placeholder="First Name" />
 											</div>
@@ -61,13 +76,17 @@
 												<input type="text" name="last_name" placeholder="Last Name" />
 											</div>
 											<div>
-												<input type="password" name="first_name"
-													placeholder="Password" />
+												<input type="text" name="phone" placeholder="Phone" />
 											</div>
-											<div>
-												<input type="text" name="email" placeholder="Email" />
-											</div>
-											<input type="submit" name="submit" value="Send" />
+											<input type="radio" name="gender" value="male" checked>
+											Male <input type="radio" name="gender" value="female">
+											Female <br>
+											<button type="submit">Register</button>
+											<c:if test="${not empty message}">
+												<p>
+													<c:out value="${message}" />
+												</p>
+											</c:if>
 										</fieldset>
 									</form>
 								</div>

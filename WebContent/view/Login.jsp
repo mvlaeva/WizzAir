@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -9,15 +10,6 @@
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/login.css" type="text/css" media="all">
-<script type="text/javascript" src="js/jquery-1.5.2.js"></script>
-<script type="text/javascript" src="js/cufon-yui.js"></script>
-<script type="text/javascript" src="js/cufon-replace.js"></script>
-<script type="text/javascript" src="js/Cabin_400.font.js"></script>
-<script type="text/javascript" src="js/tabs.js"></script>
-<script type="text/javascript" src="js/jquery.jqtransform.js"></script>
-<script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
-<script type="text/javascript" src="js/atooltip.jquery.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/html5.js"></script>
 <style type="text/css">.main, .tabs ul.nav a, .content, .button1, .box1, .top { behavior:url("../js/PIE.htc")}</style>
@@ -56,22 +48,19 @@
 			<div class="box1">
 				<div class="login-page">
 					<div class="form">
-						<form class="register-form">
-							<input type="text" placeholder="name" /> <input type="password"
-								placeholder="password" /> <input type="text"
-								placeholder="email address" />
-							<button>create</button>
-							<p class="message">
-								Already registered? <a href="./Register">Sign In</a>
-							</p>
-						</form>
 						<form action="./Login" method="post" class="login-form">
-							<input type="text" placeholder="username" /> <input
-								type="password" placeholder="password" />
-							<button style="background: #9fbedd" >login</button>
+							<input name="username" type="text" placeholder="username" /> <input
+								name="password" type="password" placeholder="password" />
+							<button style="background: #9fbedd">login</button>
 							<p class="message">
-								Not registered? <a href="./Register" style="color: #4d49f1">Create an account</a>
+								Not registered? <a href="./Register" style="color: #4d49f1">Create
+									an account</a>
 							</p>
+							<c:if test="${ not empty message}">
+								<p>
+									<c:out value="${message}" />
+								</p>
+							</c:if>
 						</form>
 					</div>
 				</div>
