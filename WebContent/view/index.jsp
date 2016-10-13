@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<script src="js/jquery-ui.js"></script>
+<script src="js/jquery-1.5.2.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/html5.js"></script>
 <style type="text/css">.main, .tabs ul.nav a, .content, .button1, .box1, .top { behavior:url("../js/PIE.htc")}</style>
@@ -92,10 +94,9 @@
 										<div class="wrapper">
 											<div class="col1">
 												<div class="row">
-													<span class="left">Outbound</span> <input type="text"
-														class="input1" value="2016-10-13" name="departureDate"
-														onblur="if(this.value=='') this.value='2016-10-13'"
-														onFocus="if(this.value =='2016-10-13' ) this.value=''">
+													<span class="left">Outbound</span> 
+													<input type="text" id="datepicker"
+														class="input1" name="departureDate">
 												</div>
 												<div class="row">
 													<span class="left">Return</span> <input type="text"
