@@ -24,7 +24,7 @@ public class Search extends HttpServlet {
 		String destination = request.getParameter("destination");
 		String departureDate = request.getParameter("departureDate");
 		String returnDate = request.getParameter("returnDate");
-		String adults = request.getParameter("adults");
+		int adults = Integer.parseInt(request.getParameter("adults"));
 		String stops = request.getParameter("stops");
 
 		FlightSearch search = new FlightSearch(origin, destination, departureDate, returnDate, adults,

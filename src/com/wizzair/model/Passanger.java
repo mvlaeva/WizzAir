@@ -97,4 +97,10 @@ public class Passanger {
 			throw new PassangerException("Invalid seat.");
 	}
 
+	@Override
+	public String toString() {
+		return "Passanger [firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender + ", cabinBaggage="
+				+ cabinBaggage + ", checkedInBaggage=" + checkedInBaggage + ", sportsEquipment=" + sportsEquipment
+				+ ", isOnlineCheckIn=" + isOnlineCheckIn + ", seat=" + seat + "]";
+	}
 }

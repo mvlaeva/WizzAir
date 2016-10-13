@@ -321,7 +321,7 @@ public class ApiDAO {
 		String destinationSearch = search.getDestination().trim();
 		String departureDateSearch = search.getDepartureDate().trim();
 		String returnDateSearch = search.getReturnDate().trim();
-		String adultsSearch = search.getAdults().trim();
+		int adultsSearch = search.getAdults();
 
 		String request = "http://partners.api.skyscanner.net/apiservices/pricing/v1.0/";
 		URL url = new URL(request);

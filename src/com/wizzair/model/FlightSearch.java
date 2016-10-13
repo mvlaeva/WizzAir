@@ -6,10 +6,10 @@ public class FlightSearch {
 	private String destination;
 	private String departureDate;
 	private String returnDate;
-	private String adults;
+	private int adults;
 	private int stops;
 	
-	public FlightSearch(String origin, String destination, String departureDate, String returnDate, String adults, int stops) {
+	public FlightSearch(String origin, String destination, String departureDate, String returnDate, int adults, int stops) {
 		this.origin = origin;
 		this.destination = destination;
 		this.departureDate = departureDate;
@@ -50,11 +50,11 @@ public class FlightSearch {
 		this.returnDate = returnDate;
 	}
 
-	public String getAdults() {
+	public int getAdults() {
 		return adults;
 	}
 
-	public void setAdults(String adults) {
+	public void setAdults(int adults) {
 		this.adults = adults;
 	}
 
