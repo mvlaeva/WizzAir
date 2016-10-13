@@ -23,7 +23,7 @@ public class Buy extends HttpServlet {
    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Passanger> adultPassangers = new ArrayList<Passanger>();
+		List<Passanger> adultPassengers = new ArrayList<Passanger>();
 		FlightSearch madeSerach = (FlightSearch) request.getSession().getAttribute("search");
 		String letters = "ABCDEF";
 		
@@ -39,11 +39,14 @@ public class Buy extends HttpServlet {
 			String seat = "" +((new Random().nextInt(31)) + (letters.charAt((new Random().nextInt(letters.length())))));
 		
 			System.out.println("isOnlineCheckIn :" + isOnlineCheckIn);
-			adultPassangers.add(new Passanger(firstName, lastName, gender, cabinBaggage, chechedInBaggage, sportsEquipment == null ? false : true, isOnlineCheckIn.equals("online")? true : false , seat));
+			adultPassengers.add(new Passanger(firstName, lastName, gender, cabinBaggage, chechedInBaggage, sportsEquipment == null ? false : true, isOnlineCheckIn.equals("online")? true : false , seat));
+		}
+	
+		for (Passanger passanger : adultPassengers) {
+			System.out.println(passanger);
 		}
 		
-		for (Passanger passanger : adultPassangers) {
-			System.out.println(passanger);
-		}		
+		request.getSession().setAttribute("adultPassengers", adultPassengers);
+		request.getRequestDispatcher("view/checkOut.jsp").forward(request, response);
 	}
 }

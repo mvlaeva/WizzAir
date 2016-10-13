@@ -124,7 +124,7 @@
 												<c:forEach begin="1" end="${search.adults}" varStatus="loop">
 													<div>
 														<p>
-															Passanger
+															Passenger
 															<c:out value="${loop.index}" /> (Adult)
 														</p>
 														<p>
