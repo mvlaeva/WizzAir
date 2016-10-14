@@ -109,6 +109,8 @@ public class UserDAO implements IUserDAO {
 				PreparedStatement ps = connection.prepareStatement(INSERT_INTO_FLIGHTS_SQL,
 						Statement.RETURN_GENERATED_KEYS);
 
+				System.out.println("buyTicket: ticket.getFlight().getOrigin(): " + ticket.getFlight().getOrigin());
+
 				ps.setString(1, ticket.getFlight().getOrigin());
 				ps.setString(2, ticket.getFlight().getDestination());
 				ps.setString(3, ticket.getFlight().getDateAndTime().toString());
@@ -299,7 +301,7 @@ public class UserDAO implements IUserDAO {
 		ResultSet rs = st.executeQuery("SELECT * FROM users WHERE username='" + user.getUsername() + "'");
 
 		rs.next();
-		
+
 		String email = rs.getString("email");
 		String phone = rs.getString("phone");
 		String firstName = rs.getString("first_name");

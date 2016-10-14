@@ -17,8 +17,6 @@
 </head>
 <body id="page1">
 	<script type="text/javascript">
-		
-	
 		$(function() {
 			$("#datepicker").datepicker({
 				dateFormat : 'yy-mm-dd',
@@ -70,8 +68,13 @@
 		<!-- / header -->
 		<!--content -->
 		<c:if test="${ not empty viewHistoryMessage }">
-			<div>
+			<div style="font-size: initial; padding: 15px;">
 				<c:out value="${viewHistoryMessage }"></c:out>
+			</div>
+		</c:if>
+		<c:if test="${not empty errorLog }">
+			<div style="font-size: initial; padding: 15px;">
+				<c:out value="${errorLog }"></c:out>
 			</div>
 		</c:if>
 		<section id="content">

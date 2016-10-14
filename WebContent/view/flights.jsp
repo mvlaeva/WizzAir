@@ -122,7 +122,8 @@
 									<div class="tab-content" id="Flight">
 										<form action="./Luggage" method="post">
 											<div class="wrapper pad1">
-												<div class="flight_info">
+												<div class="flight_info"
+													style="background: white; border: 1px solid #63aeca;">
 													<c:if test="${ not empty allFlights }">
 														<c:forEach items="${allFlights}" var="flight">
 															<div class="padding_flight" style="width: 500px">

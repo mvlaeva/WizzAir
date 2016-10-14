@@ -130,10 +130,12 @@
 						<article>
 							<div>
 								<div class="content">
-									<div class="tab-content" id="Flight">
+									<div class="tab-content" id="Flight"
+										style="background: white; border: 1px solid #63aeca;">
 										<c:if test="${not empty user }">
 											<c:if test="${not empty mapFlights}">
 												<form action="./Buy" method="post">
+												<!-- SEARCH CHILDREN -->
 													<c:forEach begin="1" end="${search.adults}"
 														varStatus="loop">
 														<div style="padding-left: 30px;">
