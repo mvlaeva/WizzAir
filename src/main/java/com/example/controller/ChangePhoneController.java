@@ -1,28 +1,27 @@
 package com.example.controller;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.model.User;
 import com.example.model.DBDAOs.UserDAO;
 
-@WebServlet("/changePhone")
-public class changePhone extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@Controller
+@RequestMapping(value = "/changePhone")
+public class ChangePhoneController {
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.getRequestDispatcher("view/changePhone.jsp").forward(request, response);
+	@RequestMapping(method = RequestMethod.GET)
+	public String doGet(HttpServletRequest request, HttpServletResponse response) {
+		
+		return "changePhone";
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	@RequestMapping(method = RequestMethod.POST)
+	public String doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		User user = (User) request.getSession().getAttribute("user");
 		String newPhone = request.getParameter("phone");
@@ -34,13 +33,13 @@ public class changePhone extends HttpServlet {
 			String phoneMessage = "You changed your phone number successfully!";
 
 			request.getSession().setAttribute("phoneMessage", phoneMessage);
-			request.getRequestDispatcher("view/changePhone.jsp").forward(request, response);
+			return "changePhone";
 
 		} catch (Exception e) {
 			String phoneMessage = "You entered invalid phone number! Please make sure your phone number starts with +3598 and contains 13 digits or starts with 08 and contains 10 digits..";
 
 			request.getSession().setAttribute("phoneMessage", phoneMessage);
-			request.getRequestDispatcher("view/changePhone.jsp").forward(request, response);
+			return "changePhone";
 		}
 	}
 }

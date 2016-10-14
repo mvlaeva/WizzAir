@@ -26,8 +26,8 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
-        registry.addResourceHandler("/pdfs/**").addResourceLocations("/static/pdf/");
-        registry.addResourceHandler("/img/**").addResourceLocations("D:\\files\\");
+        registry.addResourceHandler("/pdf/**").addResourceLocations("/static/pdf/");
+        registry.addResourceHandler("/images/**").addResourceLocations("/static/images/");
     }
     
 	@Bean(name = "multipartResolver")

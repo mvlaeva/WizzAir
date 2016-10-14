@@ -1,21 +1,21 @@
 package com.example.controller;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Luggage")
-public class Luggage extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+@Controller
+@RequestMapping(value = "/Luggage")
+public class LuggageController {
+
+	@RequestMapping(method = RequestMethod.POST)
+	public String doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		Map<String, String> mapFlights = new HashMap<String, String>();
 
@@ -29,7 +29,6 @@ public class Luggage extends HttpServlet {
 		}
 
 		request.getSession().setAttribute("mapFlights", mapFlights);
-		request.getRequestDispatcher("view/baggage.jsp").forward(request, response);
-
+		return "baggage";
 	}
 }

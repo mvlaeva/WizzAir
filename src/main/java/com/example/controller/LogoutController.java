@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "/Offers")
-public class Offers {
+@RequestMapping(value = "/Logout")
+public class LogoutController {
 
 	@RequestMapping(method = RequestMethod.GET)
-	protected String doGet(HttpServletRequest request, HttpServletResponse response) {
-
-		return "Offers";
+	public String doGet(HttpServletRequest request, HttpServletResponse response) {
+		request.getSession().invalidate();
+		
+		return "index";
 	}
 }

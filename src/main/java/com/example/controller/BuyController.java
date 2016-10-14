@@ -11,10 +11,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.model.CabinBaggage;
 import com.example.model.ChechedInBaggage;
@@ -28,12 +30,12 @@ import com.example.model.Utility;
 import com.example.model.DBDAOs.UserDAO;
 import com.example.model.exceptions.UserDAOException;
 
-@WebServlet("/Buy")
-public class Buy extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-	@SuppressWarnings("unchecked")
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	@Controller
+	@RequestMapping(value = "/Buy")
+	public class BuyController {
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public String doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		List<Passanger> adultPassengers = new ArrayList<Passanger>();
@@ -106,13 +108,11 @@ public class Buy extends HttpServlet {
 			} catch (UserDAOException | SQLException e) {
 				String errorLog = "You cannot purchase a ticket at this time. Please come back later!";
 				request.getSession().setAttribute("errorLog", errorLog);
-				request.getRequestDispatcher("./index").forward(request, response);
-				return; // otherwise an exception occures (because of for loop)
+				return "index";
 			} catch (NullPointerException e) {
 				String errorLog = "An error occured with your flight. Please come back later!";
 				request.getSession().setAttribute("errorLog", errorLog);
-				request.getRequestDispatcher("./index").forward(request, response);
-				return;
+				return "index";
 			}
 			System.out.println(passanger);
 		}
@@ -127,7 +127,7 @@ public class Buy extends HttpServlet {
 
 		request.getSession().setAttribute("pickedFlights", pickedFlights);
 		request.getSession().setAttribute("adultPassengers", adultPassengers);
-		request.getRequestDispatcher("view/checkOut.jsp").forward(request, response);
+		return "checkOut";		
 	}
 
 }

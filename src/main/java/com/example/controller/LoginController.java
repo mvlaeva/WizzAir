@@ -1,28 +1,27 @@
 package com.example.controller;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.model.User;
 import com.example.model.DBDAOs.UserDAO;
 
-@WebServlet("/Login")
-public class Login extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@Controller
+@RequestMapping(value = "/Login")
+public class LoginController  {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	@RequestMapping(method = RequestMethod.GET)
+	public String doGet(HttpServletRequest request, HttpServletResponse response) {
 
-		request.getRequestDispatcher("view/Login.jsp").forward(request, response);
+		return "Login";
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	@RequestMapping(method = RequestMethod.POST)
+	public String doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		String username = request.getParameter("username");
 		System.out.println(request.getParameter("username"));
@@ -41,20 +40,18 @@ public class Login extends HttpServlet {
 			request.getSession().setAttribute("email", user.getEmail());
 		
 			if (request.getSession().getAttribute("allFlights") != null) {
-				request.getRequestDispatcher("view/flights.jsp").forward(request, response);
+				return "flights";
 			}
 			
 			if (request.getSession().getAttribute("pickedFlights") != null) {
-				request.getRequestDispatcher("./Luggage").forward(request, response);
+				return "forward:/Luggage";
 			}
 
-			request.getRequestDispatcher("view/index.jsp").forward(request, response);
+			return "index";
 		} catch (Exception e) {
 			String message = "Invalid username/password.";
 			request.getSession().setAttribute("message", message);
-			response.sendRedirect("./Login");
-			return;
+			return "redirect:/Login";
 		}
 	}
-
 }
