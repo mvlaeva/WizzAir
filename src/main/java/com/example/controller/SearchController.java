@@ -14,7 +14,7 @@ import com.example.model.JsonFlight;
 import com.example.model.APIConnection.ApiDAO;
 
 @WebServlet("/SearchController")
-public class Search extends HttpServlet {
+public class SearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

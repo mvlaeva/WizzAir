@@ -4,24 +4,25 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.model.DBDAOs.UserDAO;
 import com.example.model.exceptions.UserException;
 
-@WebServlet("/Profile")
-public class Profile extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@Controller
+@RequestMapping(value = "/Profile")
+public class ProfileController {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	public String doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		try {
 			System.out.println("try get recent info");
-			com.example.model.User user =  (com.example.model.User) request.getSession().getAttribute("user");
+			com.example.model.User user = (com.example.model.User) request.getSession().getAttribute("user");
 
 			request.getSession().setAttribute("user", new UserDAO().getRecentInfo(user));
 		} catch (SQLException | UserException e) {
@@ -29,10 +30,11 @@ public class Profile extends HttpServlet {
 			String profileMessage = "Your data is not up-to-date. Please try again later!";
 			request.getSession().setAttribute("profileMessage", profileMessage);
 
-			request.getRequestDispatcher("view/profile.jsp").forward(request, response);
 		}
 
-		request.getRequestDispatcher("view/profile.jsp").forward(request, response);
+		// request.getRequestDispatcher("view/profile.jsp").forward(request,
+		// response);
+		return "profile";
 	}
 
 }
