@@ -5,18 +5,20 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.model.FlightSearch;
 import com.example.model.JsonFlight;
 import com.example.model.APIConnection.ApiDAO;
 
 @WebServlet("/SearchController")
-public class SearchController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class SearchController {
 
+	@RequestMapping(method = RequestMethod.POST)
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

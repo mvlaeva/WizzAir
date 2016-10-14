@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value = "/Offers")
-public class Offers {
+public class OffersController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	protected String doGet(HttpServletRequest request, HttpServletResponse response) {
