@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "/Offers")
-public class Offers {
-
+@RequestMapping(value = "/Contacts")
+public class ContactController  {
+      
 	@RequestMapping(method = RequestMethod.GET)
-	protected String doGet(HttpServletRequest request, HttpServletResponse response) {
-
-		return "Offers";
+	public String doGet(HttpServletRequest request, HttpServletResponse response) {
+		
+		return "Contacts";
 	}
 }

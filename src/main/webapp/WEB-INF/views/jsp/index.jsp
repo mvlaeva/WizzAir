@@ -5,10 +5,13 @@
 <head>
 <title>AirLines | About</title>
 <meta charset="utf-8">
-<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
-<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
-<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
-<script src="js/jquery-ui.js"></script>
+
+<link href="<c:url value="/css/reset.css" />" rel="stylesheet">
+<link href="<c:url value="/css/layout.css" />" rel="stylesheet">
+<link href="<c:url value="/css/style.css" />" rel="stylesheet">
+<script src="<c:url value="/js/jquery-ui.js"/>"></script>
+<script src="<c:url value="/js/jquery-1.5.2.js"/>"></script>
+
 <%-- <script src="<c:url value='js/jquery-1.5.2.js'/>"</script> --%>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/html5.js"></script>
@@ -106,8 +109,8 @@
 										<div class="wrapper">
 											<div class="col1">
 												<div class="row">
-													<span class="left">Outbound</span> <input type="date"
-														id="datepicker" class="input1" name="departureDate">
+													<span class="left">Outbound</span> 
+													<input type="text" id="datepicker" class="input1" name="departureDate">											
 												</div>
 												<div class="row">
 													<span class="left">Return</span> <input type="date"
