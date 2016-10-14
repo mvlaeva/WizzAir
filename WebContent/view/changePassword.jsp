@@ -144,6 +144,31 @@
 					</div>
 				</article>
 				<article
+					style="margin-bottom: 250px; margin-left: 400px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+					<div class="profile_info">
+						<div>
+							<div style="margin-right: 70px">
+								<c:if test="${not empty passMessage }">
+									<p>
+										<c:out value="${passMessage }"></c:out>
+									</p>
+								</c:if>
+								<p
+									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+									<strong> New password: </strong>
+								<form action="./changePassword" method="post">
+									<input type="password" name="password" placeholder="password">
+									<p>
+										<input type="submit" value="Change Password">
+									</p>
+								</form>
+								</p>
+							</div>
+						</div>
+					</div>
+				</article>
+
+				<article
 					style="margin-left: 400px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 					<div class="profile_info">
 						<div>
@@ -179,7 +204,6 @@
 								<br>
 							</div>
 						</div>
-					</div>
 				</article>
 			</div>
 		</section>
@@ -201,8 +225,5 @@
 		</footer>
 		<!--footer end-->
 	</div>
-	<script type="text/javascript">
-		Cufon.now();
-	</script>
 </body>
 </html>

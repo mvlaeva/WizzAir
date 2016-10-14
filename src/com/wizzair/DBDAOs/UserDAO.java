@@ -19,7 +19,7 @@ import com.wizzair.model.Passanger;
 import com.wizzair.model.Ticket;
 import com.wizzair.model.User;
 
-public class UserDAO {
+public class UserDAO implements IUserDAO {
 	private static final String INSERT_INTO_FLIGHTS_HAS_PASSANGERS_SQL = "INSERT INTO flights_has_passangers VALUES (?,?,?)";
 	private static final String INSERT_INTO_SEATS_SQL = "INSERT INTO seats VALUES (null,?,?)";
 	private static final String INSERT_INTO_PASSANGERS_SQL = "INSERT INTO passangers VALUES (null, ?, ?)";
@@ -32,6 +32,7 @@ public class UserDAO {
 
 	Connection connection = DBConnection.getInstance().getConnection();
 
+	@Override
 	public List<Flight> viewBoughtTickets(User user) throws UserDAOException, SQLException {
 		List<Flight> flights = new ArrayList<Flight>();
 		if (user != null) {
@@ -52,6 +53,7 @@ public class UserDAO {
 			throw new UserDAOException("Invalid user input!");
 	}
 
+	@Override
 	public void changePassword(User user, String newPassword) throws UserException, SQLException {
 		Statement st = connection.createStatement();
 		ResultSet rs = st.executeQuery("SELECT id FROM users WHERE username='" + user.getUsername() + "';");
@@ -69,6 +71,7 @@ public class UserDAO {
 		user.changePassword(newPassword);
 	}
 
+	@Override
 	public void changeEmail(User user, String newEmail) throws UserException, SQLException {
 
 		Statement st = connection.createStatement();
@@ -82,6 +85,7 @@ public class UserDAO {
 		user.changeEmail(newEmail);
 	}
 
+	@Override
 	public void changePhone(User user, String newPhone) throws UserException, SQLException {
 
 		Statement st = connection.createStatement();
@@ -95,6 +99,7 @@ public class UserDAO {
 		user.changePhone(newPhone);
 	}
 
+	@Override
 	public void buyTicket(Ticket ticket, User user, List<Passanger> passangers) throws UserDAOException, SQLException {
 		if (user != null) {
 
@@ -183,6 +188,7 @@ public class UserDAO {
 			throw new UserDAOException("Bad user input.");
 	}
 
+	@Override
 	public void registerUser(User user) throws SQLException, UserException, UserDAOException {
 		if (user != null) {
 			if (userExists(user)) {
@@ -242,6 +248,7 @@ public class UserDAO {
 		}
 	}
 
+	@Override
 	public IUser login(User user) throws Exception {
 		if (userExistsWithThisPass(user)) {
 			setUserFields(user);
