@@ -143,6 +143,11 @@
 						</div>
 					</div>
 				</article>
+				<c:if test="${ not empty profileMessage }">
+					<div>
+						<c:out value="${profileMessage }"></c:out>
+					</div>
+				</c:if>
 				<article
 					style="margin-left: 400px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 					<div class="profile_info">
@@ -154,22 +159,22 @@
 								<p
 									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 									<strong> Username: </strong>
-									<c:out value="${ username}"></c:out>
+									<c:out value="${ user.username}"></c:out>
 								</p>
 								<p
 									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 									<strong> Email: </strong>
-									<c:out value="${ email}"></c:out>
+									<c:out value="${ user.email}"></c:out>
 								</p>
 								<p
 									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 									<strong> First name: </strong>
-									<c:out value="${ firstName}"></c:out>
+									<c:out value="${ user.firstName}"></c:out>
 								</p>
 								<p
 									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 									<strong> Last name: </strong>
-									<c:out value="${ lastName}"></c:out>
+									<c:out value="${ user.lastName}"></c:out>
 								</p>
 								<p
 									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">

@@ -45,10 +45,14 @@ public class TestUserDAO {
 		// passangers);
 
 		User mvlaeva = new User("mvlaeva", "mirelaA1");
-		
+
+		new UserDAO().getRecentInfo(mvlaeva);
+
 		new UserDAO().changePassword(mvlaeva, "mirelaA1");
-		new UserDAO().changeEmail(mvlaeva, "mim_0011@abv.bg");
-		new UserDAO().changePhone(mvlaeva, "+359883343440");
+		new UserDAO().changeEmail(mvlaeva, "m0011@abv.bg");
+		new UserDAO().changePhone(mvlaeva, "0883343440");
+
+		new UserDAO().getRecentInfo(mvlaeva);
 
 	}
 }

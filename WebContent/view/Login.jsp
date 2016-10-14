@@ -51,8 +51,8 @@
 				<div class="login-page">
 					<div class="form">
 						<form action="./Login" method="post" class="login-form">
-							<input name="username" type="text" placeholder="username" /> <input
-								name="password" type="password" placeholder="password" />
+							<input name="username" type="text" placeholder="username" /> 
+							<input name="password" type="password" placeholder="password" />
 							<button style="background: #9fbedd">login</button>
 							<p class="message">
 								Not registered? <a href="./Register" style="color: #4d49f1">Create

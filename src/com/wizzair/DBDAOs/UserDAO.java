@@ -293,4 +293,20 @@ public class UserDAO implements IUserDAO {
 		} else
 			throw new UserException("User doesn't exist!");
 	}
+
+	public User getRecentInfo(User user) throws SQLException, UserException {
+		Statement st = connection.createStatement();
+		ResultSet rs = st.executeQuery("SELECT * FROM users WHERE username='" + user.getUsername() + "'");
+
+		rs.next();
+		
+		String email = rs.getString("email");
+		String phone = rs.getString("phone");
+		String firstName = rs.getString("first_name");
+		String lastName = rs.getString("last_name");
+		Gender gender = rs.getString("gender").equals(Gender.MALE) ? Gender.MALE : Gender.FEMALE;
+
+		return new User(user.getUsername(), firstName, lastName, email, phone, user.getPassword(), gender);
+
+	}
 }

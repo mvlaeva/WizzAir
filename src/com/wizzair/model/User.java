@@ -25,6 +25,7 @@ public class User implements IUser {
 		setLastName(lastName);
 		setEmail(email);
 		setPhone(phone);
+		System.out.println(password);
 		setPassword(password);
 		this.gender = gender;
 		this.tickets = new ArrayList<Ticket>();
