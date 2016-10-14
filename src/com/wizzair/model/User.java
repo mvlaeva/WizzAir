@@ -16,7 +16,7 @@ public class User implements IUser {
 	private String password;
 	private Gender gender;
 	List<Ticket> tickets;
-	List<Ticket> boughtTickets;
+	List<Flight> boughtTickets;
 
 	public User(String username, String firstName, String lastName, String email, String phone, String password,
 			Gender gender) throws UserException {
@@ -25,10 +25,11 @@ public class User implements IUser {
 		setLastName(lastName);
 		setEmail(email);
 		setPhone(phone);
+		System.out.println(password);
 		setPassword(password);
 		this.gender = gender;
 		this.tickets = new ArrayList<Ticket>();
-		this.boughtTickets = new ArrayList<Ticket>();
+		this.boughtTickets = new ArrayList<Flight>();
 	}
 
 	public User(String username, String password) {
@@ -69,8 +70,11 @@ public class User implements IUser {
 	}
 
 	@Override
-	public ArrayList<Ticket> showBoughtTickets() {
-		return null;
+	public void showBoughtTickets() {
+		for (Ticket ticket : tickets) {
+			System.out.println(ticket.getFlight().getOrigin() + "\n" + ticket.getFlight().getDestination() + "\n"
+					+ ticket.getFlight().getDateAndTime());
+		}
 	}
 
 	@Override
@@ -161,7 +165,7 @@ public class User implements IUser {
 		return Collections.unmodifiableList(tickets);
 	}
 
-	public List<Ticket> getBoughtTickets() {
-		return Collections.unmodifiableList(boughtTickets);
+	public List<Flight> getBoughtTickets() {
+		return boughtTickets;
 	}
 }

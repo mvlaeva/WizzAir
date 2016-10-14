@@ -9,6 +9,7 @@ public interface IUser {
 
 	void addTickets(ArrayList<Ticket> tickets) throws TicketException;
 
+	//TODO
 	void removeAllTickets();
 
 	void removeTicket(int currentNumber) throws TicketException;
@@ -19,6 +20,6 @@ public interface IUser {
 
 	void changePhone(String newPhone) throws UserException;
 
-	ArrayList<Ticket> showBoughtTickets();
+	void showBoughtTickets();
 
 }

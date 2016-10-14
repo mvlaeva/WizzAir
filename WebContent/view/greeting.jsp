@@ -1,20 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>AirLines | Services</title>
+<title>AirLines | Greetings</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/regform.css" type="text/css"
+	media="all">
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/html5.js"></script>
 <style type="text/css">.main, .tabs ul.nav a, .content, .button1, .box1, .top { behavior:url("../js/PIE.htc")}</style>
 <![endif]-->
 </head>
-<body id="page4">
+<body id="page5">
 	<div class="main">
 		<!--header -->
 		<header>
@@ -40,9 +43,11 @@
 					<li><a href="./index"><span><span>About</span></span></a></li>
 					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
 					<li><a href="./Book"><span><span>Book</span></span></a></li>
-					<li id="menu_active"><a href="./Services"><span><span>Services</span></span></a></li>
 					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
 					<li class="end"><a href="./Contacts"><span><span>Contacts</span></span></a></li>
+					<c:if test="${not empty user }">
+						<li id="menu_active"><a href="./Profile"><span><span>Profile</span></span></a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</header>
@@ -56,23 +61,23 @@
 						<div class="pad">
 							<strong>Birmingham</strong><br>
 							<ul class="pad_bot1 list1">
-								<li><span class="right color1">from GBP 143.-</span><a
+								<li><span class="right color1">from GBP 143.-</span> <a
 									href="book2.html">Zurich</a></li>
 							</ul>
 							<strong>London (LCY)</strong><br>
 							<ul class="pad_bot1 list1">
-								<li><span class="right color1">from GBP 176.-</span><a
+								<li><span class="right color1">from GBP 176.-</span> <a
 									href="book2.html">Geneva</a></li>
-								<li><span class="right color1">from GBP 109.-</span><a
+								<li><span class="right color1">from GBP 109.-</span> <a
 									href="book2.html">Zurich</a></li>
 							</ul>
 							<strong>London (LHR)</strong><br>
 							<ul class="pad_bot2 list1">
-								<li><span class="right color1">from GBP 100.-</span><a
+								<li><span class="right color1">from GBP 100.-</span> <a
 									href="book2.html">Geneva</a></li>
-								<li><span class="right color1">from GBP 112.-</span><a
+								<li><span class="right color1">from GBP 112.-</span> <a
 									href="book2.html">Zurich</a></li>
-								<li><span class="right color1">from GBP 88.-</span><a
+								<li><span class="right color1">from GBP 88.-</span> <a
 									href="book2.html">Basel</a></li>
 							</ul>
 							<strong>Manchester</strong><br>
@@ -111,70 +116,11 @@
 						</div>
 					</div>
 				</article>
-				<article class="col2">
-					<div class="wrapper pad_top1 pad_bot3">
-						<div class="cols marg_right1">
-							<h4>Flight Information</h4>
-							<ul class="list1">
-								<li><a href="#">Online Timetable</a></li>
-								<li><a href="#">Individual Timetable</a></li>
-								<li><a href="#">Arrival &amp; Departure</a></li>
-								<li><a href="#">Alerts via SMS/e-mail</a></li>
-								<li><a href="#">Network</a></li>
-								<li><a href="#">My Destination</a></li>
-							</ul>
-						</div>
-						<div class="cols marg_right1">
-							<h4>Preparing Your Trip</h4>
-							<ul class="list1">
-								<li><a href="#">Immigration Regulations</a></li>
-								<li><a href="#">Children Travelling</a></li>
-								<li><a href="#">Health &amp; Special Needs</a></li>
-								<li><a href="#">Animals on Board</a></li>
-							</ul>
-						</div>
-						<div class="cols">
-							<h4>Baggage</h4>
-							<ul class="list1">
-								<li><a href="#">Baggage Guide</a></li>
-								<li><a href="#">Free Baggage Allowance</a></li>
-								<li><a href="#">Hand Baggage</a></li>
-								<li><a href="#">Excess Baggage</a></li>
-								<li><a href="#">Sports Baggage</a></li>
-								<li><a href="#">Dangerous Goods</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="wrapper">
-						<div class="cols marg_right1">
-							<h4>Check-In</h4>
-							<ul class="list1">
-								<li><a href="#">Check-in Guide</a></li>
-								<li><a href="#">Web Check-in</a></li>
-								<li><a href="#">Mobile Check-in</a></li>
-								<li><a href="#">Quick Check-in</a></li>
-								<li><a href="#">Check-in Times</a></li>
-							</ul>
-						</div>
-						<div class="cols marg_right1">
-							<h4>At The Airport</h4>
-							<ul class="list1">
-								<li><a href="#">Zurich Lounges</a></li>
-								<li><a href="#">Geneva Lounges</a></li>
-								<li><a href="#">Lounges Worldwide</a></li>
-								<li><a href="#">World Airports</a></li>
-							</ul>
-						</div>
-						<div class="cols">
-							<h4>In The Air</h4>
-							<ul class="list1">
-								<li><a href="#">First Class</a></li>
-								<li><a href="#">Business Class</a></li>
-								<li><a href="#">Economy Class</a></li>
-								<li><a href="#">Food and Beverages</a></li>
-								<li><a href="#">Inflight Entertainment</a></li>
-								<li><a href="#">Duty Free</a></li>
-							</ul>
+				<article
+					style="margin-left: 400px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+					<div class="profile_info;">
+						<div>
+							<p>Your flight has been booked successfully. Have a nice day!</p>
 						</div>
 					</div>
 				</article>

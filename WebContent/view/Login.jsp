@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>AirLines</title>
+<title>AirLines | Login</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
@@ -35,9 +35,11 @@
 			<li><a href="./index"><span><span>About</span></span></a></li>
 			<li><a href="./Offers"><span><span>Offers</span></span></a></li>
 			<li><a href="./Book"><span><span>Book</span></span></a></li>
-			<li><a href="./Services"><span><span>Services</span></span></a></li>
 			<li><a href="./Safety"><span><span>Safety</span></span></a></li>
 			<li class="end"><a href="./Contacts"><span><span>Contacts</span></span></a></li>
+			<c:if test="${not empty user }">
+				<li><a href="./Profile"><span><span>Profile</span></span></a></li>
+			</c:if>
 		</ul>
 		</nav> </header>
 		<!-- / header -->
@@ -49,8 +51,8 @@
 				<div class="login-page">
 					<div class="form">
 						<form action="./Login" method="post" class="login-form">
-							<input name="username" type="text" placeholder="username" /> <input
-								name="password" type="password" placeholder="password" />
+							<input name="username" type="text" placeholder="username" /> 
+							<input name="password" type="password" placeholder="password" />
 							<button style="background: #9fbedd">login</button>
 							<p class="message">
 								Not registered? <a href="./Register" style="color: #4d49f1">Create

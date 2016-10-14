@@ -6,19 +6,25 @@ import com.wizzair.exceptions.PassangerException;
 import com.wizzair.exceptions.TicketException;
 
 public class Ticket {
+	private Flight flight;
 	private Passanger passanger;
 	private String flightNumber;
 	private String confirmationCode;
 	private LocalDate gateClose;
 	private LocalDate departureTime;
 
-	public Ticket(Passanger passanger, String flightNumber, String confirmationCode, LocalDate gateClose,
-			LocalDate departureTime) {
+	public Ticket(Passanger passanger, String flightNumber, String confirmationCode, LocalDate departureTime) {
 		this.passanger = passanger;
 		this.flightNumber = flightNumber;
 		this.confirmationCode = confirmationCode;
-		this.gateClose = gateClose;
 		this.departureTime = departureTime;
+	}
+
+	public void setFlight(Flight flight) throws TicketException {
+		if (flight != null)
+			this.flight = flight;
+		else
+			throw new TicketException("Your flight contains invalid data.");
 	}
 
 	public Passanger getPassanger() {
@@ -68,6 +74,10 @@ public class Ticket {
 
 	public void setDepartureTime(LocalDate departureTime) {
 		this.departureTime = departureTime;
+	}
+
+	public Flight getFlight() {
+		return flight;
 	}
 
 }

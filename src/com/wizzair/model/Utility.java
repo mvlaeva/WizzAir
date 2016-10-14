@@ -1,15 +1,24 @@
 package com.wizzair.model;
 
+import java.security.MessageDigest;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Random;
 
 import com.mysql.jdbc.Connection;
-import com.wizzair.DBDAOs.DBConnection;;
+import com.wizzair.DBDAOs.DBConnection;
+import com.wizzair.DBDAOs.UserDAO;;
 
 public abstract class Utility {
 
 	private static final int COUNT_DIGITS_PHONE_NUMBER_STARTING_WITH_359 = 13;
 	private static final int COUNT_DIGITS_PHONE_NUMBER = 10;
+	
+	public static String constructSeat() {
+		String letters = "ABCDEF";
+		String seat = "" + (new Random().nextInt(31) + "" + (letters.charAt(new Random().nextInt(letters.length()))));
+		return seat;
+	}
 
 	public static boolean isValidString(String string) {
 		if (string != null && string.trim().length() > 0) {
@@ -69,10 +78,11 @@ public abstract class Utility {
 		Connection connection = (Connection) new DBConnection().getInstance().getConnection();
 		Statement stmt = connection.createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT username, password FROM users;");
+		MessageDigest md = MessageDigest.getInstance("MD5");
 
 		while (rs.next()) {
 			if (rs.getString("username").equals(user.getUsername())
-					&& rs.getString("password").equals(user.getPassword()))
+					&& rs.getString("password").equals(md.digest((user.getPassword().getBytes()))))
 				return true;
 		}
 

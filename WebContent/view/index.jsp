@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
-<title>AirLines</title>
+<title>AirLines | About</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
@@ -70,14 +70,26 @@
 					<li id="menu_active"><a href="./index"><span><span>About</span></span></a></li>
 					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
 					<li><a href="./Book"><span><span>Book</span></span></a></li>
-					<li><a href="./Services"><span><span>Services</span></span></a></li>
 					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
 					<li><a href="./Contacts"><span><span>Contacts</span></span></a></li>
+					<c:if test="${not empty user }">
+						<li><a href="./Profile"><span><span>Profile</span></span></a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</header>
 		<!-- / header -->
 		<!--content -->
+		<c:if test="${ not empty viewHistoryMessage }">
+			<div style="font-size: initial; padding: 15px;">
+				<c:out value="${viewHistoryMessage }"></c:out>
+			</div>
+		</c:if>
+		<c:if test="${not empty errorLog }">
+			<div style="font-size: initial; padding: 15px;">
+				<c:out value="${errorLog }"></c:out>
+			</div>
+		</c:if>
 		<section id="content">
 			<div class="for_banners">
 				<article class="col1">
@@ -120,7 +132,6 @@
 										</div>
 										<div class="row">
 											<span class="left">Adults</span> <select name="adults">
-												<option value="0">0</option>
 												<option value="1">1</option>
 												<option value="2">2</option>
 												<option value="3">3</option>

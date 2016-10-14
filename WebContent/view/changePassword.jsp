@@ -1,26 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>AirLines | Baggage</title>
+<title>AirLines | Profile</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/regform.css" type="text/css"
 	media="all">
-<!-- Include the jQuery file -->
-
-<script src="http://code.jquery.com/jquery-latest.min.js"
-	type="text/javascript"></script>
-
-<!-- Include the jquery.placeholder.js file -->
-
-<script src="https://code.jquery.com/jquery.placeholder.js"
-	type="text/javascript"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/html5.js"></script>
 <style type="text/css">.main, .tabs ul.nav a, .content, .button1, .box1, .top { behavior:url("../js/PIE.htc")}</style>
@@ -65,6 +55,34 @@
 		<section id="content">
 			<div class="wrapper pad1">
 				<article class="col1">
+					<div class="box1">
+						<div style="padding-bottom: 30px">
+							<div
+								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+								<legend>
+									<a href="./viewHistory">View History</a>
+								</legend>
+							</div>
+							<div
+								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+								<legend>
+									Change password
+								</legend>
+							</div>
+							<div
+								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+								<legend>
+									<a href="./changeEmail">Change email</a>
+								</legend>
+							</div>
+							<div
+								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+								<legend>
+									<a href="./changePhone">Change phone</a>
+								</legend>
+							</div>
+						</div>
+					</div>
 					<div class="box1">
 						<h2 class="top">Hot Offers of the Week</h2>
 						<div class="pad">
@@ -125,108 +143,67 @@
 						</div>
 					</div>
 				</article>
-				<article class="col2">
-					<div class="tabs2">
-						<article>
-							<div>
-								<div class="content">
-									<div class="tab-content" id="Flight"
-										style="background: white; border: 1px solid #63aeca;">
-										<c:if test="${not empty user }">
-											<c:if test="${not empty mapFlights}">
-												<form action="./Buy" method="post">
-												<!-- SEARCH CHILDREN -->
-													<c:forEach begin="1" end="${search.adults}"
-														varStatus="loop">
-														<div style="padding-left: 30px;">
-															<p style="font-size: 16px;">
-																<strong>Passanger <c:out value="${loop.index}" />
-																	(Adult)
-																</strong>
-															</p>
-															<br>
-															<c:if test="${not empty buyMessage }">
-																<p style="color: red">
-																	<c:out value="${ buyMessage}"></c:out>
-																</p>
-															</c:if>
-															<p>
-																<label>First Name</label> <input type="text"
-																	name="firstName<c:out value="${loop.index}" />"
-																	placeholder="<c:out value="${firstName}" />" />
-															</p>
-															<p>
-																<label>Last Name</label> <input type="text"
-																	name="lastName<c:out value="${loop.index}" />"
-																	placeholder="<c:out value="${lastName}" />" />
-															</p>
-															<p>
-																Gender <input type="radio"
-																	name="gender<c:out value="${loop.index}" />"
-																	value="male" checked> MALE <input type="radio"
-																	name="gender<c:out value="${loop.index}" />"
-																	value="female"> FEMALE <br>
-															</p>
-															<p>
-																Cabin baggage <input type="radio"
-																	name="cabinBaggage<c:out value="${loop.index}" />"
-																	value="small" checked> SMALL <input
-																	type="radio"
-																	name="cabinBaggage<c:out value="${loop.index}" />"
-																	value="large"> LARGE <br>
-															</p>
-															<p>
-																CheckIn baggage <input type="radio"
-																	name="chechedInBaggage<c:out value="${loop.index}" />"
-																	value="LIGHT" checked> LIGHT <input
-																	type="radio"
-																	name="chechedInBaggage<c:out value="${loop.index}" />"
-																	value="HEAVY"> HEAVY <br>
-															</p>
-															<p>
-																Sports equipment <input type="checkbox"
-																	name="sportsEquipment<c:out value="${loop.index}" />"
-																	id="sportsEquipment"> <label
-																	for="sportsEquipment"></label>
-															</p>
-															<p>
-																Check-in method<input type="radio"
-																	name="checkIn<c:out value="${loop.index}" />"
-																	value="online" checked> Online <input
-																	type="radio"
-																	name="checkIn<c:out value="${loop.index}" />"
-																	value="airport"> Airport <br>
-															</p>
-														</div>
-														<hr></hr>
-													</c:forEach>
-													<input type="submit" value="Continue" />
-												</form>
-											</c:if>
-											<c:if test="${ empty mapFlights}">
-												<div>
-													<c:out value="You chose no flights!"></c:out>
-												</div>
-											</c:if>
-										</c:if>
-										<c:if test="${empty user }">
-											<div>
-												<c:out value="Please first login to reserve a ticket!"></c:out>
-											</div>
-											<form action="./Login" method="post">
-												<input type="submit" value="Login">
-											</form>
-										</c:if>
-										<c:if test="${ adults <= 0 }">
-											<p>
-												<c:out value="You chose no number of adults!" />
-											</p>
-										</c:if>
-									</div>
-								</div>
+				<article
+					style="margin-bottom: 250px; margin-left: 400px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+					<div class="profile_info">
+						<div>
+							<div style="margin-right: 70px">
+								<c:if test="${not empty passMessage }">
+									<p>
+										<c:out value="${passMessage }"></c:out>
+									</p>
+								</c:if>
+								<p
+									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+									<strong> New password: </strong>
+								<form action="./changePassword" method="post">
+									<input type="password" name="password" placeholder="password">
+									<p>
+										<input type="submit" value="Change Password">
+									</p>
+								</form>
+								</p>
 							</div>
-						</article>
+						</div>
 					</div>
+				</article>
+
+				<article
+					style="margin-left: 400px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+					<div class="profile_info">
+						<div>
+							<p style="padding-left: 0px;">
+								<strong><legend>Profile info</legend></strong>
+							</p>
+							<div style="margin-right: 70px">
+								<p
+									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+									<strong> Username: </strong>
+									<c:out value="${ username}"></c:out>
+								</p>
+								<p
+									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+									<strong> Email: </strong>
+									<c:out value="${ email}"></c:out>
+								</p>
+								<p
+									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+									<strong> First name: </strong>
+									<c:out value="${ firstName}"></c:out>
+								</p>
+								<p
+									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+									<strong> Last name: </strong>
+									<c:out value="${ lastName}"></c:out>
+								</p>
+								<p
+									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
+									<strong> Phone number: </strong>
+									<c:out value="${ phone}"></c:out>
+								</p>
+								<br>
+							</div>
+						</div>
 				</article>
 			</div>
 		</section>
@@ -248,17 +225,5 @@
 		</footer>
 		<!--footer end-->
 	</div>
-	<script type="text/javascript">
-		$(function() {
-			var openedInputs = $("input:text");
-			for (var i = 0; i < openedInputs.length; i++) {
-				var openedPlaceholder = openedInputs[i].placeholder;
-
-				if (openedInputs[i].value == "") {
-					openedInputs[i].value = openedPlaceholder;
-				}
-			}
-		});
-	</script>
 </body>
 </html>

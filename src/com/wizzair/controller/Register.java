@@ -22,9 +22,9 @@ public class Register extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String message = (String) request.getSession().getAttribute("message");
+		String regMessage = (String) request.getSession().getAttribute("regMessage");
 
-		request.getSession().setAttribute("message", message);
+		request.getSession().setAttribute("regMessage", regMessage);
 		
 		request.getRequestDispatcher("view/Register.jsp").forward(request, response);
 	}
@@ -32,7 +32,7 @@ public class Register extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String message = "";
+		String regMessage = "";
 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -49,20 +49,20 @@ public class Register extends HttpServlet {
 			request.getRequestDispatcher("view/index.jsp").forward(request, response);
 			
 		} catch (UserDAOException e) {
-			message = "This username is already taken!";
+			regMessage = "This username is already taken!";
 			
 		} catch (UserException e) {
-			message = "You entered invalid password! Please make sure your password contains 1 uppercase, 1 lowercase, 1 digit"
+			regMessage = "You entered invalid password! Please make sure your password contains 1 uppercase, 1 lowercase, 1 digit"
 					+ " and contains more than 6 symbols!";
 			
 		} catch (SQLException å) {
-			message = "Something went wrong. Please try again later!";
+			regMessage = "Something went wrong. Please try again later!";
 			
 		} catch (NullPointerException e) {
-			message = "Please fill all forms!";
+			regMessage = "Please fill all forms!";
 		}
 
-		request.setAttribute("message", message);
+		request.setAttribute("regMessage", regMessage);
 		request.getRequestDispatcher("view/Register.jsp").forward(request, response);
 		return;
 	}

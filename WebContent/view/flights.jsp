@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>AirLines | Baggage</title>
+<title>AirLines | Flights</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
@@ -40,9 +41,11 @@
 					<li><a href="./index"><span><span>About</span></span></a></li>
 					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
 					<li id="menu_active"><a href="./Book"><span><span>Book</span></span></a></li>
-					<li><a href="./Services"><span><span>Services</span></span></a></li>
 					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
 					<li class="end"><a href="./Contacts"><span><span>Contacts</span></span></a></li>
+					<c:if test="${not empty user }">
+						<li><a href="./Profile"><span><span>Profile</span></span></a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</header>
@@ -113,16 +116,17 @@
 				</article>
 				<article class="col2">
 					<div class="tabs2">
-						<article >
-							<div >
+						<article>
+							<div>
 								<div class="content">
 									<div class="tab-content" id="Flight">
 										<form action="./Luggage" method="post">
 											<div class="wrapper pad1">
-												<div class="flight_info">
+												<div class="flight_info"
+													style="background: white; border: 1px solid #63aeca;">
 													<c:if test="${ not empty allFlights }">
 														<c:forEach items="${allFlights}" var="flight">
-															<div class="padding_flight" style="width:500px">
+															<div class="padding_flight" style="width: 500px">
 																<br>
 															</div>
 															<div class="flight">
@@ -161,7 +165,8 @@
 																</p>
 																<p class="flight">
 																	Price :
-																	<c:out value="${flight.price}" />
+																	<fmt:formatNumber type="number" maxFractionDigits="2"
+																		value="${flight.price}" />
 																</p>
 																<div class="buy_now">
 																	<input type="checkbox" name="${flight.id}"
