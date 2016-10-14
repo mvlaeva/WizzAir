@@ -78,7 +78,7 @@
 							<div
 								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 								<legend>
-									<a href="./changePhone">Change phone</a>
+									Change phone
 								</legend>
 							</div>
 						</div>

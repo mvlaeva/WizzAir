@@ -110,10 +110,8 @@
 														id="datepicker" class="input1" name="departureDate">
 												</div>
 												<div class="row">
-													<span class="left">Return</span> <input type="text"
-														class="input1" value="2016-10-18" name="returnDate"
-														onblur="if(this.value=='') this.value='2016-10-18'"
-														onFocus="if(this.value =='2016-10-18' ) this.value=''">
+													<span class="left">Return</span> <input type="date"
+														class="input1" name="returnDate">
 												</div>
 											</div>
 										</div>

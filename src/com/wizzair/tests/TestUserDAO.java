@@ -44,15 +44,17 @@ public class TestUserDAO {
 		// new UserDAO().buyTicket(ticket, new User("m.mihalcheva", "mirelaA1"),
 		// passangers);
 
-		User mvlaeva = new User("mvlaeva", "mirelaA1");
-
-		new UserDAO().getRecentInfo(mvlaeva);
-
-		new UserDAO().changePassword(mvlaeva, "mirelaA1");
-		new UserDAO().changeEmail(mvlaeva, "m0011@abv.bg");
-		new UserDAO().changePhone(mvlaeva, "0883343440");
-
-		new UserDAO().getRecentInfo(mvlaeva);
+		 User mvlaeva = new User("mvlaeva", "mirelaA1");
+		//
+		// new UserDAO().getRecentInfo(mvlaeva);
+		//
+		// new UserDAO().changePassword(mvlaeva, "mirelaA1");
+		// new UserDAO().changeEmail(mvlaeva, "m0011@abv.bg");
+		// new UserDAO().changePhone(mvlaeva, "0883343440");
+		//
+		// new UserDAO().getRecentInfo(mvlaeva);
+		
+		new UserDAO().viewBoughtTickets(mvlaeva);
 
 	}
 }

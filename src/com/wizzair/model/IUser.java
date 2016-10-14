@@ -9,6 +9,7 @@ public interface IUser {
 
 	void addTickets(ArrayList<Ticket> tickets) throws TicketException;
 
+	//TODO
 	void removeAllTickets();
 
 	void removeTicket(int currentNumber) throws TicketException;

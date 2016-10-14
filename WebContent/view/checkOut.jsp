@@ -127,7 +127,7 @@
 							</p>
 							<form action="./Pay" method="post">
 								<c:set var="price" scope="session"
-									value="${(pickedFlights[0].price * fn:length(adultPassengers)) }" />								
+									value="${(pickedFlights[0].price * fn:length(adultPassengers)) }" />
 								<div>
 									<c:forEach items="${pickedFlights}" var="flight">
 										<div class="padding_flight" style="width: 500px">
@@ -174,14 +174,16 @@
 											<p
 												style="padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
 												Price :
-												<fmt:formatNumber type="number" maxFractionDigits="2" value="${flight.price}"/> 
+												<fmt:formatNumber type="number" maxFractionDigits="2"
+													value="${flight.price}" />
 											</p>
 											<br>
 										</div>
 									</c:forEach>
 									<p>
 										<strong>Total :</strong>
-										<c:out value="${price}" />
+										<fmt:formatNumber type="number" maxFractionDigits="2"
+											value="${ price}" />
 									</p>
 								</div>
 								<input type="submit" value="Book flight" />

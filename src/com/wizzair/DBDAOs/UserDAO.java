@@ -36,19 +36,24 @@ public class UserDAO implements IUserDAO {
 	public List<Flight> viewBoughtTickets(User user) throws UserDAOException, SQLException {
 		List<Flight> flights = new ArrayList<Flight>();
 		if (user != null) {
+			
 			Statement st = connection.createStatement();
 			ResultSet rs = st.executeQuery("SELECT *" + "FROM users u " + "left outer join users_has_flights y "
-					+ "ON (u.id = y.users_id) " + "left outer JOIN flights f " + "ON (y.flights_id = f.id)");
+					+ "ON (u.id = y.users_id) " + "JOIN flights f " + "ON (y.flights_id = f.id)");
+			
 			while (rs.next()) {
 				String origin = rs.getString("origin");
 				String destination = rs.getString("destination");
 				String sample = rs.getString("date_and_time");
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 				LocalDate dateAndTime = LocalDate.parse(sample, formatter);
+				System.out.println("sample: " + sample);
+				System.out.println(LocalDate.parse(sample, formatter).toString());
 
 				flights.add(new Flight(origin, destination, dateAndTime));
 			}
 			return flights;
+			
 		} else
 			throw new UserDAOException("Invalid user input!");
 	}
@@ -106,6 +111,9 @@ public class UserDAO implements IUserDAO {
 			try {
 				connection.setAutoCommit(false);
 
+				/*
+				 * Insert user into users
+				 */
 				PreparedStatement ps = connection.prepareStatement(INSERT_INTO_FLIGHTS_SQL,
 						Statement.RETURN_GENERATED_KEYS);
 
@@ -119,6 +127,9 @@ public class UserDAO implements IUserDAO {
 
 				ps.executeUpdate();
 
+				/*
+				 * Takes user id
+				 */
 				ResultSet rs = ps.getGeneratedKeys();
 				rs.next();
 				int ticketId = rs.getInt(1);
