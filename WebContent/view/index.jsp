@@ -17,6 +17,8 @@
 </head>
 <body id="page1">
 	<script type="text/javascript">
+		
+	
 		$(function() {
 			$("#datepicker").datepicker({
 				dateFormat : 'yy-mm-dd',
@@ -101,7 +103,7 @@
 										<div class="wrapper">
 											<div class="col1">
 												<div class="row">
-													<span class="left">Outbound</span> <input type="text"
+													<span class="left">Outbound</span> <input type="date"
 														id="datepicker" class="input1" name="departureDate">
 												</div>
 												<div class="row">

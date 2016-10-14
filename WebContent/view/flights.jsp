@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -163,7 +164,8 @@
 																</p>
 																<p class="flight">
 																	Price :
-																	<c:out value="${flight.price}" />
+																	<fmt:formatNumber type="number" maxFractionDigits="2"
+																		value="${flight.price}" />
 																</p>
 																<div class="buy_now">
 																	<input type="checkbox" name="${flight.id}"

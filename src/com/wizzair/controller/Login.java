@@ -41,8 +41,6 @@ public class Login extends HttpServlet {
 			request.getSession().setAttribute("phone", user.getPhone());
 			request.getSession().setAttribute("email", user.getEmail());
 			
-			
-			
 			if(request.getSession().getAttribute("pickedFlights") != null){
 				request.getRequestDispatcher("./Luggage").forward(request, response);
 			}

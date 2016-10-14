@@ -19,6 +19,7 @@ import com.wizzair.model.FlightSearch;
 import com.wizzair.model.Gender;
 import com.wizzair.model.JsonFlight;
 import com.wizzair.model.Passanger;
+import com.wizzair.model.Utility;
 
 @WebServlet("/Buy")
 public class Buy extends HttpServlet {
@@ -54,7 +55,7 @@ public class Buy extends HttpServlet {
 			String sportsEquipment = request.getParameter(("sportsEquipment" + person));
 			String isOnlineCheckIn = request.getParameter(("checkIn" + person));
 
-			String seat = constructSeat();
+			String seat = Utility.constructSeat();
 
 			System.out.println("isOnlineCheckIn :" + isOnlineCheckIn);
 			adultPassengers.add(new Passanger(firstName, lastName, gender, cabinBaggage, chechedInBaggage,
@@ -80,12 +81,6 @@ public class Buy extends HttpServlet {
 		request.getSession().setAttribute("pickedFlights", pickedFlights);
 		request.getSession().setAttribute("adultPassengers", adultPassengers);
 		request.getRequestDispatcher("view/checkOut.jsp").forward(request, response);
-	}
-
-	public static String constructSeat() {
-		String letters = "ABCDEF";
-		String seat = "" + (new Random().nextInt(31) + "" + (letters.charAt(new Random().nextInt(letters.length()))));
-		return seat;
 	}
 
 }

@@ -127,7 +127,7 @@
 							</p>
 							<form action="./Pay" method="post">
 								<c:set var="price" scope="session"
-									value="${(flight.price * fn:length(adultPassengers)) }" />
+									value="${(pickedFlights[0].price * fn:length(adultPassengers)) }" />								
 								<div>
 									<c:forEach items="${pickedFlights}" var="flight">
 										<div class="padding_flight" style="width: 500px">

@@ -5,21 +5,118 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.wizzair.exceptions.UserDAOException;
 import com.wizzair.exceptions.UserException;
 import com.wizzair.model.Gender;
 import com.wizzair.model.IUser;
+import com.wizzair.model.Passanger;
+import com.wizzair.model.Ticket;
 import com.wizzair.model.User;
-import com.wizzair.model.Utility;
 
 public class UserDAO {
+	private static final String INSERT_INTO_FLIGHTS_HAS_PASSANGERS_SQL = "INSERT INTO flights_has_passangers VALUES (?,?,?)";
+	private static final String INSERT_INTO_SEATS_SQL = "INSERT INTO seats VALUES (null,?,?)";
+	private static final String INSERT_INTO_PASSANGERS_SQL = "INSERT INTO passangers VALUES (null, ?, ?)";
+	private static final String INSERT_INTO_USERS_HAS_FLIGHTS_SQL = "INSERT INTO users_has_flights VALUES (?,?)";
+	private static final String INSERT_INTO_FLIGHTS_SQL = "INSERT INTO flights VALUES (null, ?, ?, ?)";
 	private static final String SELECT_PROFILE_DATA_SQL = "SELECT gender, phone, email, first_name, last_name FROM users;";
-	private static final String SELECT_USERNAME_PASSWORD_SQL = "select username, password from users;";
+	private static final String SELECT_USERNAME_PASSWORD_SQL = "SELECT username, password FROM users;";
 	private static final String RETURN_ALL_USERS_SQL = "SELECT id, username, first_name, last_name, email, password FROM users;";
 	private static final String INSERT_NEW_USER_SQL = "INSERT INTO users VALUES (null, ?, ?, ?, md5(?), ?, ?, ?);";
 
 	Connection connection = DBConnection.getInstance().getConnection();
+
+	public void buyTicket(Ticket ticket, User user, List<Passanger> passangers) throws UserDAOException, SQLException {
+		if (user != null) {
+
+			try {
+				connection.setAutoCommit(false);
+
+				PreparedStatement ps = connection.prepareStatement(INSERT_INTO_FLIGHTS_SQL,
+						Statement.RETURN_GENERATED_KEYS);
+
+				ps.setString(1, ticket.getFlight().getOrigin());
+				ps.setString(2, ticket.getFlight().getDestination());
+				ps.setString(3, ticket.getFlight().getDateAndTime().toString());
+
+				System.out.println("insert into flight successful!");
+
+				ps.executeUpdate();
+
+				ResultSet rs = ps.getGeneratedKeys();
+				rs.next();
+				int ticketId = rs.getInt(1);
+				System.out.println("ticketid: " + ticketId);
+
+				Statement st = connection.createStatement();
+				rs = st.executeQuery("select id from users where username='" + user.getUsername() + "'");
+				rs.next();
+				int userId = rs.getInt(1);
+				System.out.println("userid: " + userId);
+
+				ps = connection.prepareStatement(INSERT_INTO_USERS_HAS_FLIGHTS_SQL);
+				ps.setInt(1, userId);
+				ps.setInt(2, ticketId);
+				ps.executeUpdate();
+				System.out.println("insert into mapping successful!");
+
+				List<Integer> passangerIds = new ArrayList<Integer>();
+				List<Integer> seatIds = new ArrayList<Integer>();
+
+				for (Passanger pas : passangers) {
+					ps = connection.prepareStatement(INSERT_INTO_PASSANGERS_SQL, Statement.RETURN_GENERATED_KEYS);
+
+					ps.setString(1, pas.getFirstName());
+					ps.setString(2, pas.getLastName());
+
+					ps.executeUpdate();
+					rs = ps.getGeneratedKeys();
+					rs.next();
+					int pasid = rs.getInt(1);
+					System.out.println("pasid: " + pasid);
+
+					passangerIds.add(new Integer(pasid));
+
+					ps = connection.prepareStatement(INSERT_INTO_SEATS_SQL, Statement.RETURN_GENERATED_KEYS);
+					ps.setInt(1, pas.getSeat().charAt(0));
+					ps.setString(2, pas.getSeat().substring(1, 2));
+					System.out.println("pas.getSeat().substring(1, 2) : " + pas.getSeat().substring(1, 2));
+					ps.executeUpdate();
+
+					rs = ps.getGeneratedKeys();
+					rs.next();
+					int seatid = rs.getInt(1);
+					seatIds.add(seatid);
+					System.out.println("seatid: " + seatid);
+
+					ps = connection.prepareStatement(INSERT_INTO_FLIGHTS_HAS_PASSANGERS_SQL);
+					System.out.println(ticketId);
+					ps.setInt(1, ticketId);
+					ps.setInt(2, pasid);
+					ps.setInt(3, seatid);
+					ps.executeUpdate();
+					System.out.println("inserting into flights_has_passangers successful!");
+
+				}
+				System.out.println("passangers and seats and flights_has_passangers done!");
+
+				connection.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				try {
+					connection.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+
+			}
+
+		} else
+			throw new UserDAOException("Bad user input.");
+	}
 
 	public void registerUser(User user) throws SQLException, UserException, UserDAOException {
 		if (user != null) {

@@ -14,11 +14,13 @@
 	media="all">
 <!-- Include the jQuery file -->
 
-<script src="jquery.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"
+	type="text/javascript"></script>
 
 <!-- Include the jquery.placeholder.js file -->
 
-<script src="jquery.placeholder.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery.placeholder.js"
+	type="text/javascript"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/html5.js"></script>
 <style type="text/css">.main, .tabs ul.nav a, .content, .button1, .box1, .top { behavior:url("../js/PIE.htc")}</style>
@@ -245,10 +247,16 @@
 		<!--footer end-->
 	</div>
 	<script type="text/javascript">
-		Cufon.now();
-	</script>
-	<script type="text/javascript">
-		$('input[type=text], textarea').placeholder();
+		$(function() {
+			var openedInputs = $("input:text");
+			for (var i = 0; i < openedInputs.length; i++) {
+				var openedPlaceholder = openedInputs[i].placeholder;
+
+				if (openedInputs[i].value == "") {
+					openedInputs[i].value = openedPlaceholder;
+				}
+			}
+		});
 	</script>
 </body>
 </html>

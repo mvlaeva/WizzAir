@@ -3,6 +3,7 @@ package com.wizzair.model;
 import java.security.MessageDigest;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Random;
 
 import com.mysql.jdbc.Connection;
 import com.wizzair.DBDAOs.DBConnection;
@@ -12,6 +13,12 @@ public abstract class Utility {
 
 	private static final int COUNT_DIGITS_PHONE_NUMBER_STARTING_WITH_359 = 13;
 	private static final int COUNT_DIGITS_PHONE_NUMBER = 10;
+	
+	public static String constructSeat() {
+		String letters = "ABCDEF";
+		String seat = "" + (new Random().nextInt(31) + "" + (letters.charAt(new Random().nextInt(letters.length()))));
+		return seat;
+	}
 
 	public static boolean isValidString(String string) {
 		if (string != null && string.trim().length() > 0) {
