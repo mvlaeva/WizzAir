@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.model.DBDAOs.UserDAO;
 import com.example.model.exceptions.UserException;
@@ -17,6 +18,7 @@ import com.example.model.exceptions.UserException;
 @RequestMapping(value = "/Profile")
 public class ProfileController {
 
+	@RequestMapping(method = RequestMethod.GET)
 	public String doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

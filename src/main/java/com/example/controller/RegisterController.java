@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.model.Gender;
 import com.example.model.User;
@@ -20,6 +21,7 @@ import com.example.model.exceptions.UserException;
 @RequestMapping(value = "/Register")
 public class RegisterController {
 
+	@RequestMapping(method = RequestMethod.GET)
 	public String doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
