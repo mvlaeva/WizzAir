@@ -25,6 +25,9 @@ public class Ticket {
 		this.departureTime = departureTime;
 	}
 
+	public Ticket() {
+	}
+
 	public void setFlight(Flight flight) throws TicketException {
 		if (flight != null)
 			this.flight = flight;

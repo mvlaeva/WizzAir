@@ -1,24 +1,30 @@
 package com.wizzair.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.wizzair.DBDAOs.UserDAO;
+import com.wizzair.exceptions.UserDAOException;
 import com.wizzair.model.CabinBaggage;
 import com.wizzair.model.ChechedInBaggage;
 import com.wizzair.model.FlightSearch;
 import com.wizzair.model.Gender;
+import com.wizzair.model.IUser;
 import com.wizzair.model.JsonFlight;
 import com.wizzair.model.Passanger;
+import com.wizzair.model.Ticket;
+import com.wizzair.model.User;
 import com.wizzair.model.Utility;
 
 @WebServlet("/Buy")
@@ -34,6 +40,10 @@ public class Buy extends HttpServlet {
 
 		for (int person = 1; person <= madeSerach.getAdults(); person++) {
 
+			/*
+			 * If first or last name are null opens up the same page and shows
+			 * message
+			 */
 			if (request.getParameter("firstName" + person) == null || request.getParameter("firstName" + person) == ""
 					|| request.getParameter("lastName" + person) == null
 					|| request.getParameter("lastName" + person) == "") {
@@ -62,7 +72,17 @@ public class Buy extends HttpServlet {
 					sportsEquipment == null ? false : true, isOnlineCheckIn.equals("online") ? true : false, seat));
 		}
 
+		User user = (User) request.getSession().getAttribute("user");
+		request.setAttribute("user", user);
+
 		for (Passanger passanger : adultPassengers) {
+			try {
+				new UserDAO().buyTicket(new Ticket(), user, adultPassengers);
+			} catch (UserDAOException | SQLException e) {
+				String errorLog = "You cannot purchase a ticket at this time. Please come back later!";
+				request.getSession().setAttribute("errorLog", errorLog);
+				request.getRequestDispatcher("./index").forward(request, response);
+			}
 			System.out.println(passanger);
 		}
 

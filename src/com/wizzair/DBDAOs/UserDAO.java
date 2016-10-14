@@ -5,11 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.wizzair.exceptions.UserDAOException;
 import com.wizzair.exceptions.UserException;
+import com.wizzair.model.Flight;
 import com.wizzair.model.Gender;
 import com.wizzair.model.IUser;
 import com.wizzair.model.Passanger;
@@ -28,6 +31,69 @@ public class UserDAO {
 	private static final String INSERT_NEW_USER_SQL = "INSERT INTO users VALUES (null, ?, ?, ?, md5(?), ?, ?, ?);";
 
 	Connection connection = DBConnection.getInstance().getConnection();
+
+	public List<Flight> viewBoughtTickets(User user) throws UserDAOException, SQLException {
+		List<Flight> flights = new ArrayList<Flight>();
+		if (user != null) {
+			Statement st = connection.createStatement();
+			ResultSet rs = st.executeQuery("SELECT *" + "FROM users u " + "left outer join users_has_flights y "
+					+ "ON (u.id = y.users_id) " + "left outer JOIN flights f " + "ON (y.flights_id = f.id)");
+			while (rs.next()) {
+				String origin = rs.getString("origin");
+				String destination = rs.getString("destination");
+				String sample = rs.getString("date_and_time");
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+				LocalDate dateAndTime = LocalDate.parse(sample, formatter);
+
+				flights.add(new Flight(origin, destination, dateAndTime));
+			}
+			return flights;
+		} else
+			throw new UserDAOException("Invalid user input!");
+	}
+
+	public void changePassword(User user, String newPassword) throws UserException, SQLException {
+		Statement st = connection.createStatement();
+		ResultSet rs = st.executeQuery("SELECT id FROM users WHERE username='" + user.getUsername() + "';");
+
+		rs.next();
+		int id = rs.getInt(1);
+
+		System.out.println("id: " + id);
+
+		System.out.println("new pass: " + newPassword);
+
+		st = connection.createStatement();
+		st.executeUpdate("UPDATE users SET password=md5('" + newPassword + "') WHERE id=" + id + ";");
+
+		user.changePassword(newPassword);
+	}
+
+	public void changeEmail(User user, String newEmail) throws UserException, SQLException {
+
+		Statement st = connection.createStatement();
+		ResultSet rs = st.executeQuery("SELECT id FROM users WHERE username='" + user.getUsername() + "';");
+
+		rs.next();
+		int id = rs.getInt(1);
+
+		connection.createStatement().executeUpdate("UPDATE users SET email='" + newEmail + "' WHERE id='" + id + "';");
+
+		user.changeEmail(newEmail);
+	}
+
+	public void changePhone(User user, String newPhone) throws UserException, SQLException {
+
+		Statement st = connection.createStatement();
+		ResultSet rs = st.executeQuery("SELECT id FROM users WHERE username='" + user.getUsername() + "';");
+
+		rs.next();
+		int id = rs.getInt(1);
+
+		connection.createStatement().executeUpdate("UPDATE users SET phone='" + newPhone + "' WHERE id='" + id + "';");
+
+		user.changePhone(newPhone);
+	}
 
 	public void buyTicket(Ticket ticket, User user, List<Passanger> passangers) throws UserDAOException, SQLException {
 		if (user != null) {
@@ -104,6 +170,7 @@ public class UserDAO {
 				System.out.println("passangers and seats and flights_has_passangers done!");
 
 				connection.commit();
+				// TODO test if exception breaks web applicatin
 			} catch (SQLException e) {
 				e.printStackTrace();
 				try {
@@ -111,9 +178,7 @@ public class UserDAO {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
-
 			}
-
 		} else
 			throw new UserDAOException("Bad user input.");
 	}
