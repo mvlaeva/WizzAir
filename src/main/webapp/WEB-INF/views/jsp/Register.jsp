@@ -6,11 +6,10 @@
 <head>
 <!--<link type="text/css" rel="stylesheet" href="<c:url value="css/style.css" />" />-->
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
-<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
-<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
-<link rel="stylesheet" href="css/regform.css" type="text/css"
-	media="all">
+<link href="<c:url value="/css/reset.css" />" rel="stylesheet">
+<link href="<c:url value="/css/layout.css" />" rel="stylesheet">
+<link href="<c:url value="/css/style.css" />" rel="stylesheet">
+<link href="<c:url value="/css/regform.css" />" rel="stylesheet">
 <title>Airlines | Register</title>
 </head>
 <body id="page3" style="backgroung: white">

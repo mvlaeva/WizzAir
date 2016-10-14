@@ -7,11 +7,10 @@
 <head>
 <title>AirLines | Baggage</title>
 <meta charset="utf-8">
-<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
-<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
-<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
-<link rel="stylesheet" href="css/regform.css" type="text/css"
-	media="all">
+<link href="<c:url value="/css/reset.css" />" rel="stylesheet">
+<link href="<c:url value="/css/layout.css" />" rel="stylesheet">
+<link href="<c:url value="/css/style.css" />" rel="stylesheet">
+<link href="<c:url value="/css/regform.css" />" rel="stylesheet">
 <!-- Include the jQuery file -->
 
 <script src="http://code.jquery.com/jquery-latest.min.js"
