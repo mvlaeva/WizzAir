@@ -8,8 +8,9 @@
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
-<script src="js/jquery-ui.js"></script>
-<script src="js/jquery-1.5.2.js"></script>
+<link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/html5.js"></script>
 <style type="text/css">.main, .tabs ul.nav a, .content, .button1, .box1, .top { behavior:url("../js/PIE.htc")}</style>
@@ -17,20 +18,32 @@
 </head>
 <body id="page1">
 	<script type="text/javascript">
-		$(function() {
-			$("#datepicker").datepicker({
-				dateFormat : 'yy-mm-dd',
-				minDate : 0,
-				max : [ 2020, 1, 14 ]
-			});
-		});
-		$(function() {
-			$("#datepicker2").datepicker({
-				dateFormat : 'yy-mm-dd',
-				minDate : 1,
-				max : [ 2020, 1, 14 ]
-			});
-		});
+	   $(document).ready(function () {
+		    
+	        $("#dt1").datepicker({
+	            dateFormat: "yy-mm-dd",
+	            minDate: 0,
+	            onSelect: function (date) {
+	                var date2 = $('#dt1').datepicker('getDate');
+	                date2.setDate(date2.getDate() + 1);
+	                $('#dt2').datepicker('setDate', date2);
+	                //sets minDate to dt1 date + 1
+	                $('#dt2').datepicker('option', 'minDate', date2);
+	            }
+	        });
+	        $('#dt2').datepicker({
+	            dateFormat: "yy-mm-dd",
+	            onClose: function () {
+	                var dt1 = $('#dt1').datepicker('getDate');
+	                console.log(dt1);
+	                var dt2 = $('#dt2').datepicker('getDate');
+	                if (dt2 <= dt1) {
+	                    var minDate = $('#dt2').datepicker('option', 'minDate');
+	                    $('#dt2').datepicker('setDate', minDate);
+	                }
+	            }
+	        });
+	    });
 	</script>
 	<div class="main">
 		<!--header -->
@@ -95,14 +108,13 @@
 											<div class="col1">
 												<div class="row">
 													<span class="left">Outbound</span> 
-													<input type="text" id="datepicker"
-														class="input1" name="departureDate">
+													<input type="text" id="dt1"
+														class="input1" name="departureDate" readonly="readonly">
 												</div>
 												<div class="row">
-													<span class="left">Return</span> <input type="text"
-														class="input1" value="2016-10-18" name="returnDate"
-														onblur="if(this.value=='') this.value='2016-10-18'"
-														onFocus="if(this.value =='2016-10-18' ) this.value=''">
+													<span class="left">Return</span> 
+													<input type="text" id="dt2"
+														class="input1" name="returnDate" readonly="readonly">
 												</div>
 											</div>
 										</div>
