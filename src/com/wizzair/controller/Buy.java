@@ -2,6 +2,8 @@ package com.wizzair.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -75,9 +77,28 @@ public class Buy extends HttpServlet {
 		User user = (User) request.getSession().getAttribute("user");
 		request.setAttribute("user", user);
 
+		List<JsonFlight> pickedFlights = new ArrayList<JsonFlight>();
+		List<JsonFlight> allFlights = (ArrayList<JsonFlight>) request.getSession().getAttribute("allFlights");
+		Map<String, String> mapFlightsIds = (HashMap<String, String>) request.getSession().getAttribute("mapFlights");
+
 		for (Passanger passanger : adultPassengers) {
 			try {
-				new UserDAO().buyTicket(new Ticket(), user, adultPassengers);
+				List<Ticket> tickets = new ArrayList<>();
+
+				for (int index = 0; index < allFlights.size(); ++index) {
+					String origin = allFlights.get(index).getOriginStation();
+					String destination = allFlights.get(index).getDestinationStation();
+					// parse to LocalDateTime :
+					String sample = allFlights.get(index).getDeparture();
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+					LocalDate dateAndTime = LocalDate.parse(sample, formatter);
+
+					tickets.add(new Ticket(passanger, origin, destination, dateAndTime));
+
+					// TODO find ticket fields in this
+					new UserDAO().buyTicket(tickets.get(index), user, adultPassengers);
+				}
+
 			} catch (UserDAOException | SQLException e) {
 				String errorLog = "You cannot purchase a ticket at this time. Please come back later!";
 				request.getSession().setAttribute("errorLog", errorLog);
@@ -85,10 +106,6 @@ public class Buy extends HttpServlet {
 			}
 			System.out.println(passanger);
 		}
-
-		List<JsonFlight> pickedFlights = new ArrayList<JsonFlight>();
-		List<JsonFlight> allFlights = (ArrayList<JsonFlight>) request.getSession().getAttribute("allFlights");
-		Map<String, String> mapFlightsIds = (HashMap<String, String>) request.getSession().getAttribute("mapFlights");
 
 		for (int index = 0; index < allFlights.size(); index++) {
 			for (Entry<String, String> flight : mapFlightsIds.entrySet()) {

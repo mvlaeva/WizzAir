@@ -1,9 +1,6 @@
 package com.wizzair.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import com.wizzair.exceptions.PassangerException;
 import com.wizzair.exceptions.TicketException;
@@ -16,16 +13,11 @@ public class Ticket {
 	private LocalDate gateClose;
 	private LocalDate departureTime;
 
-	public Ticket(Passanger passanger, String flightNumber, String confirmationCode, LocalDate gateClose,
-			LocalDate departureTime) {
+	public Ticket(Passanger passanger, String flightNumber, String confirmationCode, LocalDate departureTime) {
 		this.passanger = passanger;
 		this.flightNumber = flightNumber;
 		this.confirmationCode = confirmationCode;
-		this.gateClose = gateClose;
 		this.departureTime = departureTime;
-	}
-
-	public Ticket() {
 	}
 
 	public void setFlight(Flight flight) throws TicketException {

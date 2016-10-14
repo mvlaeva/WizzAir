@@ -27,4 +27,9 @@ public interface IUserDAO {
 
 	IUser login(User user) throws Exception;
 
+	User getRecentInfo(User user) throws SQLException, UserException;
+
+	// void buyTicket(Ticket ticket, User user, Passanger passangers) throws
+	// UserDAOException, SQLException;
+
 }
