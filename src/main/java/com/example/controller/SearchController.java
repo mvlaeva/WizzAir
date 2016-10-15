@@ -19,7 +19,7 @@ import com.example.model.APIConnection.ApiDAO;
 public class SearchController {
 
 	@RequestMapping(method = RequestMethod.POST)
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected String doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		String origin = request.getParameter("origin");
@@ -42,7 +42,10 @@ public class SearchController {
 		request.getSession().setAttribute("search", search);
 		request.getSession().setAttribute("allFlights", allFlights);
 
-		request.getRequestDispatcher("view/flights.jsp").forward(request, response);
+		// request.getRequestDispatcher("view/flights.jsp").forward(request,
+		// response);
+
+		return "flights";
 	}
 
 }
