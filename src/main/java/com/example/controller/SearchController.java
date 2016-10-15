@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -15,7 +16,8 @@ import com.example.model.FlightSearch;
 import com.example.model.JsonFlight;
 import com.example.model.APIConnection.ApiDAO;
 
-@WebServlet("/SearchController")
+@Controller
+@RequestMapping(value = "/SearchController")
 public class SearchController {
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -41,9 +43,6 @@ public class SearchController {
 
 		request.getSession().setAttribute("search", search);
 		request.getSession().setAttribute("allFlights", allFlights);
-
-		// request.getRequestDispatcher("view/flights.jsp").forward(request,
-		// response);
 
 		return "flights";
 	}

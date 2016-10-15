@@ -19,6 +19,6 @@ public class SafetyController {
 		// request.getRequestDispatcher("view/Safety.jsp").forward(request,
 		// response);
 
-		return "Safety";
+		return "safety";
 	}
 }

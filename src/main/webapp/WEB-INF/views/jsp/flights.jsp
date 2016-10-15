@@ -21,7 +21,7 @@
 		<header>
 			<div class="wrapper">
 				<h1>
-					<a href="./index" id="logo">AirLines</a>
+					<a href="./Home" id="logo">AirLines</a>
 				</h1>
 				<span id="slogan">Fast, Frequent &amp; Safe Flights</span>
 				<nav id="top_nav">
@@ -38,7 +38,7 @@
 			</div>
 			<nav>
 				<ul id="menu">
-					<li><a href="./index"><span><span>About</span></span></a></li>
+					<li><a href="./Home"><span><span>About</span></span></a></li>
 					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
 					<li id="menu_active"><a href="./Book"><span><span>Book</span></span></a></li>
 					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
@@ -168,10 +168,12 @@
 																	<fmt:formatNumber type="number" maxFractionDigits="2"
 																		value="${flight.price}" />
 																</p>
-																<div class="buy_now">
-																	<input type="checkbox" name="${flight.id}"
-																		id="input-filter-height[1]"> <label
-																		for="input-filter-height[1]">Choose</label>
+																<div class="buy_now">				
+																		<p>
+																		Choose
+																<input type="radio" name="outgoingFlightId" value="${flight.id}">
+																	
+															</p>
 																</div>
 																<br>
 															</div>

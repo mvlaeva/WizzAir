@@ -14,6 +14,6 @@ public class OffersController {
 	@RequestMapping(method = RequestMethod.GET)
 	protected String doGet(HttpServletRequest request, HttpServletResponse response) {
 
-		return "Offers";
+		return "offers";
 	}
 }

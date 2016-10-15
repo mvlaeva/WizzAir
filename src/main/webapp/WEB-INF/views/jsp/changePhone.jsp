@@ -21,7 +21,7 @@
 		<header>
 			<div class="wrapper">
 				<h1>
-					<a href="./index" id="logo">AirLines</a>
+					<a href="./Home" id="logo">AirLines</a>
 				</h1>
 				<span id="slogan">Fast, Frequent &amp; Safe Flights</span>
 				<nav id="top_nav">
@@ -38,7 +38,7 @@
 			</div>
 			<nav>
 				<ul id="menu">
-					<li><a href="./index"><span><span>About</span></span></a></li>
+					<li><a href="./Home"><span><span>About</span></span></a></li>
 					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
 					<li><a href="./Book"><span><span>Book</span></span></a></li>
 					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
@@ -59,19 +59,19 @@
 							<div
 								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 								<legend>
-									<a href="./viewHistory">View History</a>
+									<a href="./ViewHistory">View History</a>
 								</legend>
 							</div>
 							<div
 								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 								<legend>
-									<a href="./changePassword">Change password</a>
+									<a href="./ChangePassword">Change password</a>
 								</legend>
 							</div>
 							<div
 								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 								<legend>
-									<a href="./changeEmail">Change email</a>
+									<a href="./ChangeEmail">Change email</a>
 								</legend>
 							</div>
 							<div
@@ -155,7 +155,7 @@
 								<p
 									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 									<strong> New phone number: </strong>
-								<form action="./changePhone" method="post">
+								<form action="./ChangePhone" method="post">
 									<input type="text" name="phone" placeholder="phone number">
 									<p>
 										<input type="submit" value="Change Phone">
