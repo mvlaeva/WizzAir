@@ -29,13 +29,14 @@ public class RegisterController {
 
 		request.getSession().setAttribute("regMessage", regMessage);
 
-		return "Register.jsp";
+		return "register";
 
 		// request.getRequestDispatcher("view/Register.jsp").forward(request,
 		// response);
 	}
-
-	protected String doPost(HttpServletRequest request, HttpServletResponse response)
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public String doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String regMessage = "";
 
@@ -63,7 +64,7 @@ public class RegisterController {
 			regMessage = "You entered invalid password! Please make sure your password contains 1 uppercase, 1 lowercase, 1 digit"
 					+ " and contains more than 6 symbols!";
 
-		} catch (SQLException å) {
+		} catch (SQLException e) {
 			regMessage = "Something went wrong. Please try again later!";
 
 		} catch (NullPointerException e) {
@@ -73,6 +74,6 @@ public class RegisterController {
 		request.setAttribute("regMessage", regMessage);
 		// request.getRequestDispatcher("view/Register.jsp").forward(request,
 		// response);
-		return "redirect:/Register";
+		return "register";
 	}
 }

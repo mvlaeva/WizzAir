@@ -22,7 +22,7 @@ public class PayController {
 		// Be creative, Mirela (DB Seniorita) and do some magic here
 		// pickedFlights, adultPassengers and user from session to DB
 
-		return "Pay";
+		return "greeting";
 		// request.getRequestDispatcher("view/greeting.jsp").forward(request,
 		// response);
 	}

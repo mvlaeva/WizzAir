@@ -12,7 +12,7 @@ public class BookController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String bookTicket(Model Model)  {
 				
-		return "Book";
+		return "book";
 	}
 
 }

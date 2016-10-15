@@ -17,7 +17,7 @@ public class LoginController  {
 	@RequestMapping(method = RequestMethod.GET)
 	public String doGet(HttpServletRequest request, HttpServletResponse response) {
 
-		return "Login";
+		return "login";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

@@ -34,6 +34,7 @@ import com.example.model.exceptions.UserDAOException;
 	@RequestMapping(value = "/Buy")
 	public class BuyController {
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(method = RequestMethod.POST)
 	public String doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -80,7 +81,7 @@ import com.example.model.exceptions.UserDAOException;
 
 		List<JsonFlight> pickedFlights = new ArrayList<JsonFlight>();
 		List<JsonFlight> allFlights = (ArrayList<JsonFlight>) request.getSession().getAttribute("allFlights");
-		Map<String, String> mapFlightsIds = (HashMap<String, String>) request.getSession().getAttribute("mapFlights");
+		String[] mapFlightsIds = (String[]) request.getSession().getAttribute("mapFlights");
 
 		for (Passanger passanger : adultPassengers) {
 			try {
@@ -118,8 +119,8 @@ import com.example.model.exceptions.UserDAOException;
 		}
 
 		for (int index = 0; index < allFlights.size(); index++) {
-			for (Entry<String, String> flight : mapFlightsIds.entrySet()) {
-				if (allFlights.get(index).getId().equals(flight.getKey())) {
+			for (int flight = 0; flight < mapFlightsIds.length; flight++) {
+				if (allFlights.get(index).getId().equals(mapFlightsIds[flight])) {
 					pickedFlights.add(allFlights.get(index));
 				}
 			}

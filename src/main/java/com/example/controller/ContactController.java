@@ -14,6 +14,6 @@ public class ContactController  {
 	@RequestMapping(method = RequestMethod.GET)
 	public String doGet(HttpServletRequest request, HttpServletResponse response) {
 		
-		return "Contacts";
+		return "contacts";
 	}
 }

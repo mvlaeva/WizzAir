@@ -45,8 +45,6 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 	
-
-
 	
 	// localization configuration
 	@Bean
