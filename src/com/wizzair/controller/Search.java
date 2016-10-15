@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.wizzair.APIConnection.ApiDAO;
+import com.wizzair.DBDAOs.AirportNameDAO;
 import com.wizzair.model.FlightSearch;
 import com.wizzair.model.JsonFlight;
 
@@ -41,6 +43,17 @@ public class Search extends HttpServlet {
 		request.getSession().setAttribute("allFlights", allFlights);
 
 		request.getRequestDispatcher("view/flights.jsp").forward(request, response);
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/json");
+		response.setCharacterEncoding("UTF-8");
+		
+		String prefix = request.getParameter("prefix");
+		
+		List<String> airports = AirportNameDAO.getSuggestionsByPrefix(prefix);
+		
+		response.getWriter().print(new Gson().toJson(airports));
 	}
 
 }

@@ -10,13 +10,32 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/html5.js"></script>
 <style type="text/css">.main, .tabs ul.nav a, .content, .button1, .box1, .top { behavior:url("../js/PIE.htc")}</style>
 <![endif]-->
 </head>
 <body id="page1">
+<script type="text/javascript">
+
+	function reloadSuggestions() {
+		var text = $("#text").val();
+
+		$.get("http://localhost:8080/P/SearchController?prefix="
+			+ text,
+		function(data) {
+			$("#suggestions").empty();
+			for (var index=0; index < data.length; index++) {
+				var option = document.createElement("option");
+				option.value = data[index];
+				$("#suggestions").append(option);
+			}
+		});
+	}
+	
+</script>
 	<script type="text/javascript">
 	   $(document).ready(function () {
 		    
@@ -109,8 +128,8 @@
 											</div>
 										</div>
 										<div class="row">
-											<span class="left">From</span> <input type="text"
-												class="input" name="origin">
+											<span class="left">From</span> <input type="text" id="text"
+												class="input" name="origin" list="suggestions" onkeyup="reloadSuggestions()">
 										</div>
 										<div class="row">
 											<span class="left">To</span> <input type="text" class="input"
