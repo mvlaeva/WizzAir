@@ -9,8 +9,13 @@
 <link href="<c:url value="/css/reset.css" />" rel="stylesheet">
 <link href="<c:url value="/css/layout.css" />" rel="stylesheet">
 <link href="<c:url value="/css/style.css" />" rel="stylesheet">
+<link href="<c:url value="/css/jquery-ui.css" />" rel="stylesheet">
 <script src="<c:url value="/js/jquery-ui.js"/>"></script>
 <script src="<c:url value="/js/jquery-1.5.2.js"/>"></script>
+
+<script src="<c:url value="https://code.jquery.com/jquery-1.12.4.js"/>"></script>
+<script src="<c:url value="https://code.jquery.com/ui/1.12.1/jquery-ui.js"/>"></script>
+
 
 <%-- <script src="<c:url value='js/jquery-1.5.2.js'/>"</script> --%>
 <!--[if lt IE 9]>
@@ -20,27 +25,39 @@
 </head>
 <body id="page1">
 	<script type="text/javascript">
-		$(function() {
-			$("#datepicker").datepicker({
-				dateFormat : 'yy-mm-dd',
-				minDate : 0,
-				max : [ 2020, 1, 14 ]
-			});
-		});
-		$(function() {
-			$("#datepicker2").datepicker({
-				dateFormat : 'yy-mm-dd',
-				minDate : 1,
-				max : [ 2020, 1, 14 ]
-			});
-		});
+	   $(document).ready(function () {
+		    
+	        $("#dt1").datepicker({
+	            dateFormat: "yy-mm-dd",
+	            minDate: 0,
+	            onSelect: function (date) {
+	                var date2 = $('#dt1').datepicker('getDate');
+	                date2.setDate(date2.getDate() + 1);
+	                $('#dt2').datepicker('setDate', date2);
+	                //sets minDate to dt1 date + 1
+	                $('#dt2').datepicker('option', 'minDate', date2);
+	            }
+	        });
+	        $('#dt2').datepicker({
+	            dateFormat: "yy-mm-dd",
+	            onClose: function () {
+	                var dt1 = $('#dt1').datepicker('getDate');
+	                console.log(dt1);
+	                var dt2 = $('#dt2').datepicker('getDate');
+	                if (dt2 <= dt1) {
+	                    var minDate = $('#dt2').datepicker('option', 'minDate');
+	                    $('#dt2').datepicker('setDate', minDate);
+	                }
+	            }
+	        });
+	    });
 	</script>
 	<div class="main">
 		<!--header -->
 		<header>
 			<div class="wrapper">
 				<h1>
-					<a href="./index" id="logo">AirLines</a>
+					<a href="./Home" id="logo">AirLines</a>
 				</h1>
 				<span id="slogan">Fast, Frequent &amp; Safe Flights</span>
 				<nav id="top_nav">
@@ -57,7 +74,7 @@
 			</div>
 			<nav>
 				<ul id="menu">
-					<li id="menu_active"><a href="./index"><span><span>About</span></span></a></li>
+					<li id="menu_active"><a href="./Home"><span><span>About</span></span></a></li>
 					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
 					<li><a href="./Book"><span><span>Book</span></span></a></li>
 					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
@@ -99,8 +116,8 @@
 											</div>
 										</div>
 										<div class="row">
-											<span class="left">From</span> <input type="text"
-												class="input" name="origin">
+											<span class="left">From</span> <input type="text" id="text" 
+												class="input" name="origin" list="suggestions" onkeyup="reloadSuggestions()">
 										</div>
 										<div class="row">
 											<span class="left">To</span> <input type="text" class="input"
@@ -109,12 +126,12 @@
 										<div class="wrapper">
 											<div class="col1">
 												<div class="row">
-													<span class="left">Outbound</span> 
-													<input type="text" id="datepicker" class="input1" name="departureDate">											
+													<span class="left">Outbound</span> 	
+													<input type="text" id="dt1"	class="input1" name="departureDate" readonly="readonly">										
 												</div>
 												<div class="row">
-													<span class="left">Return</span> <input type="date"
-														class="input1" name="returnDate">
+													<span class="left">Return</span> 
+													<input type="text" id="dt2" class="input1" name="returnDate" readonly="readonly">
 												</div>
 											</div>
 										</div>
