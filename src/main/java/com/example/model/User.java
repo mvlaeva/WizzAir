@@ -72,8 +72,8 @@ public class User implements IUser {
 	@Override
 	public void showBoughtTickets() {
 		for (Ticket ticket : tickets) {
-			System.out.println(ticket.getFlight().getOrigin() + "\n" + ticket.getFlight().getDestination() + "\n"
-					+ ticket.getFlight().getDateAndTime());
+			System.out.println(ticket.getFlight().getOriginStation() + "\n" + ticket.getFlight().getDestinationStation() + "\n"
+					+ ticket.getFlight().getDeparture());
 		}
 	}
 

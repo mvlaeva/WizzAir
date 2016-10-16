@@ -1,5 +1,8 @@
 package com.example.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -24,9 +27,10 @@ public class LuggageController {
 			}
 		}*/
 
-		String[] mapFlights = new String[2];
+		List<String> mapFlights = new ArrayList<String>();
 		String outgoingFlightId = request.getParameter("outgoingFlightId");
-		mapFlights[0] = outgoingFlightId;
+		System.out.println(outgoingFlightId);
+		mapFlights.add(outgoingFlightId);
 		System.out.println(outgoingFlightId);
 		
 		request.getSession().setAttribute("mapFlights", mapFlights);

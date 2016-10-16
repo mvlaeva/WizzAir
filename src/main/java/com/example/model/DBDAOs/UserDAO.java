@@ -117,11 +117,11 @@ public class UserDAO implements IUserDAO {
 				PreparedStatement ps = connection.prepareStatement(INSERT_INTO_FLIGHTS_SQL,
 						Statement.RETURN_GENERATED_KEYS);
 
-				System.out.println("buyTicket: ticket.getFlight().getOrigin(): " + ticket.getFlight().getOrigin());
+				System.out.println("buyTicket: ticket.getFlight().getOrigin(): " + ticket.getFlight().getOriginStation());
 
-				ps.setString(1, ticket.getFlight().getOrigin());
-				ps.setString(2, ticket.getFlight().getDestination());
-				ps.setString(3, ticket.getFlight().getDateAndTime().toString());
+				ps.setString(1, ticket.getFlight().getOriginStation());
+				ps.setString(2, ticket.getFlight().getDestinationStation());
+				ps.setString(3, ticket.getFlight().getDeparture());
 
 				System.out.println("insert into flight successful!");
 

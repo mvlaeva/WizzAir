@@ -6,7 +6,7 @@ import com.example.model.exceptions.PassangerException;
 import com.example.model.exceptions.TicketException;
 
 public class Ticket {
-	private Flight flight;
+	private JsonFlight flight;
 	private Passanger passanger;
 	private String flightNumber;
 	private String confirmationCode;
@@ -20,7 +20,7 @@ public class Ticket {
 		this.departureTime = departureTime;
 	}
 
-	public void setFlight(Flight flight) throws TicketException {
+	public void setFlight(JsonFlight flight) throws TicketException {
 		if (flight != null)
 			this.flight = flight;
 		else
@@ -76,8 +76,15 @@ public class Ticket {
 		this.departureTime = departureTime;
 	}
 
-	public Flight getFlight() {
+	public JsonFlight getFlight() {
 		return flight;
+	}
+
+	@Override
+	public String toString() {
+		return "Ticket [flight=" + flight + ", passanger=" + passanger + ", flightNumber=" + flightNumber
+				+ ", confirmationCode=" + confirmationCode + ", gateClose=" + gateClose + ", departureTime="
+				+ departureTime + "]";
 	}
 
 }

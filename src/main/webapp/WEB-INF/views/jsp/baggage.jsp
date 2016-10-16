@@ -170,18 +170,18 @@
 														</div>
 														<hr></hr>
 													</c:forEach>
-													<input type="submit" value="<spring:message code="continue"/>" />
+													<input type="submit" value="<spring:message code="baggage.continue"/>" />
 												</form>
 											</c:if>
-											<c:if test="${ empty mapFlights}">
+											<c:if test="${empty mapFlights}">
 												<div>
-													<c:out value="<spring:message code="baggage.message"/>"></c:out>
+													<c:out value="You chose no flights!"></c:out>
 												</div>
 											</c:if>
 										</c:if>
 										<c:if test="${empty user }">
 											<div>
-												<c:out value="<spring:message code="baggage.login"/>"></c:out>
+												<c:out value="Please first login to reserve a ticket!"></c:out>
 											</div>
 											<form action="./Login" method="post">
 												<input type="submit" value="Login">
@@ -189,7 +189,7 @@
 										</c:if>
 										<c:if test="${ adults <= 0 }">
 											<p>
-												<c:out value="<spring:message code="baggage.adults"/>" />
+												<c:out value="You chose no number of adults!" />
 											</p>
 										</c:if>
 									</div>
