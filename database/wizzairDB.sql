@@ -15,6 +15,38 @@ CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
 
 -- -----------------------------------------------------
+-- Table `mydb`.`airports`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`airports` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `airport_name` VARCHAR(45) NOT NULL,
+  `iata_code` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  UNIQUE INDEX `airport_name_UNIQUE` (`airport_name` ASC),
+  UNIQUE INDEX `iata_code_UNIQUE` (`iata_code` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 135
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`airport_can_tranfer_to_airport`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`airport_can_tranfer_to_airport` (
+  `origin_id` INT(11) NOT NULL,
+  `destination_id` INT(11) NULL DEFAULT NULL,
+  INDEX `destination_id_idx` (`destination_id` ASC),
+  CONSTRAINT `fk_has_corresponding_destinations`
+    FOREIGN KEY (`destination_id`)
+    REFERENCES `mydb`.`airports` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
 -- Table `mydb`.`flights`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`flights` (
@@ -25,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`flights` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB
+AUTO_INCREMENT = 20
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -38,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`seats` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB
+AUTO_INCREMENT = 21
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -51,6 +85,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`passangers` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB
+AUTO_INCREMENT = 22
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -95,12 +130,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users` (
   `password` VARCHAR(100) NOT NULL,
   `phone` VARCHAR(20) NULL DEFAULT NULL,
   `email` VARCHAR(45) NOT NULL,
+  `gender` VARCHAR(10) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
   INDEX `idx_users_id` (`id` ASC))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 17
 DEFAULT CHARACTER SET = utf8;
 
 

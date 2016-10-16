@@ -22,52 +22,61 @@ public class FlightDAO {
 
 	public void insertCorrespondingAirports(String origin, String possibleDestinations) throws SQLException {
 
-		ArrayList<String> destinations = parseDocument(possibleDestinations);
+		ArrayList<String> destinations = parseString(possibleDestinations);
 
 		Statement st = connection.createStatement();
 
 		origin = origin.trim();
 
 		ResultSet rs = st.executeQuery("select id from airports where airport_name='" + origin + "'");
-		rs.next();
-		int origin_id = rs.getInt("id");
-		System.out.println("origin: " + origin + "\norigin_id: " + origin_id);
 
-		for (String destination : destinations) {
-			if (destination != null) {
-				
-				destination = (destination.replace("	", " "));
-				destination = (destination.replace("_", " ")).trim();
+		if (rs.next() == true) {
+			int origin_id = rs.getInt("id");
+			System.out.println("origin: " + origin + "\norigin_id: " + origin_id);
 
-				System.out.println("destination : " + destination);
+			for (String destination : destinations) {
 
-				rs = st.executeQuery("select id from airports where airport_name='" + destination + "'");
-				int destination_id = 0;
+				rs = st.executeQuery(
+						"select origin_id from airport_can_tranfer_to_airport where origin_id='" + origin_id + "'");
 
-				while (rs.next()) {
-					destination_id = rs.getInt("id");
-					System.out.println("destination_id : " + destination_id);
-				}
+				if (destination != null) {
 
-				if (destination_id != 0) {
-					PreparedStatement ps = connection
-							.prepareStatement("insert into airport_can_tranfer_to_airport values ( " + origin_id + ", "
-									+ destination_id + ")");
+					destination = (destination.replace("	", " "));
+					destination = (destination.replace("_", " ")).trim();
 
-					ps.executeUpdate();
+					System.out.println("destination : " + destination);
+
+					rs = st.executeQuery("select id from airports where airport_name='" + destination + "'");
+					int destination_id = 0;
+
+					while (rs.next()) {
+						destination_id = rs.getInt("id");
+						System.out.println("destination_id : " + destination_id);
+					}
+
+					if (destination_id != 0) {
+						PreparedStatement ps = connection
+								.prepareStatement("insert into airport_can_tranfer_to_airport values ( " + origin_id
+										+ ", " + destination_id + ")");
+
+						ps.executeUpdate();
+					}
 				}
 			}
+			System.out.println("*************************************************************");
+		} else {
+			System.err.println("Couldn's find " + origin);
+			System.out.println();
 		}
-
 	}
 
-	private ArrayList<String> parseDocument(String possibleDestinations) {
+	private ArrayList<String> parseString(String possibleDestinations) {
 		String[] destinationsAndCodes = possibleDestinations.split(" ");
 		List<String> destinations = new ArrayList<String>();
 
-		for (int i = 0; i < destinationsAndCodes.length; ++i) {
-			if (i % 2 == 0)
-				destinations.add(destinationsAndCodes[i]);
+		for (int index = 0; index < destinationsAndCodes.length; ++index) {
+			if (index % 2 == 0)
+				destinations.add(destinationsAndCodes[index]);
 		}
 		return (ArrayList<String>) destinations;
 	}
@@ -94,7 +103,7 @@ public class FlightDAO {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			System.out.println("No such flight has been found. Please try our services later, please!");
+			System.out.println("No such flight has been found. Try our services later, please!");
 		}
 	}
 
