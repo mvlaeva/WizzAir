@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,10 +6,10 @@
 <head>
 <title>AirLines | Login</title>
 <meta charset="utf-8">
-<link href="<c:url value="/css/reset.css" />" rel="stylesheet">
-<link href="<c:url value="/css/layout.css" />" rel="stylesheet">
-<link href="<c:url value="/css/style.css" />" rel="stylesheet">
-<link href="<c:url value="/css/regform.css" />" rel="stylesheet">
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/login.css" type="text/css" media="all">
 <!--[if lt IE 9]>
 <script type="text/javascript" src="js/html5.js"></script>
 <style type="text/css">.main, .tabs ul.nav a, .content, .button1, .box1, .top { behavior:url("../js/PIE.htc")}</style>
@@ -73,7 +73,20 @@
 		</section>
 		<!--content end-->
 		<!--footer -->
-		<jsp:include page="footer.jsp" />
+		<footer>
+		<div class="wrapper">
+			<ul id="icons">
+				<li><a href="https://www.facebook.com/wizzaircom"
+					class="normaltip"><img src="images/icon1.jpg" height="30"
+						width="30" alt=""></a></li>
+				<li><a href="https://twitter.com/wizzair" class="normaltip"><img
+						src="images/icon2.jpg" height="30" width="30" alt=""></a></li>
+				<li><a href="https://www.youtube.com/user/WizzAirCorporate"
+					class="normaltip"><img src="images/icon3.jpg" height="30"
+						width="30" alt=""></a></li>
+			</ul>
+		</div>
+		</footer>
 		<!--footer end-->
 	</div>
 	<script type="text/javascript">
