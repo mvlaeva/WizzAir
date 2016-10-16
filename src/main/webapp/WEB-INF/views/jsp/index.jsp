@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html lang="en">
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> 
+<html>
 <head>
-<title>AirLines | About</title>
+<title><spring:message code="index.title"/></title>
 <meta charset="utf-8">
 
 <link href="<c:url value="/css/reset.css" />" rel="stylesheet">
@@ -54,37 +55,7 @@
 	</script>
 	<div class="main">
 		<!--header -->
-		<header>
-			<div class="wrapper">
-				<h1>
-					<a href="./Home" id="logo">AirLines</a>
-				</h1>
-				<span id="slogan">Fast, Frequent &amp; Safe Flights</span>
-				<nav id="top_nav">
-					<ul>
-						<c:if test="${ empty user  }">
-							<li><a href="./Login" class="nav2">Login</a></li>
-						</c:if>
-						<c:if test="${ not empty user }">
-							<li><a href="./Logout" class="nav2">Logout</a></li>
-						</c:if>
-						<li><a href="./Contacts" class="nav3">Contact</a></li>
-					</ul>
-				</nav>
-			</div>
-			<nav>
-				<ul id="menu">
-					<li id="menu_active"><a href="./Home"><span><span>About</span></span></a></li>
-					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
-					<li><a href="./Book"><span><span>Book</span></span></a></li>
-					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
-					<li><a href="./Contacts"><span><span>Contacts</span></span></a></li>
-					<c:if test="${not empty user }">
-						<li><a href="./Profile"><span><span>Profile</span></span></a></li>
-					</c:if>
-				</ul>
-			</nav>
-		</header>
+		<jsp:include page="header.jsp" />
 		<!-- / header -->
 		<!--content -->
 		<c:if test="${ not empty viewHistoryMessage }">
@@ -102,7 +73,7 @@
 				<article class="col1">
 					<div class="tabs">
 						<ul class="nav">
-							<li class="selected"><a href="#Flight">Flight</a></li>
+							<li class="selected"><a href="#Flight"><spring:message code="index.flight"/></a></li>
 						</ul>
 						<div class="content">
 							<div class="tab-content" id="Flight">
@@ -116,34 +87,34 @@
 											</div>
 										</div>
 										<div class="row">
-											<span class="left">From</span> <input type="text" id="text" 
+											<span class="left"><spring:message code="index.from"/></span> <input type="text" id="text" 
 												class="input" name="origin" list="suggestions" onkeyup="reloadSuggestions()">
 										</div>
 										<div class="row">
-											<span class="left">To</span> <input type="text" class="input"
+											<span class="left"><spring:message code="index.to"/></span> <input type="text" class="input"
 												name="destination">
 										</div>
 										<div class="wrapper">
 											<div class="col1">
 												<div class="row">
-													<span class="left">Outbound</span> 	
+													<span class="left"><spring:message code="index.outbound"/></span> 	
 													<input type="text" id="dt1"	class="input1" name="departureDate" readonly="readonly">										
 												</div>
 												<div class="row">
-													<span class="left">Return</span> 
+													<span class="left"><spring:message code="index.return"/></span> 
 													<input type="text" id="dt2" class="input1" name="returnDate" readonly="readonly">
 												</div>
 											</div>
 										</div>
 										<div class="row">
-											<span class="left">Adults</span> <select name="adults">
+											<span class="left"><spring:message code="index.adults"/></span> <select name="adults">
 												<option value="1">1</option>
 												<option value="2">2</option>
 												<option value="3">3</option>
 											</select>
 										</div>
 										<div class="row">
-											<span class="left"> Children (0-11 years)</span> <select
+											<span class="left"> <spring:message code="index.children"/> <spring:message code="index.children.years"/></span> <select
 												name="children">
 												<option value="0">0</option>
 												<option value="1">1</option>
@@ -152,7 +123,7 @@
 											</select>
 										</div>
 										<div class="row">
-											<span class="left">Stops</span> <select name="stops">
+											<span class="left"><spring:message code="index.stops"/></span> <select name="stops">
 												<option value="0">0</option>
 												<option value="1">1</option>
 												<option value="2">2</option>
@@ -161,7 +132,7 @@
 										</div>
 										<div class="wrapper"></div>
 									</div>
-									<input type="submit" value="Search" />
+									<input type="submit" value="<spring:message code="index.search"/>" />
 								</form>
 							</div>
 						</div>
@@ -176,28 +147,28 @@
 			<div class="wrapper pad1">
 				<article class="col1">
 					<div class="box1">
-						<h2 class="top">Offers of the Week from UK</h2>
+						<h2 class="top"><spring:message code="index.offersOfWeek"/></h2>
 						<div class="pad">
 							<strong>From Birmingham</strong><br>
 							<ul class="pad_bot1 list1">
 								<li><span class="right color1">from GBP 143.-</span> <a
-									href="book2.html">Zurich</a></li>
+									href="./Home">Zurich</a></li>
 							</ul>
 							<strong>From London City</strong><br>
 							<ul class="pad_bot1 list1">
 								<li><span class="right color1">from GBP 176.-</span> <a
-									href="book2.html">Basel</a></li>
+									href="./Home">Basel</a></li>
 								<li><span class="right color1">from GBP 109.-</span> <a
-									href="book2.html">Geneva</a></li>
+									href="./Home">Geneva</a></li>
 							</ul>
 							<strong>From London Heathrow</strong><br>
 							<ul class="pad_bot2 list1">
 								<li><span class="right color1">from GBP 100.-</span> <a
-									href="book2.html">Geneva</a></li>
+									href="./Home">Geneva</a></li>
 								<li><span class="right color1">from GBP 112.-</span> <a
-									href="book2.html">Zurich</a></li>
+									href="./Home">Zurich</a></li>
 								<li><span class="right color1">from GBP 88.-</span> <a
-									href="book2.html">Basel</a></li>
+									href="./Home">Basel</a></li>
 							</ul>
 						</div>
 						<h2>From Ireland To Switzerland</h2>
@@ -205,14 +176,14 @@
 							<strong>From Dublin</strong><br>
 							<ul class="pad_bot2 list1">
 								<li class="pad_bot1"><span class="right color1">from
-										EUR 122.-</span> <a href="book2.html">Zurich</a></li>
+										EUR 122.-</span> <a href="./Home">Zurich</a></li>
 							</ul>
 						</div>
 					</div>
 				</article>
 				<article class="col2">
 					<h3>
-						About Our Airlines<span></span>
+						<spring:message code="index.aboutAirlines"/><span></span>
 					</h3>
 					<div class="wrapper">
 						<article class="cols">
@@ -220,52 +191,27 @@
 								<img src="images/page1_img1.jpg" alt="" class="pad_bot2">
 							</figure>
 							<p class="pad_bot1">
-								<strong>We offer extra attention to disabled and
-									reduced-mobility passengers and to passengers with special
-									needs.</strong>
+								<strong><spring:message code="index.aboutAirlines.header1"/></strong>
 							</p>
-							<p>In order to make your journey safe and comfortable, you
-								need to inform Wizz Air at least 48 hours before the scheduled
-								departure of the flight about your physical disability or
-								reduced mobility, or any other condition that may require
-								medical care. Your request can be made online during the booking
-								process or by contacting the Special Assistance Call Centre. We
-								recommend calling us on the day you make the reservation.</p>
+							<p><spring:message code="index.aboutAirlines.header1.text"/></p>
 						</article>
 						<article class="cols pad_left1">
 							<figure>
 								<img src="images/page1_img2.jpg" alt="" class="pad_bot2">
 							</figure>
 							<p class="pad_bot1">
-								<strong>Medical certificate</strong>
+								<strong><spring:message code="index.aboutAirlines.header2"/></strong>
 							</p>
-							<p>If there is reasonable doubt that you can complete the
-								flight safely, without requiring assistance during the flight,
-								we reserve the right to require a medical certificate confirming
-								your fitness to travel by air. This must contain explicit
-								medical approval for your carriage by air.</p>
+							<p><spring:message code="index.aboutAirlines.header2.text"/></p>
 						</article>
 					</div>
-					<a href="./Safety" class="button1"><strong>Read More</strong></a>
+					<a href="./Safety" class="button1"><strong><spring:message code="index.button"/></strong></a>
 				</article>
 			</div>
 		</section>
 		<!--content end-->
 		<!--footer -->
-		<footer>
-			<div class="wrapper">
-				<ul id="icons">
-					<li><a href="https://www.facebook.com/wizzaircom"
-						class="normaltip"><img src="images/icon1.jpg" height="30"
-							width="30" alt=""></a></li>
-					<li><a href="https://twitter.com/wizzair" class="normaltip"><img
-							src="images/icon2.jpg" height="30" width="30" alt=""></a></li>
-					<li><a href="https://www.youtube.com/user/WizzAirCorporate"
-						class="normaltip"><img src="images/icon3.jpg" height="30"
-							width="30" alt=""></a></li>
-				</ul>
-			</div>
-		</footer>
+	<jsp:include page="footer.jsp" />
 		<!--footer end-->
 	</div>
 	<script type="text/javascript">

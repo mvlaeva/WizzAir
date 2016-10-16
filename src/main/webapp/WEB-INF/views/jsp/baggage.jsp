@@ -231,20 +231,7 @@
 		</section>
 		<!--content end-->
 		<!--footer -->
-		<footer>
-			<div class="wrapper">
-				<ul id="icons">
-					<li><a href="https://www.facebook.com/wizzaircom"
-						class="normaltip"><img src="images/icon1.jpg" height="30"
-							width="30" alt=""></a></li>
-					<li><a href="https://twitter.com/wizzair" class="normaltip"><img
-							src="images/icon2.jpg" height="30" width="30" alt=""></a></li>
-					<li><a href="https://www.youtube.com/user/WizzAirCorporate"
-						class="normaltip"><img src="images/icon3.jpg" height="30"
-							width="30" alt=""></a></li>
-				</ul>
-			</div>
-		</footer>
+	<jsp:include page="footer.jsp" />
 		<!--footer end-->
 	</div>
 	<script type="text/javascript">

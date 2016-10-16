@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -18,37 +18,7 @@
 <body id="page3">
 	<div class="main">
 		<!--header -->
-		<header>
-			<div class="wrapper">
-				<h1>
-					<a href="./Home" id="logo">AirLines</a>
-				</h1>
-				<span id="slogan">Fast, Frequent &amp; Safe Flights</span>
-				<nav id="top_nav">
-					<ul>
-						<c:if test="${ empty user  }">
-							<li><a href="./Login" class="nav2">Login</a></li>
-						</c:if>
-						<c:if test="${ not empty user }">
-							<li><a href="./Logout" class="nav2">Logout</a></li>
-						</c:if>
-						<li><a href="./Contacts" class="nav3">Contact</a></li>
-					</ul>
-				</nav>
-			</div>
-			<nav>
-				<ul id="menu">
-					<li><a href="./Home"><span><span>About</span></span></a></li>
-					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
-					<li id="menu_active"><a href="./Book"><span><span>Book</span></span></a></li>
-					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
-					<li class="end"><a href="./Contacts"><span><span>Contacts</span></span></a></li>
-					<c:if test="${not empty user }">
-						<li><a href="./Profile"><span><span>Profile</span></span></a></li>
-					</c:if>
-				</ul>
-			</nav>
-		</header>
+		<jsp:include page="header.jsp" />
 		<!-- / header -->
 		<!--content -->
 		<section id="content">
@@ -209,20 +179,7 @@
 		</section>
 		<!--content end-->
 		<!--footer -->
-		<footer>
-			<div class="wrapper">
-				<ul id="icons">
-					<li><a href="https://www.facebook.com/wizzaircom"
-						class="normaltip"><img src="images/icon1.jpg" height="30"
-							width="30" alt=""></a></li>
-					<li><a href="https://twitter.com/wizzair" class="normaltip"><img
-							src="images/icon2.jpg" height="30" width="30" alt=""></a></li>
-					<li><a href="https://www.youtube.com/user/WizzAirCorporate"
-						class="normaltip"><img src="images/icon3.jpg" height="30"
-							width="30" alt=""></a></li>
-				</ul>
-			</div>
-		</footer>
+	<jsp:include page="footer.jsp" />
 		<!--footer end-->
 	</div>
 	<script type="text/javascript">

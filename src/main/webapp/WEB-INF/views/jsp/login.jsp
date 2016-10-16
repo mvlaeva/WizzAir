@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -73,20 +73,7 @@
 		</section>
 		<!--content end-->
 		<!--footer -->
-		<footer>
-		<div class="wrapper">
-			<ul id="icons">
-				<li><a href="https://www.facebook.com/wizzaircom"
-					class="normaltip"><img src="images/icon1.jpg" height="30"
-						width="30" alt=""></a></li>
-				<li><a href="https://twitter.com/wizzair" class="normaltip"><img
-						src="images/icon2.jpg" height="30" width="30" alt=""></a></li>
-				<li><a href="https://www.youtube.com/user/WizzAirCorporate"
-					class="normaltip"><img src="images/icon3.jpg" height="30"
-						width="30" alt=""></a></li>
-			</ul>
-		</div>
-		</footer>
+		<jsp:include page="footer.jsp" />
 		<!--footer end-->
 	</div>
 	<script type="text/javascript">
