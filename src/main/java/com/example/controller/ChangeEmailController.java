@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.model.User;
 import com.example.model.DBDAOs.UserDAO;
 
-
-	@Controller
-	@RequestMapping(value = "/changeEmail")
-	public class ChangeEmailController {
+@Controller
+@RequestMapping(value = "/ChangeEmail")
+public class ChangeEmailController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String doGet(HttpServletRequest request, HttpServletResponse response) {

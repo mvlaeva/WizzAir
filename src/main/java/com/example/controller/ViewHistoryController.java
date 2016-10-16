@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.model.User;
 
 @Controller
-@RequestMapping(value = "/viewHistory")
+@RequestMapping(value = "/ViewHistory")
 public class ViewHistoryController {
 
 	public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,16 +24,11 @@ public class ViewHistoryController {
 
 			request.getSession().setAttribute("boughtTickets", user.getBoughtTickets());
 
-			// request.getRequestDispatcher("view/viewHistory.jsp").forward(request,
-			// response);
-
 			return "viewHistory";
 
 		} else {
 			String viewHistoryMessage = "Session timed out!";
 			request.getSession().setAttribute("viewHistoryMessage", viewHistoryMessage);
-			// request.getRequestDispatcher("./index").forward(request,
-			// response);
 
 			return "forward:/Home";
 		}
