@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>AirLines | Book</title>
+<title><spring:message code="book.title"/></title>
 <meta charset="utf-8">
 <link href="<c:url value="/css/reset.css" />" rel="stylesheet">
 <link href="<c:url value="/css/layout.css" />" rel="stylesheet">
@@ -24,7 +25,7 @@
 			<div class="wrapper pad1">
 				<article class="col1">
 					<div class="box1">
-						<h2 class="top">Hot Offers of the Week</h2>
+						<h2 class="top"><spring:message code="index.offersOfWeek"/></h2>
 						<div class="pad">
 							<strong>Birmingham</strong><br>
 							<ul class="pad_bot1 list1">
@@ -88,7 +89,7 @@
 						<article class="col1">
 							<div class="tabs">
 								<ul class="nav">
-									<li class="selected"><a href="#Flight">Flight</a></li>
+									<li class="selected"><a href="#Flight"><spring:message code="index.flight"/></a></li>
 								</ul>
 								<div class="content" style="width: 400px"">
 									<div class="tab-content" id="Flight">
@@ -102,22 +103,22 @@
 													</div>
 												</div>
 												<div class="row">
-													<span class="left">From</span> <input type="text"
+													<span class="left"><spring:message code="index.from"/></span> <input type="text"
 														class="input" name="origin">
 												</div>
 												<div class="row">
-													<span class="left">To</span> <input type="text"
+													<span class="left"><spring:message code="index.to"/></span> <input type="text"
 														class="input" name="destination">
 												</div>
 												<div class="wrapper">
 													<div class="col1">
 													<div>
 														<div class="row">
-															<span class="left">Outbound</span> <input type="date"
+															<span class="left"><spring:message code="index.outbound"/></span> <input type="date"
 																id="datepicker" class="input1" name="departureDate">
 														</div>
 														<div class="row">
-															<span class="left">Return</span> <input type="text"
+															<span class="left"><spring:message code="index.return"/></span> <input type="text"
 																class="input1" value="2016-10-18" name="returnDate"
 																onblur="if(this.value=='') this.value='2016-10-18'"
 																onFocus="if(this.value =='2016-10-18' ) this.value=''">
@@ -125,14 +126,14 @@
 													</div>
 												</div>
 												<div class="row">
-													<span class="left">Adults</span> <select name="adults">
+													<span class="left"><spring:message code="index.adults"/></span> <select name="adults">
 														<option value="1">1</option>
 														<option value="2">2</option>
 														<option value="3">3</option>
 													</select>
 												</div>
 												<div class="row">
-													<span class="left"> Children (0-11 years)</span> <select
+													<span class="left"><spring:message code="index.children"/> <spring:message code="index.children.years"/></span> <select
 														name="children">
 														<option value="0">0</option>
 														<option value="1">1</option>
@@ -141,7 +142,7 @@
 													</select>
 												</div>
 												<div class="row">
-													<span class="left">Stops</span> <select name="stops">
+													<span class="left"><spring:message code="index.stops"/></span> <select name="stops">
 														<option value="0">0</option>
 														<option value="1">1</option>
 														<option value="2">2</option>
@@ -150,7 +151,7 @@
 												</div>
 												<div class="wrapper"></div>
 											</div>
-											<input type="submit" value="Search" />
+											<input type="submit" value="<spring:message code="index.search"/>" />
 										</form>
 									</div>
 								</div>

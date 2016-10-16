@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>AirLines | Baggage</title>
+<title><spring:message code="baggage.title"/></title>
 <meta charset="utf-8">
 <link href="<c:url value="/css/reset.css" />" rel="stylesheet">
 <link href="<c:url value="/css/layout.css" />" rel="stylesheet">
@@ -28,44 +29,14 @@
 <body id="page5">
 	<div class="main">
 		<!--header -->
-		<header>
-			<div class="wrapper">
-				<h1>
-					<a href="./Home" id="logo">AirLines</a>
-				</h1>
-				<span id="slogan">Fast, Frequent &amp; Safe Flights</span>
-				<nav id="top_nav">
-					<ul>
-						<c:if test="${ empty user  }">
-							<li><a href="./Login" class="nav2">Login</a></li>
-						</c:if>
-						<c:if test="${ not empty user }">
-							<li><a href="./Logout" class="nav2">Logout</a></li>
-						</c:if>
-						<li><a href="./Contacts" class="nav3">Contact</a></li>
-					</ul>
-				</nav>
-			</div>
-			<nav>
-				<ul id="menu">
-					<li><a href="./Home"><span><span>About</span></span></a></li>
-					<li><a href="./Offers"><span><span>Offers</span></span></a></li>
-					<li><a href="./Book"><span><span>Book</span></span></a></li>
-					<li><a href="./Safety"><span><span>Safety</span></span></a></li>
-					<li class="end"><a href="./Contacts"><span><span>Contacts</span></span></a></li>
-					<c:if test="${not empty user }">
-						<li id="menu_active"><a href="./Profile"><span><span>Profile</span></span></a></li>
-					</c:if>
-				</ul>
-			</nav>
-		</header>
+		<jsp:include page="header.jsp" />
 		<!-- / header -->
 		<!--content -->
 		<section id="content">
 			<div class="wrapper pad1">
 				<article class="col1">
 					<div class="box1">
-						<h2 class="top">Hot Offers of the Week</h2>
+						<h2 class="top"><spring:message code="index.offersOfWeek"/></h2>
 						<div class="pad">
 							<strong>Birmingham</strong><br>
 							<ul class="pad_bot1 list1">
@@ -139,7 +110,7 @@
 														varStatus="loop">
 														<div style="padding-left: 30px;">
 															<p style="font-size: 16px;">
-																<strong>Passanger <c:out value="${loop.index}" />
+																<strong><spring:message code="baggage.passenger"/> <c:out value="${loop.index}" />
 																	(Adult)
 																</strong>
 															</p>
@@ -150,67 +121,67 @@
 																</p>
 															</c:if>
 															<p>
-																<label>First Name</label> <input type="text"
+																<label><spring:message code="baggage.firstName"/></label> <input type="text"
 																	name="firstName<c:out value="${loop.index}" />"
 																	placeholder="<c:out value="${firstName}" />" />
 															</p>
 															<p>
-																<label>Last Name</label> <input type="text"
+																<label><spring:message code="baggage.lastName"/></label> <input type="text"
 																	name="lastName<c:out value="${loop.index}" />"
 																	placeholder="<c:out value="${lastName}" />" />
 															</p>
 															<p>
-																Gender <input type="radio"
+																<spring:message code="baggage.gender"/> <input type="radio"
 																	name="gender<c:out value="${loop.index}" />"
-																	value="male" checked> MALE <input type="radio"
+																	value="male" checked> <spring:message code="baggage.gender.male"/> <input type="radio"
 																	name="gender<c:out value="${loop.index}" />"
-																	value="female"> FEMALE <br>
+																	value="female"> <spring:message code="baggage.gender.female"/> <br>
 															</p>
 															<p>
-																Cabin baggage <input type="radio"
+																<spring:message code="baggage.cabinBag"/> <input type="radio"
 																	name="cabinBaggage<c:out value="${loop.index}" />"
-																	value="small" checked> SMALL <input
+																	value="small" checked> <spring:message code="baggage.cabinBag.small"/> <input
 																	type="radio"
 																	name="cabinBaggage<c:out value="${loop.index}" />"
-																	value="large"> LARGE <br>
+																	value="large"> <spring:message code="baggage.cabinBag.large"/> <br>
 															</p>
 															<p>
-																CheckIn baggage <input type="radio"
+																<spring:message code="baggage.checkInBag"/> <input type="radio"
 																	name="chechedInBaggage<c:out value="${loop.index}" />"
-																	value="LIGHT" checked> LIGHT <input
+																	value="LIGHT" checked><spring:message code="baggage.checkInBag.light"/><input
 																	type="radio"
 																	name="chechedInBaggage<c:out value="${loop.index}" />"
-																	value="HEAVY"> HEAVY <br>
+																	value="HEAVY"><spring:message code="baggage.checkInBag.heavy"/><br>
 															</p>
 															<p>
-																Sports equipment <input type="checkbox"
+																<spring:message code="baggage.sportEquipment"/> <input type="checkbox"
 																	name="sportsEquipment<c:out value="${loop.index}" />"
 																	id="sportsEquipment"> <label
 																	for="sportsEquipment"></label>
 															</p>
 															<p>
-																Check-in method<input type="radio"
+																<spring:message code="baggage.checkIn"/><input type="radio"
 																	name="checkIn<c:out value="${loop.index}" />"
-																	value="online" checked> Online <input
+																	value="online" checked><spring:message code="baggage.checkIn.online"/><input
 																	type="radio"
 																	name="checkIn<c:out value="${loop.index}" />"
-																	value="airport"> Airport <br>
+																	value="airport"><spring:message code="baggage.checkIn.airport"/><br>
 															</p>
 														</div>
 														<hr></hr>
 													</c:forEach>
-													<input type="submit" value="Continue" />
+													<input type="submit" value="<spring:message code="continue"/>" />
 												</form>
 											</c:if>
 											<c:if test="${ empty mapFlights}">
 												<div>
-													<c:out value="You chose no flights!"></c:out>
+													<c:out value="<spring:message code="baggage.message"/>"></c:out>
 												</div>
 											</c:if>
 										</c:if>
 										<c:if test="${empty user }">
 											<div>
-												<c:out value="Please first login to reserve a ticket!"></c:out>
+												<c:out value="<spring:message code="baggage.login"/>"></c:out>
 											</div>
 											<form action="./Login" method="post">
 												<input type="submit" value="Login">
@@ -218,7 +189,7 @@
 										</c:if>
 										<c:if test="${ adults <= 0 }">
 											<p>
-												<c:out value="You chose no number of adults!" />
+												<c:out value="<spring:message code="baggage.adults"/>" />
 											</p>
 										</c:if>
 									</div>
