@@ -11,7 +11,7 @@ import com.example.model.User;
 import com.example.model.DBDAOs.UserDAO;
 
 @Controller
-@RequestMapping(value = "/changePassword")
+@RequestMapping(value = "/ChangePassword")
 public class ChangePasswordController  {
 
 	@RequestMapping(method = RequestMethod.GET)

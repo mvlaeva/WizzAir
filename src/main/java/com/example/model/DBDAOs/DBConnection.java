@@ -11,7 +11,7 @@ public class DBConnection {
 	private static final String DB_SCHEMA = "mydb";
 	private static final String DB_PORT = "3306";
 	private static final String DB_HOST = "localhost";
-	private static final String DB_PASSWORD = "";
+	private static final String DB_PASSWORD = "admin";
 	private static final String DB_USERNAME = "root";
 
 	public DBConnection() throws Exception {

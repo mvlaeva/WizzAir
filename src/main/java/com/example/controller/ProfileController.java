@@ -27,6 +27,7 @@ public class ProfileController {
 			com.example.model.User user = (com.example.model.User) request.getSession().getAttribute("user");
 
 			request.getSession().setAttribute("user", new UserDAO().getRecentInfo(user));
+			
 		} catch (SQLException | UserException e) {
 			System.out.println("didnt happen");
 			String profileMessage = "Your data is not up-to-date. Please try again later!";
@@ -34,8 +35,6 @@ public class ProfileController {
 
 		}
 
-		// request.getRequestDispatcher("view/profile.jsp").forward(request,
-		// response);
 		return "profile";
 	}
 
