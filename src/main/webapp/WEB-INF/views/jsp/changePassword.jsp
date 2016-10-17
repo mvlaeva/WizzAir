@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <title>AirLines | Profile</title>
 <meta charset="utf-8">
@@ -125,11 +125,11 @@
 								</c:if>
 								<p
 									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> New password: </strong>
+									<strong><spring:message code="changePass.change"/></strong>
 								<form action="./ChangePassword" method="post">
 									<input type="password" name="password" placeholder="password">
 									<p>
-										<input type="submit" value="Change Password">
+										<input type="submit" value="<spring:message code="changeEmail.changePass"/>">
 									</p>
 								</form>
 								</p>
@@ -140,40 +140,7 @@
 
 				<article
 					style="margin-left: 400px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-					<div class="profile_info">
-						<div>
-							<p style="padding-left: 0px;">
-								<strong><legend>Profile info</legend></strong>
-							</p>
-							<div style="margin-right: 70px">
-								<p
-									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> Username: </strong>
-									<c:out value="${ username}"></c:out>
-								</p>
-								<p
-									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> Email: </strong>
-									<c:out value="${ email}"></c:out>
-								</p>
-								<p
-									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> First name: </strong>
-									<c:out value="${ firstName}"></c:out>
-								</p>
-								<p
-									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> Last name: </strong>
-									<c:out value="${ lastName}"></c:out>
-								</p>
-								<p
-									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> Phone number: </strong>
-									<c:out value="${ phone}"></c:out>
-								</p>
-								<br>
-							</div>
-						</div>
+				<jsp:include page="profileInfo.jsp" />
 				</article>
 			</div>
 		</section>

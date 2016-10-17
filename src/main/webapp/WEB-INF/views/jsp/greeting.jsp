@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>AirLines | Greetings</title>
+<title><spring:message code="greeting.title"/></title>
 <meta charset="utf-8">
 <link href="<c:url value="/css/reset.css" />" rel="stylesheet">
 <link href="<c:url value="/css/layout.css" />" rel="stylesheet">
@@ -89,7 +90,7 @@
 					style="margin-left: 400px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 					<div class="profile_info;">
 						<div>
-							<p>Your flight has been booked successfully. Have a nice day!</p>
+							<p><spring:message code="greeting.greet"/></p>
 						</div>
 					</div>
 				</article>

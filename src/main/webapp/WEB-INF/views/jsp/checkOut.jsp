@@ -3,10 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<title>AirLines | Checkout</title>
+<title><spring:message code="checkOut.title"/></title>
 <meta charset="utf-8">
 <link href="<c:url value="/css/reset.css" />" rel="stylesheet">
 <link href="<c:url value="/css/layout.css" />" rel="stylesheet">
@@ -27,7 +28,7 @@
 			<div class="wrapper pad1">
 				<article class="col1">
 					<div class="box1">
-						<h2 class="top">Hot Offers of the Week</h2>
+						<h2 class="top"><spring:message code="index.offersOfWeek"/></h2>
 						<div class="pad">
 							<strong>Birmingham</strong><br>
 							<ul class="pad_bot1 list1">
@@ -91,7 +92,7 @@
 					<div class="profile_info">
 						<div>
 							<p>
-								Number of passengers:
+								<spring:message code="checkOut.numPass"/>
 								<c:out value="${fn:length(adultPassengers)}" />
 							</p>
 							<form action="./Pay" method="post">
@@ -150,12 +151,12 @@
 										</div>
 									</c:forEach>
 									<p>
-										<strong>Total :</strong>
+										<strong><spring:message code="checkOut.total"/></strong>
 										<fmt:formatNumber type="number" maxFractionDigits="2"
 											value="${ price}" />
 									</p>
 								</div>
-								<input type="submit" value="Book flight" />
+								<input type="submit" value="<spring:message code="checkOut.book"/>" />
 							</form>
 							<!--  
 							<form action="./PayViaCard" method="post">

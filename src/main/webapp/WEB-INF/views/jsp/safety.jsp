@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <title>AirLines | Safety</title>
 <meta charset="utf-8">
@@ -90,20 +91,8 @@
 							<img src="images/page5_img1.jpg" alt="">
 						</figure>
 						<p>
-							<strong>Disabled passangers and passangers with needs</strong><br>In
-							line with Regulation (EC) No 1107/2006, our partners provide a
-							wide range of facilities for disabled and reduced mobility
-							passengers at airports. Passengers are considered disabled when
-							their physical, medical or mental condition requires individual
-							attention (on embarking and disembarking, during flight, in an
-							emergency evacuation, during ground handling) that is not
-							normally extended to other passengers. Disabled passengers are
-							passengers who use wheelchairs live with visual or hearing
-							impairments travel with guide dogs Passengers with special needs
-							are considered those who are pregnant travelling with a broken
-							leg travelling with mobility equipment are affected by a
-							contagious disease using medicine or medical equipment in need of
-							extra oxygen for medical reasons
+							<strong><spring:message code="safety.h1"/></strong><br>
+							<spring:message code="safety.h1.text"/>
 						</p>
 					</div>
 					<div class="wrapper pad_bot2">
@@ -111,49 +100,16 @@
 							<img src="images/page5_img2.jpg" alt="">
 						</figure>
 						<p>
-							<strong>Wheelchairs</strong><br> Two mobility equipments
-							items can be checked-in or taken on board free of charge. <br>
-							<strong>Batteries</strong> Only manual wheelchairs and dry cell,
-							non-spillable battery-powered wheelchairs are accepted, provided
-							that the terminals are insulated to prevent accidental short
-							circuits. The battery must be securely attached to the
-							wheelchair. <br> <strong>Dimensions</strong> If your
-							wheelchair is not collapsible, please provide the dimensions when
-							you are informing the Special Assistance Call Centre. <br> <strong>Assistance</strong>
-							To make sure that you are comfortable, our handling agent will
-							provide assistance during the check-in procedure and baggage
-							drop-off. You will be assisted to the gate, through security and
-							on board. Most often you will be seated in a window seat. Please
-							note that our cabin crew cannot provide assistance with drinks,
-							meals or medication, but they will help you in moving from your
-							seat to the toilet facilities, if required. <br> <strong>Facilities</strong>
-							Unfortunately onboard wheelchairs are not available on our
-							flights. <br> <strong>Limit</strong> We can accept up to 28
-							disabled passengers per flight, provided that a maximum of 10
-							passengers who require a wheelchair from check-in to the cabin
-							seat, can be carried on the same aircraft. There are 36 available
-							seats for disabled passengers on our Airbus A321 aircraft, and we
-							can accept a maximum 12 passengers who require a wheelchair from
-							check-in to the cabin seat.<br> For further questions do not
-							hesitate to contact us.
+							<strong><spring:message code="safety.h2"/></strong><br> 
+							<spring:message code="baggage.continue"/>
 						</p>
 					</div>
 					<div class="wrapper">
-						<a href="./Contacts" class="button1 right"><strong>Contact
-								us</strong></a>
+						<a href="./Contacts" class="button1 right">
+						<strong><spring:message code="safety.contact"/></strong></a>
 					</div>
-					<h3>Pregnant Women</h3>
-					<p>For safety reasons, pregnant women can travel only up to the
-						34th week of pregnancy. In case of twin pregnancies, the time
-						limit is the 32nd week. If you are over your 28th week of
-						pregnancy, please provide a medical certificate confirming that
-						you are fit to travel by air. Please note that the medical
-						certificate must be issued within 6 days of your flight’s date.
-
-						Wizz Air will only be liable in accordance with the General
-						Conditions of Carriage for any health problems to pregnant women
-						and/or their unborn child that may occur during or as a result of
-						carriage by air.</p>
+					<h3><spring:message code="safety.h3"/></h3>
+					<p><spring:message code="safety.h3.text"/></p>
 				</article>
 			</div>
 		</section>

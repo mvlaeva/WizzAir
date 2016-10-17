@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +26,7 @@
 			<div class="wrapper pad1">
 				<article class="col1">
 					<div class="box1">
-						<h2 class="top">Hot Offers of the Week</h2>
+						<h2 class="top"><spring:message code="index.offersOfWeek"/></h2>
 						<div class="pad">
 							<strong>Birmingham</strong><br>
 							<ul class="pad_bot1 list1">
@@ -99,48 +100,43 @@
 															<div class="padding_flight" style="width: 500px">
 																<br>
 															</div>
-															<div class="flight">
-																<br>
-																<p class="flight">
-																	Id :
-																	<c:out value="${flight.id}" />
-																</p>
+															<div class="flight">																															
 																<!--	<p>
 																	<c:out value="${flight.stops}" />
 																</p>
 																-->
 																<p class="flight">
-																	Origin Station :
+																	<spring:message code="flight.origin"/>
 																	<c:out value="${flight.originStation}" />
 																</p>
 																<p class="flight">
-																	Destination Station :
+																	<spring:message code="flight.destination"/>
 																	<c:out value="${flight.destinationStation}" />
 																</p>
 																<p class="flight">
-																	Departure :
+																	<spring:message code="flight.departure"/>
 																	<c:out value="${flight.departure}" />
 																</p>
 																<p class="flight">
-																	Arrival :
+																	<spring:message code="flight.arival"/>
 																	<c:out value="${flight.arrival}" />
 																</p>
 																<p class="flight">
-																	Duration :
+																	<spring:message code="flight.duration"/>
 																	<c:out value="${flight.duration} minutes" />
 																</p>
 																<p class="flight">
-																	Carrier :
+																	<spring:message code="flight.carriers"/>
 																	<c:out value="WizzAir" />
 																</p>
 																<p class="flight">
-																	Price :
+																	<spring:message code="flight.price"/>
 																	<fmt:formatNumber type="number" maxFractionDigits="2"
 																		value="${flight.price}" />
 																</p>
 																<div class="buy_now">				
 																		<p>
-																		Choose
+																		<spring:message code="flight.choose"/>
 																<input type="radio" name="outgoingFlightId" value="${flight.id}">
 																	
 															</p>
@@ -152,19 +148,19 @@
 												</div>
 											</div>
 											<c:if test="${ not empty allFlights }">
-												<input type="submit" value="Continue" />
+												<input type="submit" value="<spring:message code="baggage.continue"/>" />
 											</c:if>
 										</form>
 										<c:if test="${empty allFlights }">
 											<div class="flight_info" style="padding: 0">
 												<p>
 													<c:out
-														value="No flights were found matching your criteria." />
+														value="<spring:message code="flight.noMatch"/>" />
 												</p>
 												<br>
 												<form action="./index" method="get">
 													<p>
-														<input type="submit" value="Search new flights">
+														<input type="submit" value="<spring:message code="flight.newsearch"/>">
 													</p>
 												</form>
 											</div>

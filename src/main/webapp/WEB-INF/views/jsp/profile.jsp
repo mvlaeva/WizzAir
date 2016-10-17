@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,31 +30,31 @@
 							<div
 								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 								<legend>
-									<a href="./ViewHistory">View History</a>
+									<a href="./ViewHistory"><spring:message code="changeEmail.viewHistory"/></a>
 								</legend>
 							</div>
 							<div
 								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 								<legend>
-									<a href="./ChangePassword">Change password</a>
+									<a href="./ChangePassword"><spring:message code="changeEmail.changePass"/></a>
 								</legend>
 							</div>
 							<div
 								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 								<legend>
-									<a href="./ChangeEmail">Change email</a>
+									<a href="./ChangeEmail"><spring:message code="changeEmail.changeMail"/></a>
 								</legend>
 							</div>
 							<div
 								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 								<legend>
-									<a href="./ChangePhone">Change phone</a>
+									<a href="./ChangePhone"><spring:message code="changeEmail.changePhone"/></a>
 								</legend>
 							</div>
 						</div>
 					</div>
 					<div class="box1">
-						<h2 class="top">Hot Offers of the Week</h2>
+						<h2 class="top"><spring:message code="index.offersOfWeek"/></h2>
 						<div class="pad">
 							<strong>Birmingham</strong><br>
 							<ul class="pad_bot1 list1">
@@ -122,32 +123,32 @@
 					<div class="profile_info">
 						<div>
 							<p style="padding-left: 0px;">
-								<strong><legend>Profile info</legend></strong>
+								<strong><legend><spring:message code="changeEmail.profileInfo"/></legend></strong>
 							</p>
 							<div style="margin-right: 70px">
 								<p
 									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> Username: </strong>
+									<strong><spring:message code="changeEmail.username"/></strong>
 									<c:out value="${ user.username}"></c:out>
 								</p>
 								<p
 									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> Email: </strong>
+									<strong><spring:message code="changeEmail.email"/></strong>
 									<c:out value="${ user.email}"></c:out>
 								</p>
 								<p
 									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> First name: </strong>
+									<strong><spring:message code="baggage.firstName"/></strong>
 									<c:out value="${ user.firstName}"></c:out>
 								</p>
 								<p
 									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> Last name: </strong>
+									<strong><spring:message code="baggage.lastName"/></strong>
 									<c:out value="${ user.lastName}"></c:out>
 								</p>
 								<p
 									style="padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
-									<strong> Phone number: </strong>
+									<strong><spring:message code="changeEmail.phonenumber"/></strong>
 									<c:out value="${ phone}"></c:out>
 								</p>
 								<br>
