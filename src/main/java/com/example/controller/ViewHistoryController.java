@@ -28,8 +28,8 @@ public class ViewHistoryController {
 			try {
 				new UserDAO().viewBoughtTickets(user);
 			} catch (UserDAOException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				String viewHistoryMessage = "Something went wrong!";
+				request.getSession().setAttribute("viewHistoryMessage", viewHistoryMessage);
 			}
 			return "viewHistory";
 			
