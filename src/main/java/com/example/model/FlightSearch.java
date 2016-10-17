@@ -9,15 +9,17 @@ public class FlightSearch {
 	private String departureDate;
 	private String returnDate;
 	private int adults;
+	private int children;
 	private int stops;
 
 	public FlightSearch(String origin, String destination, String departureDate, String returnDate, int adults,
-			int stops) {
+			int children, int stops) {
 		this.origin = origin;
 		this.destination = destination;
 		this.departureDate = departureDate;
 		this.returnDate = returnDate;
 		this.adults = adults;
+		this.children = children;
 		this.stops = stops;
 	}
 
@@ -85,5 +87,13 @@ public class FlightSearch {
 			this.stops = stops;
 		else
 			throw new FlightSearchException("Invalid count of stops!");
+	}
+
+	public int getChildren() {
+		return children;
+	}
+
+	public void setChildren(int children) {
+		this.children = children;
 	}
 }

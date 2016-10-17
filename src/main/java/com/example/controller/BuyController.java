@@ -41,7 +41,7 @@ import com.example.model.exceptions.UserDAOException;
 		List<String> mapFlightsIds = (List<String>) request.getSession().getAttribute("mapFlights");
 		List<JsonFlight> allFlights = (ArrayList<JsonFlight>) request.getSession().getAttribute("allFlights");
 
-		for (int person = 1; person <= madeSerach.getAdults(); person++) {
+		for (int person = 1; person <= (madeSerach.getAdults() + madeSerach.getChildren()); person++) {
 
 			/*
 			 * If first or last name are null opens up the same page and shows

@@ -97,9 +97,6 @@
 											<div>
 												<div class="radio">
 													<div class="wrapper">
-														<input type="radio" name="name1" checked> <span>One-way</span>
-														<input type="radio" name="name1"> <span>With
-															transfer</span>
 													</div>
 												</div>
 												<div class="row">

@@ -80,10 +80,7 @@
 								<form id="form_1" action="./SearchController" method="post">
 									<div>
 										<div class="radio">
-											<div class="wrapper">
-												<input type="radio" name="name1" checked> <span>One-way</span>
-												<input type="radio" name="name1"> <span>With
-													transfer</span>
+											<div class="wrapper">	
 											</div>
 										</div>
 										<div class="row">

@@ -29,10 +29,11 @@ public class SearchController {
 		String departureDate = request.getParameter("departureDate");
 		String returnDate = request.getParameter("returnDate");
 		int adults = Integer.parseInt(request.getParameter("adults"));
-		String stops = request.getParameter("stops");
+		int children = Integer.parseInt(request.getParameter("children"));
+		int stops = Integer.parseInt(request.getParameter("stops"));
 
-		FlightSearch search = new FlightSearch(origin, destination, departureDate, returnDate, adults,
-				Integer.parseInt(stops));
+		FlightSearch search = new FlightSearch(origin, destination, departureDate, 
+				returnDate, children, adults, stops);
 
 		List<JsonFlight> allFlights = null;
 		try {
