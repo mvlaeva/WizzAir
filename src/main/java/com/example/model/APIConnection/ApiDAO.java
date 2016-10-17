@@ -109,6 +109,8 @@ public class ApiDAO {
 					return getFlightsQuery(search, location);
 				}
 			}
+			
+			System.out.println(response.toString());
 
 			// all carriers with flights
 			JsonArray carriers = object.getAsJsonArray("Carriers");
@@ -338,8 +340,16 @@ public class ApiDAO {
 		String originSearch = search.getOrigin().trim();
 		String destinationSearch = search.getDestination().trim();
 		String departureDateSearch = search.getDepartureDate().trim();
-		String returnDateSearch = search.getReturnDate().trim();
+		String returnDate = search.getReturnDate().trim();
 		int adultsSearch = search.getAdults();
+		int childrensearch = search.getChildren();
+		String returnDateDateSearch = "&inbounddate";
+		
+		if (returnDate.isEmpty()) {
+			returnDateDateSearch = "";
+		} else {
+			returnDateDateSearch = returnDateDateSearch + returnDate;
+		}
 
 		String request = "http://partners.api.skyscanner.net/apiservices/pricing/v1.0/";
 		URL url = new URL(request);
@@ -352,7 +362,7 @@ public class ApiDAO {
 
 		String urlParameters = "apiKey=" + API_KEY_BACKUP + "&country=BG&currency=BGN&locale=en-GB&originplace="
 				+ originSearch + "&destinationplace=" + destinationSearch + "&outbounddate=" + departureDateSearch
-				+ "&locationschema=Iata&adults=" + adultsSearch;
+				+ returnDateDateSearch + "&locationschema=Iata&adults=" + adultsSearch + "&children" + childrensearch;
 
 		byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
 		int postDataLength = postData.length;

@@ -7,14 +7,16 @@ public class FlightSearch {
 	private String departureDate;
 	private String returnDate;
 	private int adults;
+	private int children;
 	private int stops;
 	
-	public FlightSearch(String origin, String destination, String departureDate, String returnDate, int adults, int stops) {
+	public FlightSearch(String origin, String destination, String departureDate, String returnDate, int adults,int children , int stops) {
 		this.origin = origin;
 		this.destination = destination;
 		this.departureDate = departureDate;
 		this.returnDate = returnDate;
 		this.adults = adults;
+		this.children = children;
 		this.stops = stops;
 	}
 
@@ -64,5 +66,13 @@ public class FlightSearch {
 
 	public void setStops(int stops) {
 		this.stops = stops;
+	}
+
+	public int getChildren() {
+		return children;
+	}
+
+	public void setChildren(int children) {
+		this.children = children;
 	}
 }

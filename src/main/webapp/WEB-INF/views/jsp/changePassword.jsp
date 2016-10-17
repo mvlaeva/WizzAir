@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,31 +30,31 @@
 							<div
 								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 								<legend>
-									<a href="./ViewHistory">View History</a>
+									<a href="./ViewHistory"><spring:message code="changepass.viewHistory"/></a>
 								</legend>
 							</div>
 							<div
 								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 								<legend>
-									Change password
+									<spring:message code="changepass.changePass"/>
 								</legend>
 							</div>
 							<div
 								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 								<legend>
-									<a href="./ChangeEmail">Change email</a>
+									<a href="./ChangeEmail"><spring:message code="changepass.changeMail"/></a>
 								</legend>
 							</div>
 							<div
 								style="padding-bottom: 30px; padding-top: 25px; width: 450px; padding-left: 20px; padding: 8px 6px; height: 22px; width: 280px; padding-bottom: 18px; padding-left: 15px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5);">
 								<legend>
-									<a href="./ChangePhone">Change phone</a>
+									<a href="./ChangePhone"><spring:message code="changepass.phone"/></a>
 								</legend>
 							</div>
 						</div>
 					</div>
 					<div class="box1">
-						<h2 class="top">Hot Offers of the Week</h2>
+						<h2 class="top"><spring:message code="index.offersOfWeek"/></h2>
 						<div class="pad">
 							<strong>Birmingham</strong><br>
 							<ul class="pad_bot1 list1">

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.model.User;
 
 @Controller
-@RequestMapping(value = "/viewHistory")
+@RequestMapping(value = "/ViewHistory")
 public class ViewHistoryController {
 
 	public String doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
