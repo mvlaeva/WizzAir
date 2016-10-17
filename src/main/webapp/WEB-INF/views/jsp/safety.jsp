@@ -101,7 +101,7 @@
 						</figure>
 						<p>
 							<strong><spring:message code="safety.h2"/></strong><br> 
-							<spring:message code="baggage.continue"/>
+							<spring:message code="safety.h2.text"/>
 						</p>
 					</div>
 					<div class="wrapper">
