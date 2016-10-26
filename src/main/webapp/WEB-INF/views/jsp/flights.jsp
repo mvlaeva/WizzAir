@@ -93,10 +93,12 @@
 									<div class="tab-content" id="Flight">
 										<form action="./Luggage" method="post">
 											<div class="wrapper pad1">
+											<p>Outbound</p>
 												<div class="flight_info"
 													style="background: white; border: 1px solid #63aeca;">
 													<c:if test="${ not empty allFlights }">
-														<c:forEach items="${allFlights}" var="flight">
+														<c:forEach items="${allFlights}" var="flight">													
+															<c:if test="${flight.directionality eq 'Outbound'}">														
 															<div class="padding_flight" style="width: 500px">
 																<br>
 															</div>
@@ -143,6 +145,66 @@
 																</div>
 																<br>
 															</div>
+															</c:if>
+														</c:forEach>
+													</c:if>
+												</div>
+											</div>
+											
+											<div class="wrapper pad1">
+											<p>Inbound</p>
+												<div class="flight_info"
+													style="background: white; border: 1px solid #63aeca;">
+													<c:if test="${ not empty allFlights }">
+														<c:forEach items="${allFlights}" var="flight">
+														<c:if test="${flight.directionality eq 'Inbound'}">
+															<div class="padding_flight" style="width: 500px">
+																<br>
+															</div>
+															<div class="flight">																															
+																<!--	<p>
+																	<c:out value="${flight.stops}" />
+																</p>
+																-->
+																<p class="flight">
+																	<spring:message code="flight.origin"/>
+																	<c:out value="${flight.originStation}" />
+																</p>
+																<p class="flight">
+																	<spring:message code="flight.destination"/>
+																	<c:out value="${flight.destinationStation}" />
+																</p>
+																<p class="flight">
+																	<spring:message code="flight.departure"/>
+																	<c:out value="${flight.departure}" />
+																</p>
+																<p class="flight">
+																	<spring:message code="flight.arival"/>
+																	<c:out value="${flight.arrival}" />
+																</p>
+																<p class="flight">
+																	<spring:message code="flight.duration"/>
+																	<c:out value="${flight.duration} minutes" />
+																</p>
+																<p class="flight">
+																	<spring:message code="flight.carriers"/>
+																	<c:out value="WizzAir" />
+																</p>
+																<p class="flight">
+																	<spring:message code="flight.price"/>
+																	<fmt:formatNumber type="number" maxFractionDigits="2"
+																		value="${flight.price}" />
+																</p>
+																<div class="buy_now">				
+																		<p>
+																		<spring:message code="flight.choose"/>
+																<input type="radio" name="incomingFlightId" value="${flight.id}">
+																	
+															</p>
+																</div>
+																<br>
+															</div>
+															</c:if>
 														</c:forEach>
 													</c:if>
 												</div>
@@ -154,8 +216,8 @@
 										<c:if test="${empty allFlights }">
 											<div class="flight_info" style="padding: 0">
 												<p>
-													<c:out
-														value="<spring:message code="flight.noMatch"/>" />
+												<spring:message code="flight.noMatch" var="variable1"/>
+													<c:out value="${variable1}"/>
 												</p>
 												<br>
 												<form action="./index" method="get">

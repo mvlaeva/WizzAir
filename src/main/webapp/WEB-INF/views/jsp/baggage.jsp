@@ -106,7 +106,7 @@
 											<c:if test="${not empty mapFlights}">
 												<form action="./Buy" method="post">
 												<!-- SEARCH CHILDREN -->
-													<c:forEach begin="1" end="${search.adults}"
+													<c:forEach begin="1" end="${search.adults + search.children}"
 														varStatus="loop">
 														<div style="padding-left: 30px;">
 															<p style="font-size: 16px;">
@@ -170,7 +170,7 @@
 														</div>
 														<hr></hr>
 													</c:forEach>
-													<c:forEach begin="1" end="${search.children}"
+									<%-- 				<c:forEach begin="1" end="${search.children}"
 														varStatus="loop">
 														<div style="padding-left: 30px;">
 															<p style="font-size: 16px;">
@@ -196,7 +196,7 @@
 															</p>
 															<p>
 																<spring:message code="baggage.gender"/> <input type="radio"
-																	name="gender<c:out value="${loop.index}" />"
+																	name="gender<c:out value="${${search.adults} + loop.index}" />"
 																	value="male" checked> <spring:message code="baggage.gender.male"/> <input type="radio"
 																	name="gender<c:out value="${loop.index}" />"
 																	value="female"> <spring:message code="baggage.gender.female"/> <br>
@@ -233,19 +233,21 @@
 															</p>
 														</div>
 														<hr></hr>
-													</c:forEach>
+													</c:forEach> --%>
 													<input type="submit" value="<spring:message code="baggage.continue"/>" />
 												</form>
 											</c:if>
 											<c:if test="${empty mapFlights}">
 												<div>
-													<c:out value="<spring:message code="baggage.message"/>"></c:out>
+												<spring:message code="baggage.message" var="baggage"/>
+													<c:out value="${baggage}"></c:out>
 												</div>
 											</c:if>
 										</c:if>
 										<c:if test="${empty user }">
 											<div>
-												<c:out value="<spring:message code="baggage.login"/>"></c:out>
+											<spring:message code="baggage.login" var="login"/>
+												<c:out value="${login}"></c:out>
 											</div>
 											<form action="./Login" method="post">
 												<input type="submit" value="Login">
@@ -253,7 +255,8 @@
 										</c:if>
 										<c:if test="${ adults <= 0 }">
 											<p>
-												<c:out value="<spring:message code="baggage.adults"/>" />
+											<spring:message code="baggage.adults" var="adults"/>
+												<c:out value="${adults}" />
 											</p>
 										</c:if>
 									</div>

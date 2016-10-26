@@ -16,22 +16,15 @@ public class LuggageController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String doPost(HttpServletRequest request, HttpServletResponse response) {
 
-		/*Map<String, String> mapFlights = new HashMap<String, String>();
-
-		for (String header : request.getParameterMap().keySet()) {
-
-			if (header != null) {
-				for (String value : request.getParameterMap().get(header)) {
-					mapFlights.put(header, value);
-				}
-			}
-		}*/
-
 		List<String> mapFlights = new ArrayList<String>();
 		String outgoingFlightId = request.getParameter("outgoingFlightId");
-		System.out.println(outgoingFlightId);
+		String incomigFlightId = request.getParameter("incomingFlightId");
+		
 		mapFlights.add(outgoingFlightId);
+		mapFlights.add(incomigFlightId);
+		
 		System.out.println(outgoingFlightId);
+		System.out.println(incomigFlightId);
 		
 		request.getSession().setAttribute("mapFlights", mapFlights);
 		return "baggage";

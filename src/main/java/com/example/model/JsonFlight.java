@@ -15,6 +15,7 @@ public class JsonFlight {
 	String[] carriers = new String[0];
 	List<JsonFlight> flights;
 	String[] stops = new String[0];
+	String directionality;
 	int[] segmentIds = new int[0];
 	double price;
 	String ticketSeller;
@@ -30,11 +31,12 @@ public class JsonFlight {
 	}
 	
 	public JsonFlight(String id, String originStation, String destinationStation, String departure, String arrival,
-			String duration, String[] carriers, String[] stops, int[] segmentIds ) {
+			String duration, String[] carriers, String[] stops, String direction, int[] segmentIds ) {
 		this(originStation, destinationStation, departure, arrival, duration, carriers);
 		this.id = id;		
 		this.flights = new ArrayList<JsonFlight>();
 		this.stops = stops;
+		this.directionality = direction;
 		this.segmentIds = segmentIds;
 	}
 
@@ -132,6 +134,14 @@ public class JsonFlight {
 
 	public void setTicketSeller(String ticketSeller) {
 		this.ticketSeller = ticketSeller;
+	}
+
+	public String getDirectionality() {
+		return directionality;
+	}
+
+	public void setDirectionality(String directionality) {
+		this.directionality = directionality;
 	}
 
 	@Override

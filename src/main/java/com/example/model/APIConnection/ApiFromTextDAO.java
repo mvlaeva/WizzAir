@@ -1,14 +1,6 @@
 package com.example.model.APIConnection;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -17,58 +9,18 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import com.example.model.FlightSearch;
 import com.example.model.JsonFlight;
-import com.example.model.exceptions.FlightException;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
 
-public class ApiDAO {
+public class ApiFromTextDAO {
 
-	private static final String API_KEY_BACKUP = "im947515887741739542302853275112";
-	private static final String API_KEY = "zd245468154105197435988199897794";
 	private static final String COMPANY_CODE = "1914";
 	private static final String COMPANY_NAME = "Wizz Air";
 
-	public static List<JsonFlight> getFlights(FlightSearch search) throws Exception {
+	public static List<JsonFlight> getFlights() throws Exception {
 
-		String location = getLocation(search);
-
-		return getFlightsQuery(search, location);
-	}
-
-	private static List<JsonFlight> getFlightsQuery(FlightSearch search, String location) throws Exception {
-
-		int stopsSearch = search.getStops();
-		String carriersKey = "&includecarriers=W6";
-
-		String request2 = location + "?apiKey=" + API_KEY + "&stops=" + stopsSearch;
-
-		// the flight is direct
-		if (stopsSearch == 0) {
-			request2 = request2 + carriersKey;
-		}
-
-		System.out.println("request2:"+request2);
-		URL url2 = new URL(request2);
-		HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
-
-		conn2.setRequestProperty("Accept", "application/json");
-
-		BufferedReader in = new BufferedReader(new InputStreamReader(conn2.getInputStream()));
-		String inputLine;
-		StringBuffer response = new StringBuffer();
-
-		while ((inputLine = in.readLine()) != null) {
-			response.append(inputLine);
-		}
-		in.close();
-
-		JsonObject object = null;
 		List<JsonFlight> flights = new ArrayList<JsonFlight>();
 		Map<Integer, JsonFlight> flightsWithStops = new HashMap<Integer, JsonFlight>();
 		Map<String, HashMap<String, Double>> flightIds = new HashMap<String, HashMap<String, Double>>();
@@ -77,43 +29,10 @@ public class ApiDAO {
 		Map<String, String> placesMap = new HashMap<String, String>();
 
 		try {
-			System.out.println("Res code: " + conn2.getResponseCode());
-			// if too many request
-			if (conn2.getResponseCode() == 429) {
-				Map<String, String> map2 = new HashMap<String, String>();
-
-				for (String header : conn2.getHeaderFields().keySet()) {
-					if (header != null) {
-						for (String value : conn2.getHeaderFields().get(header)) {
-							System.out.println(header + ":" + value);
-							map2.put(header, value);
-						}
-					}
-				}
-			}
-			//Continue polling if the previous polling response is 304
-			if (conn2.getResponseCode() == 304) {
-				// wait 1 sec and poll again
-				Thread.sleep(1000);
-				return getFlightsQuery(search, location);
-			}
-			// Continue polling if the previous polling response is 200 and
-			// status is UpdatesPending
-			if (conn2.getResponseCode() == 200) {
-				JsonElement element = new JsonParser().parse(response.toString());
-				if (element.isJsonNull()) {
-					return getFlightsQuery(search, location);
-				}
-				object = (JsonObject) element;
-				if (object.get("Status").getAsString().equals("UpdatesPending")) {
-					Thread.sleep(1000);
-					return getFlightsQuery(search, location);
-				}
-			}
-			
-			System.out.println(response.toString());
 
 			// all carriers with flights
+			
+			JsonObject object = (JsonObject) new JsonParser().parse(new FileReader("D:\\workspaceSpring\\WizzAir\\src\\main\\webapp\\static\\pdf\\json-with-return.txt"));
 			JsonArray carriers = object.getAsJsonArray("Carriers");
 
 			for (int number = 0; number < carriers.size(); number++) {
@@ -174,7 +93,7 @@ public class ApiDAO {
 				}
 				
 				String directionality = flight.get("Directionality").getAsString();
-					
+				
 				JsonArray segmentIdsArr = flight.get("SegmentIds").getAsJsonArray();
 				int[] segmentIds = new int[segmentIdsArr.size()];
 				for (int index = 0; index < segmentIdsArr.size(); index++) {
@@ -232,45 +151,42 @@ public class ApiDAO {
 
 			// set lowest price and agent to all flights
 			for (int flight = 0; flight < flights.size(); flight++) {
-				
-				if (flights.get(flight).getDirectionality().equals("Outbound")) {
-					double lowestPrice = Double.MAX_VALUE;
-					String ticketSeller = "";
-					String flightId = flights.get(flight).getId();
-					HashMap<String, Double> agentAndPrice = flightIds.get(flightId);
-					// get the id for COMPANY_NAME
-					String agentNumber = agentsMap.get(COMPANY_NAME);
-					for (Entry<String, Double> agent : agentAndPrice.entrySet()) {
+				double lowestPrice = Double.MAX_VALUE;
+				String ticketSeller = "";
+				String flightId = flights.get(flight).getId();
+				HashMap<String, Double> agentAndPrice = flightIds.get(flightId);
+				// get the id for COMPANY_NAME
+				String agentNumber = agentsMap.get(COMPANY_NAME);
+				for (Entry<String, Double> agent : agentAndPrice.entrySet()) {
 
-						// check if the COMPANY_NAME had set a price, else choose
-						// the lowest one
-						if (agentAndPrice.containsKey(agentNumber)) {
-							ticketSeller = COMPANY_NAME;
-							lowestPrice = agentAndPrice.get(agentNumber);
-							break;
-						} else {
+					// check if the COMPANY_NAME had set a price, else choose
+					// the lowest one
+					if (agentAndPrice.containsKey(agentNumber)) {
+						ticketSeller = COMPANY_NAME;
+						lowestPrice = agentAndPrice.get(agentNumber);
+						break;
+					} else {
 
-							double price = agent.getValue();
-							if (price < lowestPrice) {
-								lowestPrice = price;
-								ticketSeller = agent.getKey();
-							}
+						double price = agent.getValue();
+						if (price < lowestPrice) {
+							lowestPrice = price;
+							ticketSeller = agent.getKey();
 						}
 					}
-
-					for (Entry<String, String> agentId : agentsMap.entrySet()) {
-
-						if (agentId.getValue().equals(ticketSeller)) {
-							ticketSeller = agentId.getKey();
-							break;
-						}
-
-					}
-
-					flights.get(flight).setPrice(lowestPrice);
-					flights.get(flight).setTicketSeller(ticketSeller);				
 				}
-				
+
+				for (Entry<String, String> agentId : agentsMap.entrySet()) {
+
+					if (agentId.getValue().equals(ticketSeller)) {
+						ticketSeller = agentId.getKey();
+						break;
+					}
+
+				}
+
+				flights.get(flight).setPrice(lowestPrice);
+				flights.get(flight).setTicketSeller(ticketSeller);
+
 				// replace carrier id with name
 				for (int i = 0; i < flights.get(flight).getCarriers().length; i++) {
 					String name = flights.get(flight).getCarriers()[i];
@@ -290,7 +206,6 @@ public class ApiDAO {
 					String stopName = flights.get(flight).getStops()[stop];
 					flights.get(flight).setStopName(stop, placesMap.get(stopName));
 				}
-				
 			}
 
 			// set nested flights (if any)
@@ -335,72 +250,9 @@ public class ApiDAO {
 				System.out.println();
 			}
 
-		} catch (JsonIOException e) {
-			e.printStackTrace();
-		} catch (JsonSyntaxException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return flights;
-	}
-
-	private static String getLocation(FlightSearch search)
-			throws MalformedURLException, IOException, ProtocolException, FlightException {
-		String directionSearch = search.getDirection().trim();
-		String originSearch = search.getOrigin().trim();
-		String destinationSearch = search.getDestination().trim();
-		String departureDateSearch = search.getDepartureDate().trim();
-		String returnDate = search.getReturnDate().trim();
-		int adultsSearch = search.getAdults();
-		int childrensearch = search.getChildren();
-		String returnDateDateSearch = "&inbounddate=";
-		
-		if (directionSearch.equals("one-way")) {
-			returnDateDateSearch = "";
-		} else {
-			returnDateDateSearch = returnDateDateSearch + returnDate;
-		}
-
-		String request = "http://partners.api.skyscanner.net/apiservices/pricing/v1.0/";
-		URL url = new URL(request);
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setDoOutput(true);
-		conn.setRequestMethod("POST");
-		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-		conn.setRequestProperty("Accept", "application/json");
-		conn.setRequestProperty("charset", "utf-8");
-
-		String urlParameters = "apiKey=" + API_KEY + "&country=BG&currency=BGN&locale=en-GB&originplace="
-				+ originSearch + "&destinationplace=" + destinationSearch + "&outbounddate=" + departureDateSearch 
-				+ returnDateDateSearch + "&locationschema=Iata&adults=" + adultsSearch + "&children=" + childrensearch + "&groupPricing=true";
-
-		System.out.println("urlParameters:" + urlParameters);
-		byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
-		int postDataLength = postData.length;
-
-		conn.setRequestProperty("Content-Length", Integer.toString(postDataLength));
-
-		conn.setUseCaches(false);
-
-		try {
-			DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
-			wr.write(postData);
-			wr.flush();
-			wr.close();
-
-		} catch (Exception e) {
-			throw new FlightException("Something went wrong!");
-		}
-
-		Map<String, String> map = new HashMap<String, String>();
-
-		for (String header : conn.getHeaderFields().keySet()) {
-			if (header != null) {
-				for (String value : conn.getHeaderFields().get(header)) {
-					map.put(header, value);
-				}
-			}
-		}
-
-		return map.get("Location");
-	}
+	}	
 }

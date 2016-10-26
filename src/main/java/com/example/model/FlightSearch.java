@@ -4,6 +4,7 @@ import com.example.model.exceptions.FlightSearchException;
 
 public class FlightSearch {
 
+	private String direction;
 	private String origin;
 	private String destination;
 	private String departureDate;
@@ -12,8 +13,9 @@ public class FlightSearch {
 	private int children;
 	private int stops;
 
-	public FlightSearch(String origin, String destination, String departureDate, String returnDate, int adults,
+	public FlightSearch(String direction, String origin, String destination, String departureDate, String returnDate, int adults,
 			int children, int stops) {
+		this.direction = direction;
 		this.origin = origin;
 		this.destination = destination;
 		this.departureDate = departureDate;
@@ -95,5 +97,13 @@ public class FlightSearch {
 
 	public void setChildren(int children) {
 		this.children = children;
+	}
+
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
 	}
 }

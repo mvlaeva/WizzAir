@@ -11,11 +11,12 @@
 <link href="<c:url value="/css/layout.css" />" rel="stylesheet">
 <link href="<c:url value="/css/style.css" />" rel="stylesheet">
 <link href="<c:url value="/css/jquery-ui.css" />" rel="stylesheet">
-<script src="<c:url value="/js/jquery-ui.js"/>"></script>
-<script src="<c:url value="/js/jquery-1.5.2.js"/>"></script>
 
-<script src="<c:url value="https://code.jquery.com/jquery-1.12.4.js"/>"></script>
-<script src="<c:url value="https://code.jquery.com/ui/1.12.1/jquery-ui.js"/>"></script>
+<script type="text/javascript" src="<c:url value='/js/jquery-1.5.2.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/jquery-ui.js'/>"></script>
+
+<script src="<c:url value="http://code.jquery.com/jquery-1.7.2.min.js"/>"></script>
+<script src="<c:url value="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"/>"></script>
 
 
 <%-- <script src="<c:url value='js/jquery-1.5.2.js'/>"</script> --%>
@@ -53,6 +54,16 @@
 	        });
 	    });
 	</script>
+	<script type="text/javascript">
+	$('input[name="flight"]').on('click', function() {
+	    if ($(this).val() === 'return') {
+	        $('#td2').removeProp("disabled");
+	    }
+	    else {
+	        $('#td2').prop("disabled", "disabled");
+	    }
+	});disabled
+	</script>
 	<div class="main">
 		<!--header -->
 		<jsp:include page="header.jsp" />
@@ -80,7 +91,9 @@
 								<form id="form_1" action="./SearchController" method="post">
 									<div>
 										<div class="radio">
-											<div class="wrapper">	
+											<div class="wrapper">
+											<input type="radio" value="one-way" name="flight" checked="checked"><label>One Way</label>
+											<input type="radio" value="return" name="flight"><label>Return</label>	
 											</div>
 										</div>
 										<div class="row">
