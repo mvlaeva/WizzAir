@@ -163,9 +163,11 @@ public class ApiDAO {
 				}
 
 				// add only flights where Wizz Air takes part
-				/*
-				 * if (!(carriersSet.contains(COMPANY_CODE))) { continue; }
-				 */
+				
+				if (!(carriersSet.contains(COMPANY_CODE))) {
+					 continue; 
+				}
+				 
 
 				JsonArray stopsArr = flight.get("Stops").getAsJsonArray();
 				String[] stops = new String[stopsArr.size()];
@@ -371,7 +373,7 @@ public class ApiDAO {
 
 		String urlParameters = "apiKey=" + API_KEY + "&country=BG&currency=BGN&locale=en-GB&originplace="
 				+ originSearch + "&destinationplace=" + destinationSearch + "&outbounddate=" + departureDateSearch 
-				+ returnDateDateSearch + "&locationschema=Iata&adults=" + adultsSearch + "&children=" + childrensearch + "&groupPricing=true";
+				+ returnDateDateSearch + "&locationschema=Iata&adults=" + adultsSearch + "&children=" + childrensearch;
 
 		System.out.println("urlParameters:" + urlParameters);
 		byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);

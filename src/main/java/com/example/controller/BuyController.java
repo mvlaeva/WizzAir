@@ -1,45 +1,32 @@
 package com.example.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.example.model.CabinBaggage;
 import com.example.model.ChechedInBaggage;
 import com.example.model.FlightSearch;
 import com.example.model.Gender;
-import com.example.model.JsonFlight;
 import com.example.model.Passanger;
-import com.example.model.Ticket;
-import com.example.model.User;
 import com.example.model.Utility;
-import com.example.model.DBDAOs.UserDAO;
-import com.example.model.exceptions.UserDAOException;
+
 
 	@Controller
 	@RequestMapping(value = "/Buy")
 	public class BuyController {
 	
-	@SuppressWarnings("unchecked")
 	@RequestMapping(method = RequestMethod.POST)
 	public String doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		List<Passanger> adultPassengers = new ArrayList<Passanger>();
 		FlightSearch madeSerach = (FlightSearch) request.getSession().getAttribute("search");
-		List<String> mapFlightsIds = (List<String>) request.getSession().getAttribute("mapFlights");
-		List<JsonFlight> allFlights = (ArrayList<JsonFlight>) request.getSession().getAttribute("allFlights");
 
 		for (int person = 1; person <= (madeSerach.getAdults() + madeSerach.getChildren()); person++) {
 
@@ -73,18 +60,7 @@ import com.example.model.exceptions.UserDAOException;
 			adultPassengers.add(new Passanger(firstName, lastName, gender, cabinBaggage, chechedInBaggage,
 					sportsEquipment == null ? false : true, isOnlineCheckIn.equals("online") ? true : false, seat));
 		}
-
-		List<JsonFlight> pickedFlights = new ArrayList<JsonFlight>();
 		
-		for (int index = 0; index < allFlights.size(); index++) {
-			for (int flight = 0; flight < mapFlightsIds.size(); flight++) {
-				if (allFlights.get(index).getId().equals(mapFlightsIds.get(flight))) {
-					pickedFlights.add(allFlights.get(index));
-				}
-			}
-		}
-		
-		request.getSession().setAttribute("pickedFlights", pickedFlights);
 		request.getSession().setAttribute("adultPassengers", adultPassengers);
 		return "checkOut";		
 	}

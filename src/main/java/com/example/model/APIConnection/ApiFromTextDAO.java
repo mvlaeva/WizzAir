@@ -151,42 +151,45 @@ public class ApiFromTextDAO {
 
 			// set lowest price and agent to all flights
 			for (int flight = 0; flight < flights.size(); flight++) {
-				double lowestPrice = Double.MAX_VALUE;
-				String ticketSeller = "";
-				String flightId = flights.get(flight).getId();
-				HashMap<String, Double> agentAndPrice = flightIds.get(flightId);
-				// get the id for COMPANY_NAME
-				String agentNumber = agentsMap.get(COMPANY_NAME);
-				for (Entry<String, Double> agent : agentAndPrice.entrySet()) {
+				
+				if (flights.get(flight).getDirectionality().equals("Outbound")) {
+					double lowestPrice = Double.MAX_VALUE;
+					String ticketSeller = "";
+					String flightId = flights.get(flight).getId();
+					HashMap<String, Double> agentAndPrice = flightIds.get(flightId);
+					// get the id for COMPANY_NAME
+					String agentNumber = agentsMap.get(COMPANY_NAME);
+					for (Entry<String, Double> agent : agentAndPrice.entrySet()) {
 
-					// check if the COMPANY_NAME had set a price, else choose
-					// the lowest one
-					if (agentAndPrice.containsKey(agentNumber)) {
-						ticketSeller = COMPANY_NAME;
-						lowestPrice = agentAndPrice.get(agentNumber);
-						break;
-					} else {
+						// check if the COMPANY_NAME had set a price, else choose
+						// the lowest one
+						if (agentAndPrice.containsKey(agentNumber)) {
+							ticketSeller = COMPANY_NAME;
+							lowestPrice = agentAndPrice.get(agentNumber);
+							break;
+						} else {
 
-						double price = agent.getValue();
-						if (price < lowestPrice) {
-							lowestPrice = price;
-							ticketSeller = agent.getKey();
+							double price = agent.getValue();
+							if (price < lowestPrice) {
+								lowestPrice = price;
+								ticketSeller = agent.getKey();
+							}
 						}
 					}
-				}
 
-				for (Entry<String, String> agentId : agentsMap.entrySet()) {
+					for (Entry<String, String> agentId : agentsMap.entrySet()) {
 
-					if (agentId.getValue().equals(ticketSeller)) {
-						ticketSeller = agentId.getKey();
-						break;
+						if (agentId.getValue().equals(ticketSeller)) {
+							ticketSeller = agentId.getKey();
+							break;
+						}
+
 					}
 
+					flights.get(flight).setPrice(lowestPrice);
+					flights.get(flight).setTicketSeller(ticketSeller);				
 				}
-
-				flights.get(flight).setPrice(lowestPrice);
-				flights.get(flight).setTicketSeller(ticketSeller);
-
+				
 				// replace carrier id with name
 				for (int i = 0; i < flights.get(flight).getCarriers().length; i++) {
 					String name = flights.get(flight).getCarriers()[i];
@@ -206,6 +209,7 @@ public class ApiFromTextDAO {
 					String stopName = flights.get(flight).getStops()[stop];
 					flights.get(flight).setStopName(stop, placesMap.get(stopName));
 				}
+				
 			}
 
 			// set nested flights (if any)

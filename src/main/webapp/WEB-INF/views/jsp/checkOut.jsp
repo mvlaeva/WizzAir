@@ -95,21 +95,22 @@
 								<spring:message code="checkOut.numPass"/>
 								<c:out value="${fn:length(adultPassengers)}" />
 							</p>
+							<div class="padding_flight" style="width: 500px">
+											<br>
+										</div>
 							<form action="./Pay" method="post">
 								<c:set var="price" scope="session"
 									value="${(pickedFlights[0].price * fn:length(adultPassengers)) }" />
-								<div>
+								<div>							
 									<c:forEach items="${pickedFlights}" var="flight">
-										<div class="padding_flight" style="width: 500px">
-											<br>
-										</div>
+										
 										<div
-											style="padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
+											style="display:inline-block; float: left; padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
 											<br>
 											<p
 												style="padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
-												Id :
-												<c:out value="${flight.id}" />
+												Direction :
+												<c:out value="${flight.directionality}" />
 											</p>
 											<p
 												style="padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
@@ -139,7 +140,9 @@
 											<p
 												style="padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
 												Carrier :
-												<c:out value="WizzAir" />
+												<c:forEach items="${flight.carriers}" var="carrier" >
+													 <c:out value="${carrier}" />																	  
+												</c:forEach>
 											</p>
 											<p
 												style="padding: 2px 2px 2px 2px; border-width: thin; border-radius: 3px; border: 1px solid rgba(4, 129, 177, 0.5); bаckground: white; border: 1px solid; border-radius: 5px 20px 5px; border-color: #6b7b8d;">
@@ -150,12 +153,13 @@
 											<br>
 										</div>
 									</c:forEach>
-									<p>
+									
+								</div>
+									<p style="display:inline-block; float: right;">
 										<strong><spring:message code="checkOut.total"/></strong>
 										<fmt:formatNumber type="number" maxFractionDigits="2"
 											value="${ price}" />
 									</p>
-								</div>
 								<input type="submit" value="<spring:message code="checkOut.book"/>" />
 							</form>
 							<!--  

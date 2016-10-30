@@ -103,15 +103,20 @@
 									<div class="tab-content" id="Flight"
 										style="background: white; border: 1px solid #63aeca;">
 										<c:if test="${not empty user }">
-											<c:if test="${not empty mapFlights}">
+											<c:if test="${not empty pickedFlights}">
 												<form action="./Buy" method="post">
-												<!-- SEARCH CHILDREN -->
 													<c:forEach begin="1" end="${search.adults + search.children}"
 														varStatus="loop">
 														<div style="padding-left: 30px;">
 															<p style="font-size: 16px;">
 																<strong><spring:message code="baggage.passenger"/> <c:out value="${loop.index}" />
+																<c:if test="${loop.index <= search.adults }">
 																	<spring:message code="baggage.adult"/>
+																</c:if>
+																<c:if test="${loop.index > search.adults }">
+																	<spring:message code="baggage.child"/>
+																</c:if>
+																	
 																</strong>
 															</p>
 															<br>
@@ -170,70 +175,6 @@
 														</div>
 														<hr></hr>
 													</c:forEach>
-									<%-- 				<c:forEach begin="1" end="${search.children}"
-														varStatus="loop">
-														<div style="padding-left: 30px;">
-															<p style="font-size: 16px;">
-																<strong><spring:message code="baggage.passenger"/> <c:out value="${loop.index}" />
-																	<spring:message code="baggage.child"/>
-																</strong>
-															</p>
-															<br>
-															<c:if test="${not empty buyMessage }">
-																<p style="color: red">
-																	<c:out value="${ buyMessage}"></c:out>
-																</p>
-															</c:if>
-															<p>
-																<label><spring:message code="baggage.firstName"/></label> <input type="text"
-																	name="firstName<c:out value="${loop.index}" />"
-																	placeholder="<c:out value="${firstName}" />" />
-															</p>
-															<p>
-																<label><spring:message code="baggage.lastName"/></label> <input type="text"
-																	name="lastName<c:out value="${loop.index}" />"
-																	placeholder="<c:out value="${lastName}" />" />
-															</p>
-															<p>
-																<spring:message code="baggage.gender"/> <input type="radio"
-																	name="gender<c:out value="${${search.adults} + loop.index}" />"
-																	value="male" checked> <spring:message code="baggage.gender.male"/> <input type="radio"
-																	name="gender<c:out value="${loop.index}" />"
-																	value="female"> <spring:message code="baggage.gender.female"/> <br>
-															</p>
-															<p>
-																<spring:message code="baggage.cabinBag"/> <input type="radio"
-																	name="cabinBaggage<c:out value="${loop.index}" />"
-																	value="small" checked> <spring:message code="baggage.cabinBag.small"/> <input
-																	type="radio"
-																	name="cabinBaggage<c:out value="${loop.index}" />"
-																	value="large"> <spring:message code="baggage.cabinBag.large"/> <br>
-															</p>
-															<p>
-																<spring:message code="baggage.checkInBag"/> <input type="radio"
-																	name="chechedInBaggage<c:out value="${loop.index}" />"
-																	value="LIGHT" checked><spring:message code="baggage.checkInBag.light"/><input
-																	type="radio"
-																	name="chechedInBaggage<c:out value="${loop.index}" />"
-																	value="HEAVY"><spring:message code="baggage.checkInBag.heavy"/><br>
-															</p>
-															<p>
-																<spring:message code="baggage.sportEquipment"/> <input type="checkbox"
-																	name="sportsEquipment<c:out value="${loop.index}" />"
-																	id="sportsEquipment"> <label
-																	for="sportsEquipment"></label>
-															</p>
-															<p>
-																<spring:message code="baggage.checkIn"/><input type="radio"
-																	name="checkIn<c:out value="${loop.index}" />"
-																	value="online" checked><spring:message code="baggage.checkIn.online"/><input
-																	type="radio"
-																	name="checkIn<c:out value="${loop.index}" />"
-																	value="airport"><spring:message code="baggage.checkIn.airport"/><br>
-															</p>
-														</div>
-														<hr></hr>
-													</c:forEach> --%>
 													<input type="submit" value="<spring:message code="baggage.continue"/>" />
 												</form>
 											</c:if>

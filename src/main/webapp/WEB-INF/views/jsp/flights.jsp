@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,11 +103,18 @@
 															<div class="padding_flight" style="width: 500px">
 																<br>
 															</div>
-															<div class="flight">																															
-																<!--	<p>
-																	<c:out value="${flight.stops}" />
+															<div class="flight">
+																																														
+																<p>
+																	<c:if test="${fn:length(flight.segmentIds) gt 1}">
+																	<c:out value="${fn:length(flight.segmentIds)-1}" />
+																	   Transfer :
+																	   <c:forEach items="${flight.stops}" var="stop" >
+																		        <c:out value="${stop}" />																	  
+																		</c:forEach>																	
+																	</c:if>																	
 																</p>
-																-->
+																															
 																<p class="flight">
 																	<spring:message code="flight.origin"/>
 																	<c:out value="${flight.originStation}" />
@@ -128,8 +136,10 @@
 																	<c:out value="${flight.duration} minutes" />
 																</p>
 																<p class="flight">
-																	<spring:message code="flight.carriers"/>
-																	<c:out value="WizzAir" />
+																	<spring:message code="flight.carriers"/>																
+																		<c:forEach items="${flight.carriers}" var="carrier" >
+																		        <c:out value="${carrier}" />																	  
+																		</c:forEach>
 																</p>
 																<p class="flight">
 																	<spring:message code="flight.price"/>
@@ -162,10 +172,15 @@
 																<br>
 															</div>
 															<div class="flight">																															
-																<!--	<p>
-																	<c:out value="${flight.stops}" />
+																<p>
+																	<c:if test="${fn:length(flight.segmentIds) gt 1}">
+																	<c:out value="${fn:length(flight.segmentIds)-1}" />
+																	   Transfer :
+																	   <c:forEach items="${flight.stops}" var="stop" >
+																		        <c:out value="${stop}" />																	  
+																		</c:forEach>																	
+																	</c:if>																	
 																</p>
-																-->
 																<p class="flight">
 																	<spring:message code="flight.origin"/>
 																	<c:out value="${flight.originStation}" />
@@ -188,7 +203,9 @@
 																</p>
 																<p class="flight">
 																	<spring:message code="flight.carriers"/>
-																	<c:out value="WizzAir" />
+																	<c:forEach items="${flight.carriers}" var="carrier" >
+																		        <c:out value="${carrier}" />																	  
+																	</c:forEach>
 																</p>
 																<p class="flight">
 																	<spring:message code="flight.price"/>
